@@ -19,6 +19,10 @@ it feels to play.
   battery saves.
 - **Battery-backed saves.** The game now saves your progress to battery RAM
   instead of (or alongside) the password system.
+- **Smart key use.** Carrying the right key opens a locked door automatically
+  — no need to open the item menu and select it first. Keys are still spent
+  one per door, still counted, still bought in shops; only the extra trip to
+  the menu goes away.
 
 ## Requirements
 
@@ -41,8 +45,8 @@ it feels to play.
 
 ## Credits
 
-The battery-save support in this patch is built using the general hacks
-from Kai E. Frøland's [FaxEdit](https://github.com/kaimitai/faxedit)
+The battery-save and smart-key support in this patch are built using the
+general hacks from Kai E. Frøland's [FaxEdit](https://github.com/kaimitai/faxedit)
 ("Echoes of Eolis") toolchain, licensed GPLv3. Everything else in this
 patch was built independently.
 
