@@ -1,54 +1,32 @@
-# Faxanadu QoL Edition
+# Faxanadu patches
 
-A quality-of-life patch for the NES game *Faxanadu* (USA release). It
-changes nothing about the game's content, difficulty, or story — only how
-it feels to play.
+Patches for the NES game *Faxanadu*. Each folder holds one build: its patch
+files and a README that explains what it does and how to use it.
 
-## What it changes
+| Folder | What it is | For |
+|---|---|---|
+| [qol-edition](qol-edition) | The original game, nicer to play: faster screen transitions, an options menu, battery saves and smart key use. | USA |
+| [speedrunner-training](speedrunner-training) | The original game with speedrun practice tools in the pause menu: timer, splits, warp, checkpoints and HUD readouts. With the default settings it plays exactly like the original. | USA, USA Rev 1, Europe |
+| [faxoptions-showcase-9.2](faxoptions-showcase-9.2) | FaxOptions Showcase 9.2 (Crown Jewels): the FaxEdit 9.2 general hacks in one ROM, with a pause-menu panel that switches them and changes their settings while you play. | USA, USA Rev 1, Europe |
+| [faxoptions-debug-9.2](faxoptions-debug-9.2) | FaxOptions Debug 9.2: Crown Jewels plus a script runner, to run the game's script commands from the pause menu. For testing, not for play. | USA, USA Rev 1, Europe |
 
-- **Faster screen transitions.** The pause that used to happen when the
-  screen scrolled or the game paged in new content is substantially
-  shorter, most noticeably in busy indoor rooms.
-- **An in-game options menu.** Hold **Select** and press **Start** to open
-  a settings panel from the pause screen. From there you can adjust:
-  - Text speed
-  - A handful of long-standing bug fixes (on by default)
-  - Fall, jump, and ladder feel
-  Your choices are saved to the cartridge's battery RAM, so they persist
-  between play sessions on real hardware or in an emulator that supports
-  battery saves.
-- **Battery-backed saves.** The game now saves your progress to battery RAM
-  instead of (or alongside) the password system.
-- **Smart key use.** Carrying the right key opens a locked door automatically
-  — no need to open the item menu and select it first. Keys are still spent
-  one per door, still counted, still bought in shops; only the extra trip to
-  the menu goes away.
+## How to patch
 
-## Requirements
+1. Start from a clean, unmodified dump of the right version, and keep a copy of it.
+2. Pick the patch for your version, `.ips` or `.bps`. A BPS patch checks that
+   you picked the right file first; an IPS patch doesn't.
+3. Apply it with a patcher, for example [Floating IPS](https://github.com/Alcaroo/floating-ips)
+   or [Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) in your browser.
+4. Save the result as a new file.
 
-- Your own legally-obtained USA release ROM of Faxanadu, unmodified.
-  - Expected SHA-1 of the full `.nes` file (with its 16-byte header):
-    `2e2b95db2be615cf588f0d758e0f7b1ccd81590a`
-  - If your file's hash doesn't match, this patch will refuse to apply
-    cleanly (BPS) or may produce a broken ROM (IPS) — get a clean dump.
-- A patcher that supports IPS or BPS, for example:
-  - [Floating IPS (flips)](https://github.com/Alcaroo/floating-ips) — supports both formats, and will warn you if you picked the wrong source ROM (BPS only)
-  - [Lunar IPS](https://fusoya.eludevisibility.org/lips/) — IPS only
-
-## How to apply
-
-1. Back up your original ROM file somewhere safe.
-2. Open your patcher of choice.
-3. Choose `faxanadu-qol-edition.ips` (or `.bps`) as the patch.
-4. Choose your clean Faxanadu ROM as the file to patch.
-5. Save the output as a new file — don't overwrite your clean ROM.
+All four builds keep settings or saves in battery RAM, so use an emulator that
+keeps battery saves.
 
 ## Credits
 
-The battery-save and smart-key support in this patch are built using the
-general hacks from Kai E. Frøland's [FaxEdit](https://github.com/kaimitai/faxedit)
-("Echoes of Eolis") toolchain, licensed GPLv3. Everything else in this
-patch was built independently.
+The FaxOptions builds, and the battery saves and smart keys in the QoL Edition,
+are built with the general hacks from Kai E. Frøland's
+[FaxEdit](https://github.com/kaimitai/faxedit) toolchain (GPLv3).
 
-Faxanadu is a trademark of its respective rights holders. This is an
-unofficial fan patch, not affiliated with or endorsed by them.
+Faxanadu is a trademark of its respective rights holders. These are unofficial
+fan patches, not affiliated with or endorsed by them.
