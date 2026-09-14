@@ -6,11 +6,8 @@ same lag frames.
 
 Patches
 -------
-  faxanadu-speedrun-training-usa.ips       Faxanadu (USA)          NTSC timer
-  faxanadu-speedrun-training-usa-rev1.ips  Faxanadu (USA) Rev 1    NTSC timer
-  faxanadu-speedrun-training-europe.ips    Faxanadu (Europe)       PAL timer
-Apply to a clean dump. The patch gives the ROM an NES 2.0 header with 8 KB of
-battery RAM, so use an emulator that keeps battery saves. Japan is not supported.
+  USA, USA Rev 1 (NTSC timer) and Europe (PAL timer), IPS or BPS. Use a clean dump
+  and an emulator that keeps battery saves. No Japan version.
 
 Timer
 -----

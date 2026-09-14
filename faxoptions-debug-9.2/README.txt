@@ -5,11 +5,9 @@ pause menu, with your own parameters. Built for testing, not for play.
 
 Patches
 -------
-  faxoptions-debug-9.2-usa.ips       Faxanadu (USA)          166 opcodes (24 vanilla + 146 FaxEdit)
-  faxoptions-debug-9.2-usa-rev1.ips  Faxanadu (USA) Rev 1    165 opcodes (AtlasDevSwitch left out)
-  faxoptions-debug-9.2-europe.ips    Faxanadu (Europe)       165 opcodes (AtlasDevSwitch left out)
-Same dumps, header note and emulator note as Crown Jewels (NES 2.0 header,
-an emulator that keeps battery saves).
+  USA (166 opcodes), USA Rev 1 and Europe (165, without Switch), IPS or BPS.
+  Same requirements as Crown Jewels: a clean NES 2.0 dump and an emulator that keeps
+  battery saves.
 
 Everything in Crown Jewels is here too (hacks, FaxOptions rows, PASSWORD on the
 start screen), except the SELL PRICE row.

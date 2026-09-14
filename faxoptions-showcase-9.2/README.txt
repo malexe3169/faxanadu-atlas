@@ -8,19 +8,9 @@ while you play. No FaxEdit install and no ROM building: apply the IPS and play.
 
 Patches
 -------
-  faxoptions-showcase-9.2-usa.ips       Faxanadu (USA)          PRG SHA-1 5b05c8859f356013d37f0545f5de5fa1693da5da
-  faxoptions-showcase-9.2-usa-rev1.ips  Faxanadu (USA) Rev 1    PRG SHA-1 d0c6af83c44f2dc90bcb0792a69c93f8d167f988
-  faxoptions-showcase-9.2-europe.ips    Faxanadu (Europe)       PRG SHA-1 0711bc8d0bf42a0829391c2320393a0d3df2dd1f
-  (PRG SHA-1 = the ROM without its 16-byte header)
-
-Each patch also sets two header bytes: byte 6 turns on the battery, and
-NES 2.0 byte 10 declares 8 KiB of save RAM (Mesen needs it). Use a dump
-with an NES 2.0 header; on an old iNES 1.0 header byte 10 means something
-else.
-
-Use an emulator that keeps battery saves (Mesen, FCEUX, RetroArch cores).
-The hack code runs from that save RAM and your settings are kept there, so
-they survive power cycles.
+  USA, USA Rev 1 and Europe, IPS or BPS. Use a clean dump with an NES 2.0 header and
+  an emulator that keeps battery saves (Mesen, FCEUX, RetroArch cores). Settings are
+  kept in battery RAM.
 
 Start screen
 ------------
@@ -91,14 +81,6 @@ Always on (built in at their FaxEdit defaults, not in the menu)
 
 Not included
 ------------
-  COMBAT FEEL      -                        FaxEdit refuses it together with RunControl
-  KILL SWITCH      -                        replaced by the KILL HERO row
-  DYNAMIC TILESETS -                        needs your own project graphics
-  ITEM SCRIPTS     -                        needs your own project scripts
-  JAPAN VERSION    -                        its free space is too small for Ladder Crown
-
-Settings that change the size of a hack's code (jump air-jumps, run
-"instant", mattock push mode, fall steer mode 2, the monsters' guard time)
-and settings stored in patched ROM code (text speed, enemy stats profiles,
-the item-hack switches) are not in the menu yet: the showcase only offers
-settings it can switch live.
+  Combat Feel (FaxEdit refuses it together with Run), Dynamic Tilesets and Item
+  Scripts (they need your own project), and the Japan version (not enough free space).
+  Settings that can't be switched while playing are not in the menu yet.

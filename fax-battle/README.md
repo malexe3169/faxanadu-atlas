@@ -3,14 +3,12 @@
 A two-player versus game built on the NES game *Faxanadu*: pick a fighter, pick
 an arena, and fight a friend. Experimental; the balance is still being tuned.
 
-## What you need
+## Use
 
-- Your own clean dump of the USA release of Faxanadu.
-  Expected SHA-1 of the full `.nes` file (with its header):
-  `2e2b95db2be615cf588f0d758e0f7b1ccd81590a`
-- `fax-battle.bps` or `fax-battle.ips` (see the front page for how to patch).
-- An emulator such as Mesen, and two controllers. The game uses 8 KB of extra
-  work RAM, so it plays in emulators, not on an original cartridge.
+Patch a clean dump of the USA release (SHA-1 of the full `.nes` file:
+`2e2b95db2be615cf588f0d758e0f7b1ccd81590a`) with `fax-battle.ips` or `.bps`. Play in an
+emulator such as Mesen with two controllers: the game needs 8 KB of extra work RAM, so
+it doesn't run on an original cartridge.
 
 ## Starting a match
 
