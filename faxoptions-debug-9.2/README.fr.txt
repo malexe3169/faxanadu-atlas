@@ -1,5 +1,5 @@
-FaxOptions Debug 9.2
-====================
+FaxOptions Debug 9.2-1
+======================
 English version: README.txt
 
 Crown Jewels plus un SCRIPT RUNNER : lancez n'importe quel opcode de script de la
@@ -43,8 +43,9 @@ Pas dans le runner
 
 Versions
 --------
-  Les versions de FaxOptions suivent celles de FaxEdit. 9.2 : Crown Jewels 9.2 plus le
-  script runner.
+  Les versions de FaxOptions suivent celles de FaxEdit : 9.2 est la version de FaxEdit,
+  -1 la version de la build.
+  9.2-1   Crown Jewels 9.2-1 plus le script runner.
 
 Opcodes (USA; Rev 1 et Europe ont la même liste sans Switch)
 ------------------------------------------------------------

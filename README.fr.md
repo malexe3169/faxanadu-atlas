@@ -9,8 +9,8 @@ fichiers de patch et un README qui explique ce qu'elle fait et comment l'utilise
 |---|---|---|---|
 | [qol-edition](qol-edition) | 1.1 | Le jeu original, plus agréable à jouer : transitions d'écran plus rapides, un menu d'options, des sauvegardes sur batterie et des clés qui ouvrent les portes toutes seules. | USA |
 | [speedrunner-training](speedrunner-training) | 5.1 | Le jeu original avec des outils d'entraînement au speedrun dans le menu de pause : chronomètre, splits, téléportation, points de départ et affichages à l'écran. Avec les réglages par défaut, il se joue exactement comme l'original. | USA, USA Rev 1, Europe |
-| [faxoptions-showcase-9.2](faxoptions-showcase-9.2) | 9.2 | FaxOptions Showcase 9.2 (Crown Jewels) : les hacks généraux de FaxEdit 9.2 dans une seule ROM, avec un panneau dans le menu de pause qui les active et change leurs réglages pendant la partie. | USA, USA Rev 1, Europe |
-| [faxoptions-debug-9.2](faxoptions-debug-9.2) | 9.2 | FaxOptions Debug 9.2 : Crown Jewels plus un exécuteur de scripts, pour lancer les commandes de script du jeu depuis le menu de pause. Pour les tests, pas pour jouer. | USA, USA Rev 1, Europe |
+| [faxoptions-showcase-9.2](faxoptions-showcase-9.2) | 9.2-1 | FaxOptions Showcase 9.2 (Crown Jewels) : les hacks généraux de FaxEdit 9.2 dans une seule ROM, avec un panneau dans le menu de pause qui les active et change leurs réglages pendant la partie. | USA, USA Rev 1, Europe |
+| [faxoptions-debug-9.2](faxoptions-debug-9.2) | 9.2-1 | FaxOptions Debug 9.2 : Crown Jewels plus un exécuteur de scripts, pour lancer les commandes de script du jeu depuis le menu de pause. Pour les tests, pas pour jouer. | USA, USA Rev 1, Europe |
 | [fax-battle](fax-battle) | 1.0 | Faxanadu Battle : un jeu de combat à deux joueurs bâti sur Faxanadu, avec les modes Crown Scramble et Duel, sept combattants et six arènes. Expérimental. | USA |
 
 ## Comment appliquer un patch

@@ -1,5 +1,5 @@
-FaxOptions Showcase 9.2 — Crown Jewels
-======================================
+FaxOptions Showcase 9.2-1 — Crown Jewels
+========================================
 Version française : README.fr.txt
 
 A showcase for FaxEdit beta-9.2 "Crowning Achievement"
@@ -87,5 +87,5 @@ Not included
 
 Versions
 --------
-  FaxOptions versions follow FaxEdit's. 9.2: the FaxEdit beta-9.2 "Crowning Achievement"
-  general hacks.
+  FaxOptions versions follow FaxEdit's: 9.2 is the FaxEdit version, -1 the build of it.
+  9.2-1   the FaxEdit beta-9.2 "Crowning Achievement" general hacks.
