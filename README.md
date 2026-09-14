@@ -1,5 +1,7 @@
 # Faxanadu patches
 
+*[Version française](README.fr.md)*
+
 Patches for the NES game *Faxanadu*. Each folder holds one build: its patch
 files and a README that explains what it does and how to use it.
 

@@ -1,5 +1,7 @@
 FaxOptions Showcase 9.2 — Crown Jewels
 ======================================
+Version française : README.fr.txt
+
 A showcase for FaxEdit beta-9.2 "Crowning Achievement"
 
 One ROM with the FaxEdit 9.2 general hacks built in together, and a
@@ -81,6 +83,4 @@ Always on (built in at their FaxEdit defaults, not in the menu)
 
 Not included
 ------------
-  Combat Feel (FaxEdit refuses it together with Run), Dynamic Tilesets and Item
-  Scripts (they need your own project), and the Japan version (not enough free space).
-  Settings that can't be switched while playing are not in the menu yet.
+  Combat Feel, Dynamic Tilesets, Item Scripts, the Japan version.

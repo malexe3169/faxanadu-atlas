@@ -1,5 +1,7 @@
 # Faxanadu Battle
 
+*[Version française](README.fr.md)*
+
 A two-player versus game built on the NES game *Faxanadu*: pick a fighter, pick
 an arena, and fight a friend. Experimental; the balance is still being tuned.
 

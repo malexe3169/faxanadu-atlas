@@ -1,5 +1,7 @@
 FaxOptions Debug 9.2
 ====================
+Version française : README.fr.txt
+
 Crown Jewels plus a SCRIPT RUNNER: run any of the ROM's script opcodes from the
 pause menu, with your own parameters. Built for testing, not for play.
 
@@ -32,12 +34,10 @@ nothing.
 
 Not in the runner
 -----------------
-  End                    nothing to run
-  OpenShopBuy/Sell       they need a shop table
-  15 large FaxEdit opcodes do not fit beside the others: AtlasDevIfItemCount,
-  FadeIn, EntitySayMessage, DamageEntity, SetAttrRect, FadeOut, SetPlayerPosition,
-  ShowNumberInMessage, ArmRole, SpawnMagicAt, WarpAreaScreenPos,
-  CastSpellFromEntity, GetPlayerPositionToVars, ShakeScreen, DissolveEntity
+  End, OpenShopBuy/Sell, AtlasDevIfItemCount, FadeIn, EntitySayMessage,
+  DamageEntity, SetAttrRect, FadeOut, SetPlayerPosition, ShowNumberInMessage,
+  ArmRole, SpawnMagicAt, WarpAreaScreenPos, CastSpellFromEntity,
+  GetPlayerPositionToVars, ShakeScreen, DissolveEntity
 
 Opcodes (USA; Rev 1 and Europe have the same list without Switch)
 ------------------------------------------------------------------

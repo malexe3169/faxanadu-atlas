@@ -1,5 +1,7 @@
 Faxanadu Vanilla SpeedRunner Training
 =====================================
+Version française : README.fr.txt
+
 The original game, unchanged, with speedrun practice tools in the pause menu.
 With the default settings it plays exactly like the original: same game state,
 same lag frames.
@@ -130,8 +132,6 @@ Always on
 
 Not included
 ------------
-  Save states     use your emulator's.
-  Gameplay hacks  none; this is the original game.
-  Building warps  warp to the door outside instead.
+  Save states, gameplay hacks, warps into buildings.
 
 Settings are kept in battery RAM and come back after a reset or power off.

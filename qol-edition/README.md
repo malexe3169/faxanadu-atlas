@@ -1,5 +1,7 @@
 # Faxanadu QoL Edition
 
+*[Version française](README.fr.md)*
+
 A quality-of-life patch for the NES game *Faxanadu* (USA release). It
 changes nothing about the game's content, difficulty, or story — only how
 it feels to play.
