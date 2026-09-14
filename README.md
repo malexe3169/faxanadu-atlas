@@ -35,21 +35,21 @@ Thanks to everyone whose work helped us understand the game:
 
 - chipx86, for the [Faxanadu disassembly](https://github.com/chipx86/faxanadu) and
   [faxanatools](https://github.com/chipx86/faxanatools)
-- Invariel, for the [tool-assisted speedrun](https://tasvideos.org/5338S) published on
-  TASVideos, and TASVideos for its Faxanadu resource pages
-- [Data Crystal](https://datacrystal.tcrf.net/wiki/Faxanadu),
-  [GameFAQs](https://gamefaqs.gamespot.com/nes/587273-faxanadu/faqs),
-  the [Speed Demos Archive](https://kb.speeddemosarchive.com) knowledge base and
-  [VGMaps](https://vgmaps.com)
-- sporst ([Daybreak](https://github.com/sporst/Daybreak), [NHF](https://github.com/sporst/NHF)),
-  Notlobb ([Randumizer](https://github.com/Notlobb/Randumizer)),
-  Daivuk ([Daxanadu](https://github.com/Daivuk/Daxanadu)),
-  mstan ([FaxanaduRecomp](https://github.com/mstan/FaxanaduRecomp)),
-  ElectronsAndCode ([FaxanaduPW](https://github.com/ElectronsAndCode/FaxanaduPW)),
+- Invariel, for the [tool-assisted speedrun](https://tasvideos.org/5338S) published on TASVideos
+- TASVideos, for the [Faxanadu resources page](https://tasvideos.org/GameResources/NES/Faxanadu),
+  an [enemy display user file](https://tasvideos.org/UserFiles/Info/35925051135496342) and the
+  [password generator](https://web.archive.org/web/20210301103116/http://tasvideos.org/PasswordGenerators.html)
+- Aeon Genesis, for the [Faxanadu chapter](https://web.archive.org/web/20080305153943/http://agtp.romhack.net/docs/tnrb/1-03.html)
+  of The New Romhacker's Bible
+- the [RockNES savestate guide](https://web.archive.org/web/20190113213948/https://gamefaqs.gamespot.com/nes/587273-faxanadu/faqs/30344) on GameFAQs
+- the Speed Demos Archive
+  [Faxanadu additional resources](https://kb.speeddemosarchive.com/index.php?title=Faxanadu/Additional_Resources) page
+- the 2005 [Faxanadu data dump](https://web.archive.org/web/20160506024847/http://www.the-interweb.com/bdump/faxanadu/faxdump.rar)
+  published on the-interweb.com
+- ElectronsAndCode ([FaxanaduPW](https://github.com/ElectronsAndCode/FaxanaduPW)),
   sleepy9090 ([FaxanaduShopPriceEditor](https://github.com/sleepy9090/FaxanaduShopPriceEditor)),
-  rgeraldporter ([faxanadu-patcher](https://github.com/rgeraldporter/faxanadu-patcher)),
-  UnsavoryMaggot ([Faxanadu-Retranslation](https://github.com/UnsavoryMaggot/Faxanadu-Retranslation)) and
-  Ehseezed ([Faxanadu-Tracker](https://github.com/Ehseezed/Faxanadu-Tracker))
+  rgeraldporter ([faxanadu-patcher](https://github.com/rgeraldporter/faxanadu-patcher)) and
+  mstan ([FaxanaduRecomp](https://github.com/mstan/FaxanaduRecomp))
 
 Faxanadu is a trademark of its respective rights holders. These are unofficial
 fan patches, not affiliated with or endorsed by them.
