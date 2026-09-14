@@ -1,4 +1,4 @@
-# Faxanadu Battle
+# Faxanadu Battle 1.0
 
 *[English version](README.md)*
 
@@ -8,7 +8,7 @@ encore en ajustement.
 
 ## Utilisation
 
-Appliquez le patch `fax-battle.ips` ou `.bps` sur une ROM propre de la version USA
+Appliquez le patch `fax-battle-1.0.ips` ou `.bps` sur une ROM propre de la version USA
 (SHA-1 du fichier `.nes` complet : `2e2b95db2be615cf588f0d758e0f7b1ccd81590a`). Jouez
 dans un émulateur comme Mesen, avec deux manettes : le jeu a besoin de 8 Ko de
 mémoire de travail supplémentaire, il ne fonctionne donc pas sur une cartouche
@@ -70,3 +70,7 @@ Crown Scramble, celui qui a le plus de temps avec la couronne.
 Courtyard, Ruins, High Bridge et Watchtower (Eolis), Mist Clearing (Mist) et Trunk
 Hollow (Trunk). On peut sauter sur les plateformes par en dessous. Passer à une
 autre région prend environ deux secondes de chargement.
+
+## Versions
+
+- **1.0** : première version publique.

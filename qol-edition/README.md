@@ -1,4 +1,4 @@
-# Faxanadu QoL Edition
+# Faxanadu QoL Edition 1.1
 
 *[Version française](README.fr.md)*
 
@@ -29,7 +29,7 @@ it feels to play.
 ## Use
 
 Patch a clean dump of the USA release (SHA-1 of the full `.nes` file:
-`2e2b95db2be615cf588f0d758e0f7b1ccd81590a`) with `faxanadu-qol-edition.ips` or `.bps`.
+`2e2b95db2be615cf588f0d758e0f7b1ccd81590a`) with `faxanadu-qol-edition-1.1.ips` or `.bps`.
 Use an emulator that keeps battery saves.
 
 ## Credits
@@ -37,3 +37,8 @@ Use an emulator that keeps battery saves.
 This patch builds on Kai E. Frøland's [FaxEdit](https://github.com/kaimitai/faxedit)
 ("Echoes of Eolis"): its general hacks (the battery saves and smart key use)
 and its knowledge of the game.
+
+## Versions
+
+- **1.1**: smart key use.
+- **1.0**: faster screen transitions, the in-game options menu and battery saves.

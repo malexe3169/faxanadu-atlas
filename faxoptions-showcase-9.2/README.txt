@@ -84,3 +84,8 @@ Always on (built in at their FaxEdit defaults, not in the menu)
 Not included
 ------------
   Combat Feel, Dynamic Tilesets, Item Scripts, the Japan version.
+
+Versions
+--------
+  FaxOptions versions follow FaxEdit's. 9.2: the FaxEdit beta-9.2 "Crowning Achievement"
+  general hacks.

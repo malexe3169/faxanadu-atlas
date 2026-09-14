@@ -1,5 +1,5 @@
-Faxanadu Vanilla SpeedRunner Training
-=====================================
+Faxanadu Vanilla SpeedRunner Training 5.1
+=========================================
 English version: README.txt
 
 Le jeu original, sans modification, avec des outils d'entraînement au speedrun dans
@@ -142,3 +142,13 @@ Non inclus
 
 Les réglages sont gardés en mémoire sur batterie et reviennent après un reset ou un
 arrêt.
+
+Versions
+--------
+  5.1   le HUD saute son travail sur les images déjà en retard : il n'ajoute presque plus de lag
+  5     N dans le HUD SPEED : le prochain virage au hasard
+  4     le HUD SPEED (vitesse, invincibilité, âge du RNG, compteur de visites) et COMPARE
+  3     splits SCREENS, redémarrage rapide A+B, chronométrage officiel
+  2     le HUD ITEMS, l'indicateur du truc de la pause (SK) et RANK NOW
+  1     chrono, compteur de lag, splits automatiques, page SPLITS, téléportation, points
+        de départ, HUD

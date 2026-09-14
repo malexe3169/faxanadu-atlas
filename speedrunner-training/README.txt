@@ -1,5 +1,5 @@
-Faxanadu Vanilla SpeedRunner Training
-=====================================
+Faxanadu Vanilla SpeedRunner Training 5.1
+=========================================
 Version française : README.fr.txt
 
 The original game, unchanged, with speedrun practice tools in the pause menu.
@@ -135,3 +135,12 @@ Not included
   Save states, gameplay hacks, warps into buildings.
 
 Settings are kept in battery RAM and come back after a reset or power off.
+
+Versions
+--------
+  5.1   the HUD skips its work on frames that are already late, so it adds almost no lag
+  5     N on the SPEED HUD: the next random turn
+  4     the SPEED HUD (speed, invincibility, RNG age, visit counter) and COMPARE
+  3     SCREENS splits, A+B quick restart, official run timing
+  2     the ITEMS HUD, the pause-trick readout (SK) and RANK NOW
+  1     timer, lag counter, auto splits, SPLITS page, warp, checkpoints, HUD

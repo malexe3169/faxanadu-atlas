@@ -39,6 +39,10 @@ Not in the runner
   ArmRole, SpawnMagicAt, WarpAreaScreenPos, CastSpellFromEntity,
   GetPlayerPositionToVars, ShakeScreen, DissolveEntity
 
+Versions
+--------
+  FaxOptions versions follow FaxEdit's. 9.2: Crown Jewels 9.2 plus the script runner.
+
 Opcodes (USA; Rev 1 and Europe have the same list without Switch)
 ------------------------------------------------------------------
   $01  MsgNoskip              1 arg byte

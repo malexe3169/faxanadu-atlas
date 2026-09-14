@@ -85,3 +85,8 @@ Toujours actifs (intégrés avec les valeurs par défaut de FaxEdit, pas dans le
 Non inclus
 ----------
   Combat Feel, Dynamic Tilesets, Item Scripts, la version japonaise.
+
+Versions
+--------
+  Les versions de FaxOptions suivent celles de FaxEdit. 9.2 : les hacks généraux de
+  FaxEdit bêta 9.2 « Crowning Achievement ».

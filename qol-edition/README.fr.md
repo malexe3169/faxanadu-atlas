@@ -1,4 +1,4 @@
-# Faxanadu QoL Edition
+# Faxanadu QoL Edition 1.1
 
 *[English version](README.md)*
 
@@ -27,7 +27,7 @@ contenu, à la difficulté ni à l'histoire du jeu, seulement la façon dont il 
 
 ## Utilisation
 
-Appliquez le patch `faxanadu-qol-edition.ips` ou `.bps` sur une ROM propre de la
+Appliquez le patch `faxanadu-qol-edition-1.1.ips` ou `.bps` sur une ROM propre de la
 version USA (SHA-1 du fichier `.nes` complet :
 `2e2b95db2be615cf588f0d758e0f7b1ccd81590a`). Utilisez un émulateur qui conserve les
 sauvegardes sur batterie.
@@ -37,3 +37,8 @@ sauvegardes sur batterie.
 Ce patch s'appuie sur [FaxEdit](https://github.com/kaimitai/faxedit) (« Echoes of
 Eolis ») de Kai E. Frøland : ses hacks généraux (les sauvegardes sur batterie et
 les clés automatiques) et sa connaissance du jeu.
+
+## Versions
+
+- **1.1** : clés automatiques.
+- **1.0** : transitions d'écran plus rapides, le menu d'options et les sauvegardes sur batterie.

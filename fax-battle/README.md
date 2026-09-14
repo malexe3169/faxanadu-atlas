@@ -1,4 +1,4 @@
-# Faxanadu Battle
+# Faxanadu Battle 1.0
 
 *[Version française](README.fr.md)*
 
@@ -8,7 +8,7 @@ an arena, and fight a friend. Experimental; the balance is still being tuned.
 ## Use
 
 Patch a clean dump of the USA release (SHA-1 of the full `.nes` file:
-`2e2b95db2be615cf588f0d758e0f7b1ccd81590a`) with `fax-battle.ips` or `.bps`. Play in an
+`2e2b95db2be615cf588f0d758e0f7b1ccd81590a`) with `fax-battle-1.0.ips` or `.bps`. Play in an
 emulator such as Mesen with two controllers: the game needs 8 KB of extra work RAM, so
 it doesn't run on an original cartridge.
 
@@ -65,3 +65,7 @@ with more crown time.
 Courtyard, Ruins, High Bridge and Watchtower (Eolis), Mist Clearing (Mist) and
 Trunk Hollow (Trunk). Platforms can be jumped onto from below. Switching to a
 different region takes about two seconds to load.
+
+## Versions
+
+- **1.0**: first public release.
