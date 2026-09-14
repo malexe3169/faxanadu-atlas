@@ -49,8 +49,7 @@ Hits you land and hits you take fill your power meter.
 | Giant Strider | Ground Slam, hits all around where it lands |
 | Grimlock | Retreat Shot, steps back and fires |
 
-There is also a secret seventh fighter, a tank: on the fighter screen, hold Up
-and tap B while you are not ready yet. Left/Right goes back to the others.
+There is also a secret seventh fighter. Finding it is up to you.
 
 ## Sudden death
 
