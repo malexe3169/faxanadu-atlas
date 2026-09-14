@@ -34,9 +34,11 @@ sauvegardes sur batterie.
 
 ## Crédits
 
-Ce patch s'appuie sur [FaxEdit](https://github.com/kaimitai/faxedit) (« Echoes of
-Eolis ») de Kai E. Frøland : ses hacks généraux (les sauvegardes sur batterie et
-les clés automatiques) et sa connaissance du jeu.
+Les sauvegardes sur batterie utilisent un hack général de
+[FaxEdit](https://github.com/kaimitai/faxedit) (« Echoes of Eolis ») de Kai E. Frøland, et
+les clés automatiques sont notre propre hack, qui fait maintenant partie des hacks
+généraux de FaxEdit. L'essentiel de ce que nous savons du fonctionnement du jeu vient
+du [désassemblage de Faxanadu](https://github.com/chipx86/faxanadu) de chipx86.
 
 ## Versions
 

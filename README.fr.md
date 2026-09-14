@@ -30,9 +30,10 @@ de travail supplémentaire : il se joue sur émulateur, pas sur une cartouche or
 ## Crédits
 
 Les versions FaxOptions sont construites avec les hacks généraux de la chaîne
-d'outils [FaxEdit](https://github.com/kaimitai/faxedit) de Kai E. Frøland. La QoL
-Edition s'appuie aussi sur FaxEdit : ses hacks généraux (les sauvegardes sur batterie
-et les clés automatiques) et sa connaissance du jeu.
+d'outils [FaxEdit](https://github.com/kaimitai/faxedit) de Kai E. Frøland, et les
+sauvegardes sur batterie de la QoL Edition utilisent l'un d'eux. L'essentiel de ce que
+nous savons du code du jeu vient du [désassemblage de Faxanadu](https://github.com/chipx86/faxanadu)
+de chipx86; toutes les autres personnes sont remerciées plus bas.
 
 ## Remerciements
 

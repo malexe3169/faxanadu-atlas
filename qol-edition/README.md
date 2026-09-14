@@ -34,9 +34,10 @@ Use an emulator that keeps battery saves.
 
 ## Credits
 
-This patch builds on Kai E. Frøland's [FaxEdit](https://github.com/kaimitai/faxedit)
-("Echoes of Eolis"): its general hacks (the battery saves and smart key use)
-and its knowledge of the game.
+The battery saves use a general hack from Kai E. Frøland's
+[FaxEdit](https://github.com/kaimitai/faxedit) ("Echoes of Eolis"), and smart key use is
+our own hack, now part of FaxEdit's general hacks too. Most of what we know about how
+the game works comes from chipx86's [Faxanadu disassembly](https://github.com/chipx86/faxanadu).
 
 ## Versions
 
