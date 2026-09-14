@@ -30,9 +30,10 @@ original cartridge.
 ## Credits
 
 The FaxOptions builds are built with the general hacks from Kai E. Frøland's
-[FaxEdit](https://github.com/kaimitai/faxedit) toolchain. The QoL Edition builds on
-FaxEdit as well: its general hacks (battery saves and smart key use) and its
-knowledge of the game.
+[FaxEdit](https://github.com/kaimitai/faxedit) toolchain, and the QoL Edition's battery
+saves use one of them. Most of what we know about the game's code comes from
+chipx86's [Faxanadu disassembly](https://github.com/chipx86/faxanadu); everyone else
+is thanked below.
 
 ## Thanks
 
