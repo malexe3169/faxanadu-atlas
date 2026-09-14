@@ -9,6 +9,7 @@ files and a README that explains what it does and how to use it.
 | [speedrunner-training](speedrunner-training) | The original game with speedrun practice tools in the pause menu: timer, splits, warp, checkpoints and HUD readouts. With the default settings it plays exactly like the original. | USA, USA Rev 1, Europe |
 | [faxoptions-showcase-9.2](faxoptions-showcase-9.2) | FaxOptions Showcase 9.2 (Crown Jewels): the FaxEdit 9.2 general hacks in one ROM, with a pause-menu panel that switches them and changes their settings while you play. | USA, USA Rev 1, Europe |
 | [faxoptions-debug-9.2](faxoptions-debug-9.2) | FaxOptions Debug 9.2: Crown Jewels plus a script runner, to run the game's script commands from the pause menu. For testing, not for play. | USA, USA Rev 1, Europe |
+| [fax-battle](fax-battle) | Faxanadu Battle: a two-player versus game built on Faxanadu, with Crown Scramble and Duel modes, seven fighters and six arenas. Experimental. | USA |
 
 ## How to patch
 
@@ -19,8 +20,10 @@ files and a README that explains what it does and how to use it.
    or [Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) in your browser.
 4. Save the result as a new file.
 
-All four builds keep settings or saves in battery RAM, so use an emulator that
-keeps battery saves.
+The QoL Edition, SpeedRunner Training and FaxOptions builds keep settings or
+saves in battery RAM, so use an emulator that keeps battery saves. Faxanadu
+Battle needs 8 KB of extra work RAM, so it plays in emulators, not on an
+original cartridge.
 
 ## Credits
 
