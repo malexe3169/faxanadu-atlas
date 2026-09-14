@@ -32,7 +32,7 @@ it feels to play.
   - If your file's hash doesn't match, this patch will refuse to apply
     cleanly (BPS) or may produce a broken ROM (IPS) — get a clean dump.
 - A patcher that supports IPS or BPS, for example:
-  - [Floating IPS (flips)](https://github.com/Alcaroo/floating-ips) — supports both formats, and will warn you if you picked the wrong source ROM (BPS only)
+  - [Floating IPS (flips)](https://github.com/Alcaro/Flips) — supports both formats, and will warn you if you picked the wrong source ROM (BPS only)
   - [Lunar IPS](https://fusoya.eludevisibility.org/lips/) — IPS only
 
 ## How to apply

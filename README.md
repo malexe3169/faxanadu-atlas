@@ -15,7 +15,7 @@ files and a README that explains what it does and how to use it.
 1. Start from a clean, unmodified dump of the right version, and keep a copy of it.
 2. Pick the patch for your version, `.ips` or `.bps`. A BPS patch checks that
    you picked the right file first; an IPS patch doesn't.
-3. Apply it with a patcher, for example [Floating IPS](https://github.com/Alcaroo/floating-ips)
+3. Apply it with a patcher, for example [Floating IPS](https://github.com/Alcaro/Flips)
    or [Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) in your browser.
 4. Save the result as a new file.
 
