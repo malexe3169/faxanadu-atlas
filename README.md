@@ -24,9 +24,10 @@ keeps battery saves.
 
 ## Credits
 
-The FaxOptions builds, and the battery saves and smart keys in the QoL Edition,
-are built with the general hacks from Kai E. Frøland's
-[FaxEdit](https://github.com/kaimitai/faxedit) toolchain.
+The FaxOptions builds are built with the general hacks from Kai E. Frøland's
+[FaxEdit](https://github.com/kaimitai/faxedit) toolchain. The QoL Edition builds on
+FaxEdit as well: its general hacks (battery saves and smart key use) and its
+knowledge of the game.
 
 Faxanadu is a trademark of its respective rights holders. These are unofficial
 fan patches, not affiliated with or endorsed by them.

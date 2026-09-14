@@ -45,10 +45,9 @@ it feels to play.
 
 ## Credits
 
-The battery-save and smart-key support in this patch are built using the
-general hacks from Kai E. Frøland's [FaxEdit](https://github.com/kaimitai/faxedit)
-("Echoes of Eolis") toolchain. Everything else in this
-patch was built independently.
+This patch builds on Kai E. Frøland's [FaxEdit](https://github.com/kaimitai/faxedit)
+("Echoes of Eolis"): its general hacks (the battery saves and smart key use)
+and its knowledge of the game.
 
 Faxanadu is a trademark of its respective rights holders. This is an
 unofficial fan patch, not affiliated with or endorsed by them.
