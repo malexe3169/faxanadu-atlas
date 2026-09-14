@@ -26,7 +26,7 @@ keeps battery saves.
 
 The FaxOptions builds, and the battery saves and smart keys in the QoL Edition,
 are built with the general hacks from Kai E. Frøland's
-[FaxEdit](https://github.com/kaimitai/faxedit) toolchain (GPLv3).
+[FaxEdit](https://github.com/kaimitai/faxedit) toolchain.
 
 Faxanadu is a trademark of its respective rights holders. These are unofficial
 fan patches, not affiliated with or endorsed by them.

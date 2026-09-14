@@ -47,7 +47,7 @@ it feels to play.
 
 The battery-save and smart-key support in this patch are built using the
 general hacks from Kai E. Frøland's [FaxEdit](https://github.com/kaimitai/faxedit)
-("Echoes of Eolis") toolchain, licensed GPLv3. Everything else in this
+("Echoes of Eolis") toolchain. Everything else in this
 patch was built independently.
 
 Faxanadu is a trademark of its respective rights holders. This is an
