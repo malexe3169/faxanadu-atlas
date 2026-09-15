@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faxanadu custom builds</title>
+<style>
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --ink: #1b1f24; --muted: #5b6470; --line: #d9dee5; --chip: #eef2f6;
+  --accent: #1f6f8b; --ok: #1d7a46; --warn: #9a6700; --bad: #b42318;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0f1419; --panel: #161c23; --ink: #e6edf3; --muted: #9aa7b4; --line: #2a333d; --chip: #1f2730;
+          --accent: #58a6c8; --ok: #3fb27f; --warn: #d4a72c; --bad: #f47067; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--sans); }
+header { max-width: 1180px; margin: 0 auto; padding: 28px 24px 8px; display: grid; gap: 8px; }
+.top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+h1 { font-size: 28px; line-height: 1.15; margin: 0; text-wrap: balance; }
+h2, legend { font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; padding: 0; }
+#intro { max-width: 68ch; margin: 0; color: var(--muted); }
+#version { font: 500 13px var(--mono); color: var(--accent); }
+button, .button { font: inherit; border: 1px solid var(--line); background: var(--panel); color: var(--ink);
+  border-radius: 6px; padding: 6px 12px; cursor: pointer; text-decoration: none; display: inline-block; }
+.button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.button[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.layout { max-width: 1180px; margin: 0 auto; padding: 16px 24px 48px; display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px; gap: 24px; align-items: start; }
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } aside { position: static; } }
+.family { margin-bottom: 20px; }
+.hacks { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.hack { padding: 8px 12px; border-top: 1px solid var(--line); }
+.hack:first-child { border-top: 0; }
+.hack label { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.name { font: 500 14px var(--mono); }
+.tag { font-size: 12.5px; color: var(--muted); }
+.settings { margin: 8px 0 2px 28px; display: grid; gap: 6px; }
+.settings input { font: 14px var(--mono); padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--bg); color: var(--ink); width: 100%; }
+.note { margin: 0; font-size: 13px; color: var(--warn); }
+.params { margin: 0; font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+code { font-family: var(--mono); font-size: .92em; background: var(--chip); border-radius: 4px; padding: 1px 4px; }
+aside { position: sticky; top: 16px; display: grid; gap: 18px; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 10px; padding: 18px; }
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.check { display: grid; grid-template-columns: 10px 1fr; gap: 10px; align-items: start; font-size: 14px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; background: var(--muted); }
+.ok .dot { background: var(--ok); } .warn .dot { background: var(--warn); }
+.bad .dot { background: var(--bad); } .info .dot { background: var(--accent); }
+fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 6px; }
+.region { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+textarea { width: 100%; min-height: 140px; font: 13px/1.5 var(--mono); padding: 8px; border: 1px solid var(--line);
+  border-radius: 6px; background: var(--bg); color: var(--ink); resize: vertical; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.muted { color: var(--muted); } .small { font-size: 13px; }
+#tick, #paste { margin: 8px 0 0; }
+#paste { color: var(--warn); font-size: 14px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><h1 id="h1">Faxanadu custom builds</h1><button id="lang" type="button">Français</button></div>
+  <p id="intro"></p>
+  <a id="version"></a>
+</header>
+<main class="layout">
+  <div id="picker"><p class="muted">Loading…</p></div>
+  <aside>
+    <div id="checks"></div>
+    <fieldset id="regions"></fieldset>
+    <div>
+      <h2 id="lines-label"></h2>
+      <textarea id="lines" readonly></textarea>
+      <div class="row">
+        <button id="copy" type="button"></button>
+        <a id="request" class="button primary" target="_blank" rel="noopener"></a>
+      </div>
+      <p id="tick" class="small muted"></p>
+      <p id="paste" hidden></p>
+    </div>
+  </aside>
+</main>
+<script>
+const REPO = "https://github.com/malexe3169/faxanadu-atlas";
+const MAX_URL = 7000;
+const T = {
+  en: {
+    title: "Faxanadu custom builds", langname: "Français",
+    intro: "Pick FaxEdit general hacks, set them, and ask for a patch. The checks here come from the hack compatibility matrix; the build checks your exact request again.",
+    matrix: "Hack compatibility", notyet: "not in FaxEdit yet", separate: "not a FaxEdit hack, can't be requested",
+    settings: "Settings", params: "Settings FaxEdit takes:", docs: "FaxEdit documentation",
+    untested: "Not tested in the matrix; the build will check it.",
+    checks: "Checks", none: "Pick some hacks.", allgood: "Every pair builds together.",
+    sched: "Frame Scheduler is added: the palette roles need it.", order: "The lines are in the order that builds.",
+    bank15: (u, c) => `Bank 15: ${u} of ${c} bytes`, bank14: (u, c) => `Bank 14: ${u} of ${c} bytes`,
+    over: "more than the area holds, FaxEdit will refuse it", estimate: "An estimate from each hack measured alone.",
+    regions: "Regions", unsupported: (h) => `not supported by ${h}`, lines: "FaxEdit lines",
+    copy: "Copy", copied: "Copied", request: "Request this build",
+    tick: (r) => `In the form, tick ${r}.`,
+    paste: "The request is too long for a link. The form opens empty: paste the lines above into Hack lines and tick the regions.",
+    verdict: { space: "not enough room in bank 15", code: "both change the same code", ram: "both keep state in the same RAM",
+      unsupported: "one hack doesn't support the other", caution: "builds in one order only, not proven to work",
+      silent: "builds, but part of one hack is lost", same: "two modes of the same hack", refused: "refused" },
+    loadfail: "compat.json could not be loaded.",
+  },
+  fr: {
+    title: "Builds sur mesure de Faxanadu", langname: "English",
+    intro: "Choisissez des hacks généraux de FaxEdit, réglez-les et demandez un patch. Les vérifications viennent du tableau de compatibilité des hacks, et la build revérifie votre demande exacte.",
+    matrix: "Compatibilité des hacks", notyet: "pas encore dans FaxEdit", separate: "pas un hack de FaxEdit, on ne peut pas le demander",
+    settings: "Réglages", params: "Réglages que FaxEdit accepte :", docs: "Documentation de FaxEdit",
+    untested: "Pas testé dans le tableau, la build va le vérifier.",
+    checks: "Vérifications", none: "Choisissez des hacks.", allgood: "Toutes les paires se bâtissent ensemble.",
+    sched: "Frame Scheduler est ajouté : les rôles de palette en ont besoin.", order: "Les lignes sont dans l'ordre qui se bâtit.",
+    bank15: (u, c) => `Banque 15 : ${u} de ${c} octets`, bank14: (u, c) => `Banque 14 : ${u} de ${c} octets`,
+    over: "plus que la zone n'en contient, FaxEdit va refuser", estimate: "Une estimation à partir de chaque hack mesuré seul.",
+    regions: "Régions", unsupported: (h) => `pas supporté par ${h}`, lines: "Lignes pour FaxEdit",
+    copy: "Copier", copied: "Copié", request: "Demander cette build",
+    tick: (r) => `Dans le formulaire, cochez ${r}.`,
+    paste: "La demande est trop longue pour un lien. Le formulaire s'ouvre vide : collez les lignes ci-dessus dans Lignes des hacks et cochez les régions.",
+    verdict: { space: "pas assez de place dans la banque 15", code: "les deux modifient le même code",
+      ram: "les deux gardent un état dans la même RAM", unsupported: "un des hacks ne supporte pas l'autre",
+      caution: "se bâtit dans un seul ordre, pas prouvé que ça marche", silent: "se bâtit, mais une partie d'un des hacks est perdue",
+      same: "deux modes du même hack", refused: "refusé" },
+    loadfail: "Impossible de charger compat.json.",
+  },
+};
+let C = null, lang = "en";
+const picked = new Map();          // hack id -> settings text
+const regions = new Set();
+const $ = (id) => document.getElementById(id);
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const pairKey = (a, b) => [a, b].sort().join("|");
+const hack = (id) => C.hacks.find((h) => h.id === id);
+const rank = (id) => C.hacks.findIndex((h) => h.id === id);
+const nameOf = (h) => h.id.split(" ")[0];
+const tested = (h) => h.line.split(" ").slice(1).join(" ");
+const lineOf = (id) => { const s = (picked.get(id) || "").trim(); return nameOf(hack(id)) + (s ? " " + s : ""); };
+
+function md(parent, text) {          // **bold** and `code` only, built as nodes
+  for (const part of text.split(/(\*\*[^*]+\*\*|`[^`]+`)/)) {
+    if (!part) continue;
+    if (part.startsWith("**")) parent.append(el("strong", null, part.slice(2, -2)));
+    else if (part.startsWith("`")) parent.append(el("code", null, part.slice(1, -1)));
+    else parent.append(part);
+  }
+}
+
+function ordered() {                 // the scheduler first, each pair's order that builds, then table order
+  const ids = [...picked.keys()];
+  const sched = C.rules.scheduler;
+  if (ids.some((id) => C.rules.roles.includes(id)) && !ids.includes(sched)) ids.push(sched);
+  const before = new Map(ids.map((id) => [id, new Set()]));
+  for (const a of ids) for (const b of ids) {
+    if (a >= b) continue;
+    const c = C.pairs[pairKey(a, b)];
+    if (c && c.works && c.works.length === 2) before.get(c.works[1]).add(c.works[0]);
+  }
+  if (ids.includes(sched)) for (const id of ids) if (id !== sched) before.get(id).add(sched);
+  const out = [], left = new Set(ids), byRank = (x, y) => rank(x) - rank(y);
+  while (left.size) {
+    const ready = [...left].filter((id) => [...before.get(id)].every((x) => !left.has(x))).sort(byRank);
+    const next = ready.length ? ready[0] : [...left].sort(byRank)[0];
+    out.push(next); left.delete(next);
+  }
+  return out;
+}
+
+function item(kind, text) { const li = el("li", "check " + kind); li.append(el("span", "dot"), el("span", null, text)); return li; }
+
+function render() {
+  const t = T[lang];
+  document.documentElement.lang = lang;
+  document.title = t.title;
+  $("h1").textContent = t.title;
+  $("intro").textContent = t.intro;
+  $("lang").textContent = t.langname;
+  $("version").textContent = `${t.matrix} ${C.version}`;
+  $("version").href = `${REPO}/tree/main/faxedit-hack-compatibility-${C.version.split("-")[0]}`;
+  renderPicker(t);
+  renderPanel(t);
+}
+
+function renderPicker(t) {
+  const root = $("picker");
+  root.replaceChildren();
+  let fam = null, list = null;
+  for (const h of C.hacks) {
+    const f = lang === "fr" ? h.family_fr : h.family_en;
+    if (f !== fam) {
+      fam = f;
+      const sec = el("section", "family");
+      list = el("ul", "hacks");
+      sec.append(el("h2", null, f), list);
+      root.append(sec);
+    }
+    const li = el("li", "hack"), lab = el("label"), box = el("input");
+    box.type = "checkbox";
+    box.checked = picked.has(h.id);
+    box.disabled = h.status === "separate";
+    box.addEventListener("change", () => { if (box.checked) picked.set(h.id, tested(h)); else picked.delete(h.id); render(); });
+    lab.append(box, el("span", "name", h.status === "separate" ? "Branches in Motion" : h.id));
+    if (h.status === "not-in-faxedit") lab.append(el("span", "tag", "🟠 " + t.notyet));
+    if (h.status === "separate") lab.append(el("span", "tag", "🔵 " + t.separate));
+    li.append(lab);
+    if (picked.has(h.id)) li.append(settingsBox(h, t));
+    list.append(li);
+  }
+}
+
+function settingsBox(h, t) {
+  const box = el("div", "settings"), inp = el("input"), note = el("p", "note", t.untested);
+  inp.type = "text";
+  inp.value = picked.get(h.id);
+  inp.setAttribute("aria-label", `${t.settings}: ${h.id}`);
+  inp.placeholder = h.params.map((p) => `${p.name}=${p.default}`).join(" ");
+  note.hidden = inp.value.trim() === tested(h);
+  inp.addEventListener("input", () => { picked.set(h.id, inp.value); note.hidden = inp.value.trim() === tested(h); renderPanel(T[lang]); });
+  box.append(inp, note);
+  if (h.params.length) {
+    const p = el("p", "params", t.params + " ");
+    p.append(el("code", null, h.params.map((x) => `${x.name}=${x.default}`).join("  ")));
+    box.append(p);
+  }
+  if (h.doc) { const a = el("a", "small", t.docs); a.href = h.doc; a.target = "_blank"; a.rel = "noopener"; box.append(a); }
+  return box;
+}
+
+function renderPanel(t) {
+  const ids = ordered(), checks = $("checks");
+  checks.replaceChildren(el("h2", null, t.checks));
+  if (!ids.length) checks.append(el("p", "muted", t.none));
+  else {
+    const ul = el("ul", "checklist");
+    let bad = 0, ordering = false, u15 = 0, u14 = 0;
+    for (const id of ids) { u15 += hack(id).bank15 || 0; u14 += hack(id).bank14 || 0; }
+    for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) {
+      const c = C.pairs[pairKey(ids[i], ids[j])];
+      if (!c || c.v === "fits" || c.v === "standalone") continue;
+      if (c.shared) u14 -= Math.min(hack(ids[i]).bank14 || 0, hack(ids[j]).bank14 || 0);   // one installer
+      if (c.v === "order") { ordering = true; continue; }
+      bad++;
+      const li = item(c.v === "caution" ? "warn" : "bad", "");
+      md(li.lastChild, c[lang] || `${ids[i]} + ${ids[j]}: ${t.verdict[c.v] || c.v}`);
+      ul.append(li);
+    }
+    if (!bad) ul.prepend(item("ok", t.allgood));
+    if (!picked.has(C.rules.scheduler) && ids.includes(C.rules.scheduler)) ul.append(item("info", t.sched));
+    if (ordering) ul.append(item("info", t.order));
+    const over15 = u15 > C.rules.bank15, over14 = u14 > C.rules.bank14;
+    ul.append(item(over15 ? "bad" : "ok", t.bank15(u15, C.rules.bank15) + (over15 ? ": " + t.over : "")));
+    ul.append(item(over14 ? "bad" : "ok", t.bank14(u14, C.rules.bank14) + (over14 ? ": " + t.over : "")));
+    checks.append(ul, el("p", "muted small", t.estimate));
+  }
+  renderRegions(t, ids);
+  renderOutput(t, ids);
+}
+
+function renderRegions(t, ids) {
+  const fs = $("regions");
+  fs.replaceChildren(el("legend", null, t.regions));
+  for (const r of C.regions) {
+    const blockers = ids.filter((id) => !hack(id).regions.includes(r.key));
+    const lab = el("label", "region"), box = el("input");
+    box.type = "checkbox";
+    box.disabled = blockers.length > 0;
+    box.checked = regions.has(r.key) && !box.disabled;
+    box.addEventListener("change", () => { if (box.checked) regions.add(r.key); else regions.delete(r.key); renderOutput(T[lang], ordered()); });
+    lab.append(box, el("span", null, r[lang]));
+    if (blockers.length) lab.append(el("span", "muted small", "(" + t.unsupported(blockers.join(", ")) + ")"));
+    fs.append(lab);
+  }
+}
+
+function renderOutput(t, ids) {
+  const lines = ids.map(lineOf).join("\n");
+  const regs = C.regions.filter((r) => regions.has(r.key) && ids.every((id) => hack(id).regions.includes(r.key)));
+  $("lines-label").textContent = t.lines;
+  $("lines").value = lines;
+  $("copy").textContent = t.copy;
+  const title = encodeURIComponent(`Custom build: ${ids.map((id) => nameOf(hack(id))).join(", ")}`.slice(0, 200));
+  const url = `${REPO}/issues/new?template=custom-build.yml&title=${title}&hacks=${encodeURIComponent(lines)}`;
+  const tooLong = url.length > MAX_URL;
+  const a = $("request");
+  a.textContent = t.request;
+  a.href = tooLong ? `${REPO}/issues/new?template=custom-build.yml` : url;
+  a.setAttribute("aria-disabled", String(!ids.length || !regs.length));
+  $("tick").textContent = ids.length && regs.length ? t.tick(regs.map((r) => r[lang]).join(", ")) : "";
+  $("paste").hidden = !tooLong;
+  $("paste").textContent = tooLong ? t.paste : "";
+}
+
+$("copy").addEventListener("click", () => {
+  const done = () => { $("copy").textContent = T[lang].copied; setTimeout(() => { $("copy").textContent = T[lang].copy; }, 1500); };
+  if (navigator.clipboard) navigator.clipboard.writeText($("lines").value).then(done, () => { $("lines").select(); });
+  else { $("lines").select(); document.execCommand("copy"); done(); }
+});
+$("lang").addEventListener("click", () => { lang = lang === "en" ? "fr" : "en"; try { localStorage.setItem("lang", lang); } catch (e) { } if (C) render(); });
+fetch("compat.json").then((r) => r.json()).then((data) => {
+  C = data;
+  for (const r of C.regions) regions.add(r.key);
+  try { lang = localStorage.getItem("lang") || ((navigator.language || "").startsWith("fr") ? "fr" : "en"); } catch (e) { }
+  render();
+}).catch(() => { $("picker").textContent = T[lang].loadfail; });
+</script>
+</body>
+</html>
