@@ -1,0 +1,27 @@
+# Faxanadu custom builds 9.2-1
+
+*[Version française](README.fr.md)*
+
+Ask for a Faxanadu patch with the FaxEdit general hacks you pick:
+[the request page](https://malexe3169.github.io/faxanadu-atlas/custom-build/).
+
+1. Pick hacks and set them. The page checks them against the
+   [hack compatibility matrix](../faxedit-hack-compatibility-9.2) and puts the lines in the
+   order that builds.
+2. Choose the versions of the game: USA, USA Rev 1 or Europe.
+3. Press Request this build. It opens a GitHub issue with your lines filled in. Tick the
+   regions and submit it.
+
+Each request is built and checked, then the patches are attached to the issue as a zip:
+IPS and BPS for each version, and a README in English and French.
+
+Hacks marked 🟠 are not in FaxEdit yet. They are built with FaxEdit 9.2 and their
+changes added.
+
+## Not included
+
+Branches in Motion, Dynamic Tilesets, Item Scripts, AtlasDevStatusWard, AtlasDevLandingTuck, the Japan version.
+
+## Versions
+
+- 9.2-1: the first version, with the hacks of the compatibility matrix 9.2-3.

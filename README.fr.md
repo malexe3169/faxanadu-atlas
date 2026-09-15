@@ -13,6 +13,7 @@ Un dossier est plutôt un guide : quels hacks de FaxEdit fonctionnent ensemble.
 | [faxoptions-showcase-9.2](faxoptions-showcase-9.2) | 9.2-1 | FaxOptions Showcase 9.2 (Crown Jewels) : les hacks généraux de FaxEdit 9.2 dans une seule ROM, avec un panneau dans le menu de pause qui les active et change leurs réglages pendant la partie. | USA, USA Rev 1, Europe |
 | [faxoptions-debug-9.2](faxoptions-debug-9.2) | 9.2-1 | FaxOptions Debug 9.2 : Crown Jewels plus un exécuteur de scripts, pour lancer les commandes de script du jeu depuis le menu de pause. Pour les tests, pas pour jouer. | USA, USA Rev 1, Europe |
 | [faxedit-hack-compatibility-9.2](faxedit-hack-compatibility-9.2) | 9.2-3 | Quels hacks généraux de FaxEdit 9.2 fonctionnent ensemble, plus les hacks pas encore dans FaxEdit, marqués : chaque paire bâtie dans les deux ordres, les paires qui ne marchent pas et pourquoi. | FaxEdit 9.2 |
+| [custom-build](custom-build) | 9.2-1 | Demandez un patch avec les hacks de FaxEdit de votre choix : une page qui les vérifie, un formulaire de demande, et des patches IPS et BPS bâtis pour vous. | USA, USA Rev 1, Europe |
 | [fax-battle](fax-battle) | 1.0 | Faxanadu Battle : un jeu de combat à deux joueurs bâti sur Faxanadu, avec les modes Crown Scramble et Duel, sept combattants et six arènes. Expérimental. | USA |
 
 ## Comment appliquer un patch

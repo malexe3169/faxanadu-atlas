@@ -1,0 +1,32 @@
+name: Custom build / Build sur mesure
+description: Ask for a Faxanadu patch with the FaxEdit hacks you pick. / Demandez un patch de Faxanadu avec les hacks de FaxEdit de votre choix.
+title: "Custom build: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Pick your hacks on the [request page](https://malexe3169.github.io/faxanadu-atlas/custom-build/) first. It fills in the hack lines.
+        Choisissez d'abord vos hacks sur la [page de demande](https://malexe3169.github.io/faxanadu-atlas/custom-build/). Elle remplit les lignes des hacks.
+  - type: textarea
+    id: hacks
+    attributes:
+      label: Hack lines / Lignes des hacks
+      description: One FaxEdit general hack per line, as the request page writes them. / Un hack général de FaxEdit par ligne, comme la page de demande les écrit.
+      render: text
+    validations:
+      required: true
+  - type: checkboxes
+    id: regions
+    attributes:
+      label: Regions / Régions
+      description: The versions of the game to patch. / Les versions du jeu à patcher.
+      options:
+        - label: USA
+        - label: USA Rev 1
+        - label: Europe
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+    validations:
+      required: false
