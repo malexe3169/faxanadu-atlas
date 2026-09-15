@@ -1,4 +1,4 @@
-# Compatibilité des hacks de FaxEdit 9.2 9.2-2
+# Compatibilité des hacks de FaxEdit 9.2 9.2-3
 
 *[English version](README.md)*
 
@@ -8,12 +8,13 @@ Chaque paire a été bâtie avec l'outil en ligne de commande de FaxEdit, dans l
 ordres, puis vérifiée pour trouver les builds qui réussissent mais perdent une partie
 d'un hack.
 
-- 🟠 **pas encore dans FaxEdit** : Vertical Scroll et 20 contrôles de monstres,
-  testés sur FaxEdit 9.2 avec leurs changements ajoutés.
+- 🟠 **pas encore dans FaxEdit** : Vertical Scroll, Sprite Speed, 20 contrôles de
+  monstres, Crouch Control, Fast Talk, Name Restoration et Safe Gifts, testés sur
+  FaxEdit 9.2 avec leurs changements ajoutés.
 - 🔵 **pas un hack de FaxEdit** : Branches in Motion.
 
 Parmi les hacks de FaxEdit 9.2, 371 des 378 paires se bâtissent ensemble. Avec les
-hacks 🟠, 794 des 798 paires de plus aussi. Celles qui ne marchent pas sont listées
+hacks 🟠, 1032 des 1053 paires de plus aussi. Celles qui ne marchent pas sont listées
 sous les tableaux.
 
 ## Comment lire les tableaux
@@ -23,6 +24,8 @@ sous les tableaux.
 - `S` refusé : pas assez de place dans la banque 15
 - `C` refusé : les deux modifient le même code
 - `R` refusé : les deux gardent un état dans la même RAM
+- `N` refusé : un des hacks dit qu'il ne supporte pas l'autre
+- `⚠` se bâtit dans un seul ordre, et le deuxième hack change du code dont le premier a besoin : pas prouvé que ça marche
 - `!` se bâtit, mais une partie d'un des hacks est perdue
 - `=` deux modes du même hack
 - `—` le hack lui-même
@@ -67,29 +70,34 @@ Les numéros sont les lignes du tableau de la section Place.
 Chaque ligne est un hack qui n'est pas encore dans FaxEdit, contre chaque hack du
 tableau de la section Place.
 
-| # | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 29 🟠 `AtlasDevMaskmanControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| 30 🟠 `AtlasDevHornetControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| 31 🟠 `AtlasDevYuinaruControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| 32 🟠 `AtlasDevBihorudaControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| 33 🟠 `AtlasDevYareekaControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| 34 🟠 `AtlasDevRipasheikuControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| 35 🟠 `AtlasDevNagaControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| 36 🟠 `AtlasDevPakukameControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · |
-| 37 🟠 `AtlasDevSugataControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · |
-| 38 🟠 `AtlasDevGiantBeesControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · |
-| 39 🟠 `AtlasDevZorugeriruControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · |
-| 40 🟠 `AtlasDevNecronAidesControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · |
-| 41 🟠 `AtlasDevIshiisuControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · |
-| 42 🟠 `AtlasDevTamazutsuControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · |
-| 43 🟠 `AtlasDevBorabohraControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · |
-| 44 🟠 `AtlasDevMagmanControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · |
-| 45 🟠 `AtlasDevKingGrieveControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · |
-| 46 🟠 `AtlasDevNashControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · |
-| 47 🟠 `AtlasDevExecutionHoodControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · |
-| 48 🟠 `AtlasDevShadowEuraControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · |
-| 49 🟠 `AtlasDevVerticalScroll` | · | · | · | · | · | · | · | · | · | · | · | · | · | **R** | **R** | **R** | · | · | · | **S** | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — |
+| # | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49 | 50 | 51 | 52 | 53 | 54 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 29 🟠 `AtlasDevMaskmanControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 30 🟠 `AtlasDevHornetControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 31 🟠 `AtlasDevYuinaruControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 32 🟠 `AtlasDevBihorudaControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 33 🟠 `AtlasDevYareekaControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 34 🟠 `AtlasDevRipasheikuControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 35 🟠 `AtlasDevNagaControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 36 🟠 `AtlasDevPakukameControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 37 🟠 `AtlasDevSugataControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 38 🟠 `AtlasDevGiantBeesControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 39 🟠 `AtlasDevZorugeriruControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 40 🟠 `AtlasDevNecronAidesControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 41 🟠 `AtlasDevIshiisuControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · | · |
+| 42 🟠 `AtlasDevTamazutsuControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · | · |
+| 43 🟠 `AtlasDevBorabohraControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · | · |
+| 44 🟠 `AtlasDevMagmanControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · |
+| 45 🟠 `AtlasDevKingGrieveControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · |
+| 46 🟠 `AtlasDevNashControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · |
+| 47 🟠 `AtlasDevExecutionHoodControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · |
+| 48 🟠 `AtlasDevShadowEuraControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · |
+| 49 🟠 `AtlasDevVerticalScroll` | · | · | · | · | · | · | · | · | · | · | · | · | · | **R** | **R** | **R** | · | · | · | **S** | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | **C** | · | · | · |
+| 50 🟠 `AtlasDevSpriteSpeed` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | **S** | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | **⚠** | · | · | · |
+| 51 🟠 `AtlasDevCrouchControl` | · | · | · | · | · | · | · | · | **N** | · | · | · | **N** | **N** | **N** | **N** | · | · | · | **S** | · | **⚠** | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | **C** | **⚠** | — | · | · | · |
+| 52 🟠 `AtlasDevFastTalk` | · | · | · | · | · | · | · | · | · | **N** | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | **C** | · |
+| 53 🟠 `AtlasDevNameRestoration` | · | · | · | · | · | · | · | · | **C** | · | · | · | **R** | **R** | **R** | **R** | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | **C** | — | · |
+| 54 🟠 `SafeGifts` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — |
 
 ## Les paires qui ne marchent pas
 
@@ -105,10 +113,27 @@ tableau de la section Place.
 
 ### Avec les hacks 🟠
 
+- 🟠 **Crouch Control + Run Control** `⚠` : Crouch Control a besoin du code d'origine à $E1BE et refuse si Run Control est listé avant. L'autre ordre se bâtit, mais Run Control change ensuite ce code, alors ce n'est pas prouvé que la paire marche.
+- 🟠 **Crouch Control + Sprite Speed** `⚠` : Crouch Control a besoin du code d'origine qui dessine les sprites et refuse si Sprite Speed est listé avant. L'autre ordre se bâtit, mais Sprite Speed change ensuite ce code, alors ce n'est pas prouvé que la paire marche.
+- 🟠 **Name Restoration + SRAM** `C` : SRAM remplace le code du mot de passe et de Continue que Name Restoration modifie. Utilisez un seul système de sauvegarde.
+- 🟠 **Crouch Control + Vertical Scroll** `C` : les deux modifient le code à $D127, et FaxEdit refuse la paire dans les deux ordres.
+- 🟠 **Name Restoration + Fast Talk** `C` : les deux modifient le code du texte à $F477–$F49F.
+- 🟠 **Crouch Control + SRAM** `N` : cette première version de Crouch Control ne supporte pas SRAM, et refuse la paire.
+- 🟠 **Fast Talk + Text Speed** `N` : deux façons d'accélérer le texte, et FaxEdit n'accepte pas les deux.
+- 🟠 **Crouch Control + Frame Scheduler** `N` : cette première version de Crouch Control ne supporte pas le Frame Scheduler, et refuse la paire.
+- 🟠 **Crouch Control + Day/Night Cycle** `N` : cette première version de Crouch Control ne supporte pas le Frame Scheduler, dont Day/Night Cycle a besoin.
+- 🟠 **Crouch Control + Infected Tint** `N` : cette première version de Crouch Control ne supporte pas le Frame Scheduler, dont Infected Tint a besoin.
+- 🟠 **Crouch Control + Time of Day** `N` : cette première version de Crouch Control ne supporte pas le Frame Scheduler, dont Time of Day a besoin.
+- 🟠 **Name Restoration + Frame Scheduler** `R` : le mot de passe avec le nom est placé à $04CD–$04E4, par-dessus $04D8–$04DE du scheduler.
 - 🟠 **Vertical Scroll + Day/Night Cycle** `R` : les deux gardent un état à $04E2–$04E6. Chacun refuse l'autre.
+- 🟠 **Name Restoration + Day/Night Cycle** `R` : le mot de passe avec le nom est placé à $04CD–$04E4, par-dessus le Frame Scheduler dont Day/Night Cycle a besoin.
 - 🟠 **Vertical Scroll + Infected Tint** `R` : les deux gardent un état à $04E7–$04E8. Chacun refuse l'autre.
+- 🟠 **Name Restoration + Infected Tint** `R` : le mot de passe avec le nom est placé à $04CD–$04E4, par-dessus le Frame Scheduler dont Infected Tint a besoin.
 - 🟠 **Vertical Scroll + Time of Day** `R` : les deux gardent un état à $04E9–$04EC. Chacun refuse l'autre.
+- 🟠 **Name Restoration + Time of Day** `R` : le mot de passe avec le nom est placé à $04CD–$04E4, par-dessus le Frame Scheduler dont Time of Day a besoin.
 - 🟠 **Vertical Scroll + Ladder Crown** `S` : 391 + 605 octets, plus que la banque 15 n'en contient. Le mode floor de Crown entre.
+- 🟠 **Sprite Speed + Ladder Crown** `S` : 204 + 605 octets, plus que la banque 15 n'en contient.
+- 🟠 **Crouch Control + Ladder Crown** `S` : pas assez de place dans la banque 15 à côté de Crown.
 
 ## Ordre
 
@@ -174,11 +199,18 @@ banque 12 ou la banque 9.
 | 47 | `AtlasDevExecutionHoodControl` | 🟠 pas encore dans FaxEdit | `AtlasDevExecutionHoodControl walk=8` | 0 | — | — |
 | 48 | `AtlasDevShadowEuraControl` | 🟠 pas encore dans FaxEdit | `AtlasDevShadowEuraControl walk=10 pause=60` | 0 | — | — |
 | 49 | `AtlasDevVerticalScroll` | 🟠 pas encore dans FaxEdit | réglages par défaut | 391 | banque 9 : 532 | $04E2–$04EC, $9C |
-| 50 | `Branches in Motion` | 🔵 pas un hack de FaxEdit | son propre installateur | 425 | banque 9, banque 5 | $04D8–$04DF, $04EF–$04F7 |
+| 50 | `AtlasDevSpriteSpeed` | 🟠 pas encore dans FaxEdit | réglages par défaut | 204 | — | — |
+| 51 | `AtlasDevCrouchControl` | 🟠 pas encore dans FaxEdit | réglages par défaut | 442 | — | — |
+| 52 | `AtlasDevFastTalk` | 🟠 pas encore dans FaxEdit | réglages par défaut | 17 | — | — |
+| 53 | `AtlasDevNameRestoration` | 🟠 pas encore dans FaxEdit | réglages par défaut | 93 | banques 12, 13 | $04E9–$04EC; $04CD–$04E4 pendant l'encodage du mot de passe |
+| 54 | `SafeGifts` | 🟠 pas encore dans FaxEdit | réglages par défaut | 0 | banque 12 : 87 | — |
+| 55 | `Branches in Motion` | 🔵 pas un hack de FaxEdit | son propre installateur | 425 | banque 9, banque 5 | $04D8–$04DF, $04EF–$04F7 |
 
 Deux hacks qui entrent chacun seul peuvent ne pas entrer ensemble. Additionnez la
 colonne Banque 15 : au-delà de 780, ça ne se bâtit pas. Les rôles de palette ont aussi
-besoin des 156 octets de Frame Scheduler.
+besoin des 156 octets de Frame Scheduler. Name Restoration est fait pour la ROM USA (Rev 0)
+seulement. Il garde 93 octets de la zone de la banque 15 pour lui, hors du compte de FaxEdit
+(la zone passe de 780 à 687), et modifie du code et des données dans les banques 12 et 13.
 
 ## Changement de banque
 
@@ -191,7 +223,7 @@ changer de banque.
 
 ## RAM
 
-Les hacks qui gardent un état en RAM : Frame Scheduler $04D8–$04DE, Jump Control
+La RAM que les hacks documentent : Frame Scheduler $04D8–$04DE, Jump Control
 $04DF, Ladder Crown $04E0–$04E1 (mode crown), Day/Night Cycle $04E2–$04E6, Infected
 Tint $04E7–$04E8, Time of Day $04E9–$04EC. 🟠 Vertical Scroll utilise $04E2–$04EC et
 $9C, donc lui et les trois rôles de palette se refusent.
@@ -211,8 +243,8 @@ change seul ont été comparés avec ceux de tous les autres, hors des zones où
 place le code des hacks, pour trouver une build qui réussit mais perd un changement.
 C'est comme ça que le cas Combat Feel et Poison Pickup a été trouvé.
 
-Les hacks 🟠 ont été testés avec une seule build de FaxEdit qui a les hacks de 9.2, les
-contrôles de monstres et Vertical Scroll ensemble. Elle donne le même résultat que
+Les hacks 🟠 ont été testés avec une seule build de FaxEdit qui a les hacks de 9.2 et
+tous les hacks 🟠 ensemble. Elle donne le même résultat que
 FaxEdit 9.2 pour chaque paire de hacks de 9.2.
 
 La plupart des hacks ont été testés avec leurs réglages par défaut, et la colonne Testé
@@ -224,16 +256,17 @@ documentation. D'autres réglages peuvent changer plus de code.
 
 ## Non testés
 
-Dynamic Tilesets, Item Scripts.
+Dynamic Tilesets, Item Scripts, AtlasDevStatusWard, AtlasDevLandingTuck, AtlasDevFaxOptions.
 
 ## Versions
 
-Les versions du tableau suivent celles de FaxEdit : 9.2 est la version de FaxEdit, -1 et
--2 les versions du tableau.
+Les versions du tableau suivent celles de FaxEdit : 9.2 est la version de FaxEdit, -1 à
+-3 les versions du tableau.
 
 - 9.2-1 : les hacks généraux de FaxEdit bêta 9.2 « Crowning Achievement », testés sur
   la ROM USA.
 - 9.2-2 : ajoute les hacks 🟠 qui ne sont pas encore dans FaxEdit et 🔵 Branches in Motion.
+- 9.2-3 : ajoute Sprite Speed, Crouch Control, Fast Talk, Name Restoration et Safe Gifts (🟠).
 
 ## Crédits
 
