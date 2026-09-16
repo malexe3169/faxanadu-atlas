@@ -1,4 +1,4 @@
-# Compatibilité des hacks de FaxEdit 9.2 9.2-4
+# Compatibilité des hacks de FaxEdit 9.2 9.2-5
 
 *[English version](README.md)*
 
@@ -92,9 +92,9 @@ tableau de la section Place.
 | 46 🟠 `AtlasDevNashControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · | · |
 | 47 🟠 `AtlasDevExecutionHoodControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · | · |
 | 48 🟠 `AtlasDevShadowEuraControl` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | · | · | · | · | · | · |
-| 49 🟠 `AtlasDevVerticalScroll` | · | · | · | · | · | · | · | · | · | · | · | · | · | **R** | **R** | **R** | · | · | · | **S** | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | **C** | · | **C** | · | · | · |
+| 49 🟠 `AtlasDevVerticalScroll` | · | · | · | · | · | · | · | · | · | · | · | · | · | **R** | **R** | **R** | · | · | · | **S** | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | ↔ | · | **C** | · | · | · |
 | 50 🟠 `AtlasDevSpriteSpeed` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | **S** | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | · | · | **⚠** | · | · | · |
-| 51 🟠 `AtlasDevScreenBlink` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | **C** | · | — | ↔ | · | · | · | · |
+| 51 🟠 `AtlasDevScreenTransition` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | ↔ | · | — | ↔ | · | · | · | · |
 | 52 🟠 `AtlasDevFastBlink` | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | ↔ | — | · | · | · | · |
 | 53 🟠 `AtlasDevCrouchControl` | · | · | · | · | · | · | · | · | **N** | · | · | · | **N** | **N** | **N** | **N** | · | · | · | **S** | · | **⚠** | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | **C** | **⚠** | · | · | — | · | · | · |
 | 54 🟠 `AtlasDevFastTalk` | · | · | · | · | · | · | · | · | · | **N** | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | · | — | **C** | · |
@@ -118,7 +118,6 @@ tableau de la section Place.
 - 🟠 **Crouch Control + Run Control** `⚠` : Crouch Control a besoin du code d'origine à $E1BE et refuse si Run Control est listé avant. L'autre ordre se bâtit, mais Run Control change ensuite ce code, alors ce n'est pas prouvé que la paire marche.
 - 🟠 **Crouch Control + Sprite Speed** `⚠` : Crouch Control a besoin du code d'origine qui dessine les sprites et refuse si Sprite Speed est listé avant. L'autre ordre se bâtit, mais Sprite Speed change ensuite ce code, alors ce n'est pas prouvé que la paire marche.
 - 🟠 **Name Restoration + SRAM** `C` : SRAM remplace le code du mot de passe et de Continue que Name Restoration modifie. Utilisez un seul système de sauvegarde.
-- **Screen Blink + Vertical Scroll** `C` : les deux modifient le même choix dans la boucle principale à $DB86, là où le jeu choisit entre faire glisser l'écran suivant et l'effacer, et FaxEdit refuse la paire dans les deux ordres.
 - 🟠 **Crouch Control + Vertical Scroll** `C` : les deux modifient le code à $D127, et FaxEdit refuse la paire dans les deux ordres.
 - 🟠 **Name Restoration + Fast Talk** `C` : les deux modifient le code du texte à $F477–$F49F.
 - 🟠 **Crouch Control + SRAM** `N` : cette première version de Crouch Control ne supporte pas SRAM, et refuse la paire.
@@ -137,7 +136,8 @@ tableau de la section Place.
 - 🟠 **Vertical Scroll + Ladder Crown** `S` : 391 + 605 octets, plus que la banque 15 n'en contient. Le mode floor de Crown entre.
 - 🟠 **Sprite Speed + Ladder Crown** `S` : 204 + 605 octets, plus que la banque 15 n'en contient.
 - 🟠 **Crouch Control + Ladder Crown** `S` : pas assez de place dans la banque 15 à côté de Crown.
-- **Screen Blink + Fast Blink** `↔` : mettez Screen Blink en premier (voir Ordre). Il vérifie le chemin d'effacement d'origine à $DB91, que Fast Blink réécrit.
+- **Transition d'écran + Défilement vertical** `↔` : mettez Défilement vertical en premier (voir Ordre). Transition d'écran appelle alors sa porte pour `up=scroll` et `down=scroll` ; sans lui, ces deux valeurs sont refusées.
+- **Screen Transition + Fast Blink** `↔` : mettez Screen Transition en premier (voir Ordre). Il vérifie le chemin d'effacement d'origine à $DB91, que Fast Blink réécrit.
 
 ## Ordre
 
@@ -204,7 +204,7 @@ banque 12 ou la banque 9.
 | 48 | `AtlasDevShadowEuraControl` | 🟠 pas encore dans FaxEdit | `AtlasDevShadowEuraControl walk=10 pause=60` | 0 | — | — |
 | 49 | `AtlasDevVerticalScroll` | 🟠 pas encore dans FaxEdit | réglages par défaut | 391 | banque 9 : 532 | $04E2–$04EC, $9C |
 | 50 | `AtlasDevSpriteSpeed` | 🟠 pas encore dans FaxEdit | réglages par défaut | 204 | — | — |
-| 51 | `AtlasDevScreenBlink` | 🟠 pas encore dans FaxEdit | réglages par défaut | 0 | — | — |
+| 51 | `AtlasDevScreenTransition` | 🟠 pas encore dans FaxEdit | `AtlasDevScreenTransition h=blink` | 26 | — | — |
 | 52 | `AtlasDevFastBlink` | 🟠 pas encore dans FaxEdit | réglages par défaut | 68 | — | — |
 | 53 | `AtlasDevCrouchControl` | 🟠 pas encore dans FaxEdit | réglages par défaut | 442 | — | — |
 | 54 | `AtlasDevFastTalk` | 🟠 pas encore dans FaxEdit | réglages par défaut | 17 | — | — |
@@ -274,6 +274,7 @@ Les versions du tableau suivent celles de FaxEdit : 9.2 est la version de FaxEdi
 - 9.2-2 : ajoute les hacks 🟠 qui ne sont pas encore dans FaxEdit et 🔵 Branches in Motion.
 - 9.2-3 : ajoute Sprite Speed, Crouch Control, Fast Talk, Name Restoration et Safe Gifts (🟠).
 - 9.2-4 : ajoute Screen Blink et Fast Blink (🟠), maintenant sur la branche dev de FaxEdit.
+- 9.2-5 : Screen Blink devient Screen Transition, un seul hack pour toute la porte, avec un style par direction; lui et Vertical Scroll ne se refusent plus.
 
 ## Crédits
 

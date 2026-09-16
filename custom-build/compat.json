@@ -1,9 +1,9 @@
 {
-"version": "9.2-4",
+"version": "9.2-5",
 "faxedit": {
 "base": "9132e5a",
-"commit": "5a8c75893ba7cdfa8e825a65bb3b029471e125be",
-"tree": "d5b195a06d410c79a8659e60fcae755362b9a14c",
+"commit": "22b76a7c14f8d1ae82ceebdbcf79e0858343ec2a",
+"tree": "2c5f3cea71885ffcacf963dee9c7e5124882d286",
 "pins": [
 {
 "label": "Monster Control stack",
@@ -41,9 +41,9 @@
 "commit": "d105e13"
 },
 {
-"label": "Screen Blink and Fast Blink",
-"branch": "atlas/blink-pair-92",
-"commit": "f83b6e3"
+"label": "Screen Transition and Fast Blink",
+"branch": "atlas/transition-pair-92",
+"commit": "e39f5e6"
 }
 ]
 },
@@ -1840,10 +1840,10 @@
 "faxoptions": "not-yet"
 },
 {
-"id": "AtlasDevScreenBlink",
+"id": "AtlasDevScreenTransition",
 "family_en": "Screen",
 "family_fr": "Écran",
-"line": "AtlasDevScreenBlink",
+"line": "AtlasDevScreenTransition h=blink",
 "status": "not-in-faxedit",
 "ram": "",
 "regions": [
@@ -1851,18 +1851,9 @@
 "us-rev-a",
 "eu"
 ],
-"params": [
-{
-"name": "flag",
-"default": "none"
-},
-{
-"name": "mode",
-"default": ""
-}
-],
+"params": [],
 "doc": "",
-"bank15": 0,
+"bank15": 26,
 "bank14": 0,
 "bank12": 0,
 "faxoptions": "moves"
@@ -2409,12 +2400,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|KillSwitch": {
+"AtlasDevScreenTransition|KillSwitch": {
 "v": "fits",
-"used": 15,
+"used": 41,
 "lines": [
 "KillSwitch",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|KillSwitch": {
@@ -2841,12 +2832,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|SameWorldTransPal2Mus": {
+"AtlasDevScreenTransition|SameWorldTransPal2Mus": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "SameWorldTransPal2Mus",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|SameWorldTransPal2Mus": {
@@ -3265,12 +3256,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|FastStart": {
+"AtlasDevScreenTransition|FastStart": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "FastStart",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|FastStart": {
@@ -3681,12 +3672,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|QuestFlagItemDrops": {
+"AtlasDevScreenTransition|QuestFlagItemDrops": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "QuestFlagItemDrops",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|QuestFlagItemDrops": {
@@ -4089,12 +4080,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|BossLockedItems": {
+"AtlasDevScreenTransition|BossLockedItems": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "BossLockedItems",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|BossLockedItems": {
@@ -4489,12 +4480,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|FlexibleItems": {
+"AtlasDevScreenTransition|FlexibleItems": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "FlexibleItems",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|FlexibleItems": {
@@ -4881,12 +4872,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|FogRules": {
+"AtlasDevScreenTransition|FogRules": {
 "v": "fits",
-"used": 29,
+"used": 55,
 "lines": [
 "FogRules rules=0:1+0:3+7",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|FogRules": {
@@ -5278,12 +5269,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|PoisonPickup": {
+"AtlasDevScreenTransition|PoisonPickup": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "PoisonPickup",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|PoisonPickup": {
@@ -5662,12 +5653,12 @@
 "en": "🟠 **Crouch Control + SRAM** `N`: this first version of Crouch Control doesn't support SRAM, and refuses the pair.",
 "fr": "🟠 **Crouch Control + SRAM** `N` : cette première version de Crouch Control ne supporte pas SRAM, et refuse la paire."
 },
-"AtlasDevScreenBlink|SRAM": {
+"AtlasDevScreenTransition|SRAM": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "SRAM",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|SRAM": {
@@ -6034,12 +6025,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|TextSpeed": {
+"AtlasDevScreenTransition|TextSpeed": {
 "v": "fits",
-"used": 12,
+"used": 38,
 "lines": [
 "TextSpeed",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|TextSpeed": {
@@ -6394,12 +6385,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|BugFixes": {
+"AtlasDevScreenTransition|BugFixes": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "BugFixes",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|BugFixes": {
@@ -6746,12 +6737,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|ConditionalScript": {
+"AtlasDevScreenTransition|ConditionalScript": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "ConditionalScript",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|ConditionalScript": {
@@ -7101,12 +7092,12 @@
 "en": "🟠 **Crouch Control + Frame Scheduler** `N`: this first version of Crouch Control doesn't support the frame scheduler, and refuses the pair.",
 "fr": "🟠 **Crouch Control + Frame Scheduler** `N` : cette première version de Crouch Control ne supporte pas le Frame Scheduler, et refuse la paire."
 },
-"AtlasDevFrameScheduler|AtlasDevScreenBlink": {
+"AtlasDevFrameScheduler|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 156,
+"used": 182,
 "lines": [
 "AtlasDevFrameScheduler",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevFrameScheduler": {
@@ -7472,12 +7463,12 @@
 "en": "🟠 **Crouch Control + Day/Night Cycle** `N`: this first version of Crouch Control doesn't support the frame scheduler, which Day/Night Cycle needs.",
 "fr": "🟠 **Crouch Control + Day/Night Cycle** `N` : cette première version de Crouch Control ne supporte pas le Frame Scheduler, dont Day/Night Cycle a besoin."
 },
-"AtlasDevDayNightCycle|AtlasDevScreenBlink": {
+"AtlasDevDayNightCycle|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 156,
+"used": 182,
 "lines": [
 "AtlasDevDayNightCycle",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevDayNightCycle|AtlasDevFastBlink": {
@@ -7814,12 +7805,12 @@
 "en": "🟠 **Crouch Control + Infected Tint** `N`: this first version of Crouch Control doesn't support the frame scheduler, which Infected Tint needs.",
 "fr": "🟠 **Crouch Control + Infected Tint** `N` : cette première version de Crouch Control ne supporte pas le Frame Scheduler, dont Infected Tint a besoin."
 },
-"AtlasDevInfectedTint|AtlasDevScreenBlink": {
+"AtlasDevInfectedTint|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 156,
+"used": 182,
 "lines": [
 "AtlasDevInfectedTint",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevInfectedTint": {
@@ -8147,12 +8138,12 @@
 "en": "🟠 **Crouch Control + Time of Day** `N`: this first version of Crouch Control doesn't support the frame scheduler, which Time of Day needs.",
 "fr": "🟠 **Crouch Control + Time of Day** `N` : cette première version de Crouch Control ne supporte pas le Frame Scheduler, dont Time of Day a besoin."
 },
-"AtlasDevScreenBlink|AtlasDevTimeOfDay": {
+"AtlasDevScreenTransition|AtlasDevTimeOfDay": {
 "v": "fits",
-"used": 156,
+"used": 182,
 "lines": [
 "AtlasDevTimeOfDay",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevTimeOfDay": {
@@ -8463,12 +8454,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevJumpControl|AtlasDevScreenBlink": {
+"AtlasDevJumpControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 152,
+"used": 178,
 "lines": [
 "AtlasDevJumpControl",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevJumpControl": {
@@ -8767,12 +8758,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevFallControl|AtlasDevScreenBlink": {
+"AtlasDevFallControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 85,
+"used": 111,
 "lines": [
 "AtlasDevFallControl",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFallControl|AtlasDevFastBlink": {
@@ -9063,12 +9054,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevLadderControl|AtlasDevScreenBlink": {
+"AtlasDevLadderControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevLadderControl up=256 down=256",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevLadderControl": {
@@ -9371,12 +9362,12 @@
 "en": "🟠 **Crouch Control + Ladder Crown** `S`: not enough room in bank 15 next to Crown.",
 "fr": "🟠 **Crouch Control + Ladder Crown** `S` : pas assez de place dans la banque 15 à côté de Crown."
 },
-"AtlasDevLadderCrown|AtlasDevScreenBlink": {
+"AtlasDevLadderCrown|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 605,
+"used": 631,
 "lines": [
 "AtlasDevLadderCrown",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevLadderCrown": {
@@ -9651,12 +9642,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevLadderCrown mode=floor|AtlasDevScreenBlink": {
+"AtlasDevLadderCrown mode=floor|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 315,
+"used": 341,
 "lines": [
 "AtlasDevLadderCrown mode=floor",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevLadderCrown mode=floor": {
@@ -9923,12 +9914,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|AtlasDevSmartKeys": {
+"AtlasDevScreenTransition|AtlasDevSmartKeys": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevSmartKeys",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevSmartKeys": {
@@ -10187,12 +10178,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevEnemyStats|AtlasDevScreenBlink": {
+"AtlasDevEnemyStats|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevEnemyStats profile=hard",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevEnemyStats|AtlasDevFastBlink": {
@@ -10448,12 +10439,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevCombatFeel|AtlasDevScreenBlink": {
+"AtlasDevCombatFeel|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevCombatFeel profile=zelda2",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevCombatFeel|AtlasDevFastBlink": {
@@ -10706,12 +10697,12 @@
 "en": "🟠 **Crouch Control + Run Control** `⚠`: Crouch Control needs the stock code at $E1BE and refuses if Run Control is listed first. The other order builds, but Run Control then changes that code, so the pair isn't proven to work.",
 "fr": "🟠 **Crouch Control + Run Control** `⚠` : Crouch Control a besoin du code d'origine à $E1BE et refuse si Run Control est listé avant. L'autre ordre se bâtit, mais Run Control change ensuite ce code, alors ce n'est pas prouvé que la paire marche."
 },
-"AtlasDevRunControl|AtlasDevScreenBlink": {
+"AtlasDevRunControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 164,
+"used": 190,
 "lines": [
 "AtlasDevRunControl",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevRunControl": {
@@ -10946,12 +10937,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|AtlasDevSmartMattock": {
+"AtlasDevScreenTransition|AtlasDevSmartMattock": {
 "v": "fits",
-"used": 178,
+"used": 204,
 "lines": [
 "AtlasDevSmartMattock",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevSmartMattock": {
@@ -11179,12 +11170,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|AtlasDevSirGawaineControl": {
+"AtlasDevScreenTransition|AtlasDevSirGawaineControl": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevSirGawaineControl",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevSirGawaineControl": {
@@ -11403,12 +11394,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|AtlasDevWolfmanControl": {
+"AtlasDevScreenTransition|AtlasDevWolfmanControl": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevWolfmanControl",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevWolfmanControl": {
@@ -11619,12 +11610,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevMaskmanControl|AtlasDevScreenBlink": {
+"AtlasDevMaskmanControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevMaskmanControl spear=24",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevMaskmanControl": {
@@ -11827,12 +11818,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevHornetControl|AtlasDevScreenBlink": {
+"AtlasDevHornetControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevHornetControl speed=8",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevHornetControl": {
@@ -12027,12 +12018,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|AtlasDevYuinaruControl": {
+"AtlasDevScreenTransition|AtlasDevYuinaruControl": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevYuinaruControl xspeed=16",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevYuinaruControl": {
@@ -12219,12 +12210,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevBihorudaControl|AtlasDevScreenBlink": {
+"AtlasDevBihorudaControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevBihorudaControl xspeed=32",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevBihorudaControl|AtlasDevFastBlink": {
@@ -12403,12 +12394,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|AtlasDevYareekaControl": {
+"AtlasDevScreenTransition|AtlasDevYareekaControl": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevYareekaControl dash=32",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevYareekaControl": {
@@ -12579,12 +12570,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevRipasheikuControl|AtlasDevScreenBlink": {
+"AtlasDevRipasheikuControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevRipasheikuControl drift=16",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevRipasheikuControl": {
@@ -12747,12 +12738,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevNagaControl|AtlasDevScreenBlink": {
+"AtlasDevNagaControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevNagaControl chase=16",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevNagaControl": {
@@ -12907,12 +12898,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevPakukameControl|AtlasDevScreenBlink": {
+"AtlasDevPakukameControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevPakukameControl delay=32",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevPakukameControl": {
@@ -13059,12 +13050,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|AtlasDevSugataControl": {
+"AtlasDevScreenTransition|AtlasDevSugataControl": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevSugataControl damage=4",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevSugataControl": {
@@ -13203,12 +13194,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevGiantBeesControl|AtlasDevScreenBlink": {
+"AtlasDevGiantBeesControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevGiantBeesControl rise=8",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevGiantBeesControl": {
@@ -13339,12 +13330,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|AtlasDevZorugeriruControl": {
+"AtlasDevScreenTransition|AtlasDevZorugeriruControl": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevZorugeriruControl rest=4 windup=16",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevZorugeriruControl": {
@@ -13467,12 +13458,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevNecronAidesControl|AtlasDevScreenBlink": {
+"AtlasDevNecronAidesControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 19,
+"used": 45,
 "lines": [
 "AtlasDevNecronAidesControl climb=4",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevNecronAidesControl": {
@@ -13587,12 +13578,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevIshiisuControl|AtlasDevScreenBlink": {
+"AtlasDevIshiisuControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevIshiisuControl walk=6",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevIshiisuControl": {
@@ -13699,12 +13690,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|AtlasDevTamazutsuControl": {
+"AtlasDevScreenTransition|AtlasDevTamazutsuControl": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevTamazutsuControl hide=30",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevTamazutsuControl": {
@@ -13803,12 +13794,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevBorabohraControl|AtlasDevScreenBlink": {
+"AtlasDevBorabohraControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevBorabohraControl speed=16",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevBorabohraControl|AtlasDevFastBlink": {
@@ -13899,12 +13890,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevMagmanControl|AtlasDevScreenBlink": {
+"AtlasDevMagmanControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevMagmanControl hide=30",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevMagmanControl": {
@@ -13987,12 +13978,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevKingGrieveControl|AtlasDevScreenBlink": {
+"AtlasDevKingGrieveControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevKingGrieveControl shots=8",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevKingGrieveControl": {
@@ -14067,12 +14058,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevNashControl|AtlasDevScreenBlink": {
+"AtlasDevNashControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevNashControl hide=60",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevNashControl": {
@@ -14139,12 +14130,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevExecutionHoodControl|AtlasDevScreenBlink": {
+"AtlasDevExecutionHoodControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevExecutionHoodControl walk=8",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevExecutionHoodControl|AtlasDevFastBlink": {
@@ -14203,12 +14194,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|AtlasDevShadowEuraControl": {
+"AtlasDevScreenTransition|AtlasDevShadowEuraControl": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevShadowEuraControl walk=10 pause=60",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevShadowEuraControl": {
@@ -14264,18 +14255,24 @@
 "en": "🟠 **Crouch Control + Vertical Scroll** `C`: both change the code at $D127, and FaxEdit refuses the pair in both orders.",
 "fr": "🟠 **Crouch Control + Vertical Scroll** `C` : les deux modifient le code à $D127, et FaxEdit refuse la paire dans les deux ordres."
 },
-"AtlasDevScreenBlink|AtlasDevVerticalScroll": {
-"v": "code",
+"AtlasDevScreenTransition|AtlasDevVerticalScroll": {
+"v": "order",
+"used": 423,
+"works": [
+"AtlasDevVerticalScroll",
+"AtlasDevScreenTransition"
+],
 "msgs": [
-"Runtime error: AtlasDevScreenBlink: the vanilla site at $db86 is not intact",
 "Runtime error: AtlasDevVerticalScroll: hook site $db8b in bank 15 is not stock"
 ],
+"why_code": "refused",
 "lines": [
 "AtlasDevVerticalScroll",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ],
-"en": "**Screen Blink + Vertical Scroll** `C`: both change the same choice in the main loop at $DB86, where the game picks between sliding the next screen in and blanking it, and FaxEdit refuses the pair in both orders.",
-"fr": "**Screen Blink + Vertical Scroll** `C` : les deux modifient le même choix dans la boucle principale à $DB86, là où le jeu choisit entre faire glisser l'écran suivant et l'effacer, et FaxEdit refuse la paire dans les deux ordres."
+"shared": true,
+"en": "**Screen Transition + Vertical Scroll** `↔`: list Vertical Scroll first (see Order). Screen Transition then calls its gate for `up=scroll` and `down=scroll`; without it those two are refused.",
+"fr": "**Transition d'écran + Défilement vertical** `↔` : mettez Défilement vertical en premier (voir Ordre). Transition d'écran appelle alors sa porte pour `up=scroll` et `down=scroll` ; sans lui, ces deux valeurs sont refusées."
 },
 "AtlasDevFastBlink|AtlasDevVerticalScroll": {
 "v": "fits",
@@ -14317,12 +14314,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevScreenBlink|SafeGifts": {
+"AtlasDevScreenTransition|SafeGifts": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "SafeGifts",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|SafeGifts": {
@@ -14361,12 +14358,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevNameRestoration|AtlasDevScreenBlink": {
+"AtlasDevNameRestoration|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 0,
+"used": 26,
 "lines": [
 "AtlasDevNameRestoration",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevNameRestoration": {
@@ -14403,12 +14400,12 @@
 "en": "🟠 **Crouch Control + Sprite Speed** `⚠`: Crouch Control needs the stock sprite drawing code and refuses if Sprite Speed is listed first. The other order builds, but Sprite Speed then changes that code, so the pair isn't proven to work.",
 "fr": "🟠 **Crouch Control + Sprite Speed** `⚠` : Crouch Control a besoin du code d'origine qui dessine les sprites et refuse si Sprite Speed est listé avant. L'autre ordre se bâtit, mais Sprite Speed change ensuite ce code, alors ce n'est pas prouvé que la paire marche."
 },
-"AtlasDevScreenBlink|AtlasDevSpriteSpeed": {
+"AtlasDevScreenTransition|AtlasDevSpriteSpeed": {
 "v": "fits",
-"used": 204,
+"used": 230,
 "lines": [
 "AtlasDevSpriteSpeed",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevSpriteSpeed": {
@@ -14427,12 +14424,12 @@
 "AtlasDevCrouchControl"
 ]
 },
-"AtlasDevFastTalk|AtlasDevScreenBlink": {
+"AtlasDevFastTalk|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 17,
+"used": 43,
 "lines": [
 "AtlasDevFastTalk",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevFastBlink|AtlasDevFastTalk": {
@@ -14443,12 +14440,12 @@
 "AtlasDevFastBlink"
 ]
 },
-"AtlasDevCrouchControl|AtlasDevScreenBlink": {
+"AtlasDevCrouchControl|AtlasDevScreenTransition": {
 "v": "fits",
-"used": 442,
+"used": 468,
 "lines": [
 "AtlasDevCrouchControl",
-"AtlasDevScreenBlink"
+"AtlasDevScreenTransition h=blink"
 ]
 },
 "AtlasDevCrouchControl|AtlasDevFastBlink": {
@@ -14459,23 +14456,23 @@
 "AtlasDevFastBlink"
 ]
 },
-"AtlasDevFastBlink|AtlasDevScreenBlink": {
+"AtlasDevFastBlink|AtlasDevScreenTransition": {
 "v": "order",
-"used": 68,
+"used": 94,
 "works": [
-"AtlasDevScreenBlink",
+"AtlasDevScreenTransition",
 "AtlasDevFastBlink"
 ],
 "msgs": [
-"Runtime error: AtlasDevScreenBlink: the vanilla site at $db91 is not intact"
+"Runtime error: AtlasDevScreenTransition: the vanilla site at $db91 is not intact"
 ],
 "why_code": "code",
 "lines": [
-"AtlasDevScreenBlink",
+"AtlasDevScreenTransition h=blink",
 "AtlasDevFastBlink"
 ],
-"en": "**Screen Blink + Fast Blink** `↔`: list Screen Blink first (see Order). It checks the stock blank path at $DB91, which Fast Blink rewrites.",
-"fr": "**Screen Blink + Fast Blink** `↔` : mettez Screen Blink en premier (voir Ordre). Il vérifie le chemin d'effacement d'origine à $DB91, que Fast Blink réécrit."
+"en": "**Screen Transition + Fast Blink** `↔`: list Screen Transition first (see Order). It checks the stock blank path at $DB91, which Fast Blink rewrites.",
+"fr": "**Screen Transition + Fast Blink** `↔` : mettez Screen Transition en premier (voir Ordre). Il vérifie le chemin d'effacement d'origine à $DB91, que Fast Blink réécrit."
 },
 "BranchesInMotion|KillSwitch": {
 "v": "standalone"
@@ -14627,7 +14624,7 @@
 "AtlasDevSpriteSpeed|BranchesInMotion": {
 "v": "standalone"
 },
-"AtlasDevScreenBlink|BranchesInMotion": {
+"AtlasDevScreenTransition|BranchesInMotion": {
 "v": "standalone"
 },
 "AtlasDevFastBlink|BranchesInMotion": {
@@ -14658,11 +14655,11 @@
 "new": {
 "fits": 1139,
 "unsupported": 6,
-"code": 4,
+"code": 3,
 "ram": 7,
 "space": 3,
 "caution": 2,
-"order": 1
+"order": 2
 }
 },
 "rows": [
@@ -14917,7 +14914,7 @@
 {
 "id": "blink_on",
 "label": "SCREEN BLINK",
-"hack": "AtlasDevScreenBlink",
+"hack": "AtlasDevScreenTransition",
 "params": [
 "flag"
 ],
