@@ -1,4 +1,4 @@
-# Builds sur mesure de Faxanadu 9.2-1
+# Builds sur mesure de Faxanadu 9.2-2
 
 *[English version](README.md)*
 
@@ -25,3 +25,4 @@ Branches in Motion, Dynamic Tilesets, Item Scripts, AtlasDevStatusWard, AtlasDev
 ## Versions
 
 - 9.2-1 : la première version, avec les hacks du tableau de compatibilité 9.2-3.
+- 9.2-2 : ajoute Screen Blink et Fast Blink, du tableau de compatibilité 9.2-4.
