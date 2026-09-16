@@ -1,9 +1,9 @@
 {
-"version": "9.2-5",
+"version": "9.2-6",
 "faxedit": {
 "base": "9132e5a",
-"commit": "22b76a7c14f8d1ae82ceebdbcf79e0858343ec2a",
-"tree": "2c5f3cea71885ffcacf963dee9c7e5124882d286",
+"commit": "2c28f0f253d3e6754dd7f7add4d575e54731264f",
+"tree": "463d6a55004f2cfc86679b61797f5e9a4ad0f187",
 "pins": [
 {
 "label": "Monster Control stack",
@@ -44,6 +44,11 @@
 "label": "Screen Transition and Fast Blink",
 "branch": "atlas/transition-pair-92",
 "commit": "e39f5e6"
+},
+{
+"label": "Landing Tuck",
+"branch": "atlas/landing-tuck-92",
+"commit": "be4b085"
 }
 ]
 },
@@ -1904,6 +1909,38 @@
 "faxoptions": "battery"
 },
 {
+"id": "AtlasDevLandingTuck",
+"family_en": "Movement, text and items",
+"family_fr": "Mouvement, texte et objets",
+"line": "AtlasDevLandingTuck",
+"status": "not-in-faxedit",
+"ram": "$04FE",
+"regions": [
+"us",
+"us-rev-a",
+"eu"
+],
+"params": [
+{
+"name": "profile",
+"default": "medium"
+},
+{
+"name": "flag",
+"default": ""
+},
+{
+"name": "mode",
+"default": ""
+}
+],
+"doc": "",
+"bank15": 315,
+"bank14": 0,
+"bank12": 0,
+"faxoptions": "not-yet"
+},
+{
 "id": "AtlasDevFastTalk",
 "family_en": "Movement, text and items",
 "family_fr": "Mouvement, texte et objets",
@@ -2416,6 +2453,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|KillSwitch": {
+"v": "fits",
+"used": 330,
+"lines": [
+"KillSwitch",
+"AtlasDevLandingTuck"
+]
+},
 "FastStart|SameWorldTransPal2Mus": {
 "v": "fits",
 "used": 0,
@@ -2848,6 +2893,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|SameWorldTransPal2Mus": {
+"v": "fits",
+"used": 315,
+"lines": [
+"SameWorldTransPal2Mus",
+"AtlasDevLandingTuck"
+]
+},
 "FastStart|QuestFlagItemDrops": {
 "v": "fits",
 "used": 0,
@@ -3272,6 +3325,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|FastStart": {
+"v": "fits",
+"used": 315,
+"lines": [
+"FastStart",
+"AtlasDevLandingTuck"
+]
+},
 "BossLockedItems|QuestFlagItemDrops": {
 "v": "fits",
 "used": 0,
@@ -3688,6 +3749,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|QuestFlagItemDrops": {
+"v": "fits",
+"used": 315,
+"lines": [
+"QuestFlagItemDrops",
+"AtlasDevLandingTuck"
+]
+},
 "BossLockedItems|FlexibleItems": {
 "v": "fits",
 "used": 0,
@@ -4096,6 +4165,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|BossLockedItems": {
+"v": "fits",
+"used": 315,
+"lines": [
+"BossLockedItems",
+"AtlasDevLandingTuck"
+]
+},
 "FlexibleItems|FogRules": {
 "v": "fits",
 "used": 29,
@@ -4496,6 +4573,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|FlexibleItems": {
+"v": "fits",
+"used": 315,
+"lines": [
+"FlexibleItems",
+"AtlasDevLandingTuck"
+]
+},
 "FogRules|PoisonPickup": {
 "v": "fits",
 "used": 29,
@@ -4886,6 +4971,14 @@
 "lines": [
 "FogRules rules=0:1+0:3+7",
 "AtlasDevFastBlink"
+]
+},
+"AtlasDevLandingTuck|FogRules": {
+"v": "fits",
+"used": 344,
+"lines": [
+"FogRules rules=0:1+0:3+7",
+"AtlasDevLandingTuck"
 ]
 },
 "PoisonPickup|SRAM": {
@@ -5285,6 +5378,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|PoisonPickup": {
+"v": "fits",
+"used": 315,
+"lines": [
+"PoisonPickup",
+"AtlasDevLandingTuck"
+]
+},
 "SRAM|TextSpeed": {
 "v": "fits",
 "used": 12,
@@ -5669,6 +5770,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|SRAM": {
+"v": "fits",
+"used": 315,
+"lines": [
+"SRAM",
+"AtlasDevLandingTuck"
+]
+},
 "BugFixes|TextSpeed": {
 "v": "fits",
 "used": 12,
@@ -6041,6 +6150,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|TextSpeed": {
+"v": "fits",
+"used": 327,
+"lines": [
+"TextSpeed",
+"AtlasDevLandingTuck"
+]
+},
 "BugFixes|ConditionalScript": {
 "v": "fits",
 "used": 0,
@@ -6401,6 +6518,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|BugFixes": {
+"v": "fits",
+"used": 315,
+"lines": [
+"BugFixes",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevFrameScheduler|ConditionalScript": {
 "v": "fits",
 "used": 156,
@@ -6751,6 +6876,14 @@
 "lines": [
 "ConditionalScript",
 "AtlasDevFastBlink"
+]
+},
+"AtlasDevLandingTuck|ConditionalScript": {
+"v": "fits",
+"used": 315,
+"lines": [
+"ConditionalScript",
+"AtlasDevLandingTuck"
 ]
 },
 "AtlasDevDayNightCycle|AtlasDevFrameScheduler": {
@@ -7106,6 +7239,14 @@
 "lines": [
 "AtlasDevFrameScheduler",
 "AtlasDevFastBlink"
+]
+},
+"AtlasDevFrameScheduler|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 471,
+"lines": [
+"AtlasDevFrameScheduler",
+"AtlasDevLandingTuck"
 ]
 },
 "AtlasDevDayNightCycle|AtlasDevInfectedTint": {
@@ -7479,6 +7620,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevDayNightCycle|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 471,
+"lines": [
+"AtlasDevDayNightCycle",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevInfectedTint|AtlasDevTimeOfDay": {
 "v": "fits",
 "used": 156,
@@ -7821,6 +7970,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevInfectedTint|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 471,
+"lines": [
+"AtlasDevInfectedTint",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevJumpControl|AtlasDevTimeOfDay": {
 "v": "fits",
 "used": 308,
@@ -8154,6 +8311,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevTimeOfDay": {
+"v": "fits",
+"used": 471,
+"lines": [
+"AtlasDevTimeOfDay",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevFallControl|AtlasDevJumpControl": {
 "v": "fits",
 "used": 237,
@@ -8470,6 +8635,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevJumpControl|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 467,
+"lines": [
+"AtlasDevJumpControl",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevFallControl|AtlasDevLadderControl": {
 "v": "fits",
 "used": 85,
@@ -8774,6 +8947,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevFallControl|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 400,
+"lines": [
+"AtlasDevFallControl",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevLadderControl|AtlasDevLadderCrown": {
 "v": "fits",
 "used": 605,
@@ -9068,6 +9249,14 @@
 "lines": [
 "AtlasDevLadderControl up=256 down=256",
 "AtlasDevFastBlink"
+]
+},
+"AtlasDevLadderControl|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevLadderControl up=256 down=256",
+"AtlasDevLandingTuck"
 ]
 },
 "AtlasDevLadderCrown|AtlasDevLadderCrown mode=floor": {
@@ -9378,6 +9567,18 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLadderCrown|AtlasDevLandingTuck": {
+"v": "space",
+"msgs": [
+"Runtime error: AtlasDevLandingTuck: bank 15 space at $ffe0 is not free"
+],
+"lines": [
+"AtlasDevLadderCrown",
+"AtlasDevLandingTuck"
+],
+"en": "🟠 **Landing Tuck + Ladder Crown** `S`: 315 + 605 bytes, more than bank 15 holds. Crown's floor mode fits.",
+"fr": "🟠 **Landing Tuck + Ladder Crown** `S` : 315 + 605 octets, plus que la banque 15 n'en contient. Le mode floor de Crown entre."
+},
 "AtlasDevLadderCrown mode=floor|AtlasDevSmartKeys": {
 "v": "fits",
 "used": 315,
@@ -9658,6 +9859,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLadderCrown mode=floor|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 630,
+"lines": [
+"AtlasDevLadderCrown mode=floor",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevEnemyStats|AtlasDevSmartKeys": {
 "v": "fits",
 "used": 0,
@@ -9930,6 +10139,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevSmartKeys": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevSmartKeys",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevCombatFeel|AtlasDevEnemyStats": {
 "v": "fits",
 "used": 0,
@@ -10194,6 +10411,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevEnemyStats|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevEnemyStats profile=hard",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevCombatFeel|AtlasDevRunControl": {
 "v": "code",
 "msgs": [
@@ -10455,6 +10680,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevCombatFeel|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevCombatFeel profile=zelda2",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevRunControl|AtlasDevSmartMattock": {
 "v": "fits",
 "used": 342,
@@ -10713,6 +10946,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevRunControl": {
+"v": "fits",
+"used": 479,
+"lines": [
+"AtlasDevRunControl",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevSirGawaineControl|AtlasDevSmartMattock": {
 "v": "fits",
 "used": 178,
@@ -10953,6 +11194,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevSmartMattock": {
+"v": "fits",
+"used": 493,
+"lines": [
+"AtlasDevSmartMattock",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevSirGawaineControl|AtlasDevWolfmanControl": {
 "v": "fits",
 "used": 0,
@@ -11186,6 +11435,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevSirGawaineControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevSirGawaineControl",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevMaskmanControl|AtlasDevWolfmanControl": {
 "v": "fits",
 "used": 0,
@@ -11410,6 +11667,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevWolfmanControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevWolfmanControl",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevHornetControl|AtlasDevMaskmanControl": {
 "v": "fits",
 "used": 0,
@@ -11626,6 +11891,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevMaskmanControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevMaskmanControl spear=24",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevHornetControl|AtlasDevYuinaruControl": {
 "v": "fits",
 "used": 0,
@@ -11834,6 +12107,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevHornetControl|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevHornetControl speed=8",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevBihorudaControl|AtlasDevYuinaruControl": {
 "v": "fits",
 "used": 0,
@@ -12034,6 +12315,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevYuinaruControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevYuinaruControl xspeed=16",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevBihorudaControl|AtlasDevYareekaControl": {
 "v": "fits",
 "used": 0,
@@ -12226,6 +12515,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevBihorudaControl|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevBihorudaControl xspeed=32",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevRipasheikuControl|AtlasDevYareekaControl": {
 "v": "fits",
 "used": 0,
@@ -12410,6 +12707,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevYareekaControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevYareekaControl dash=32",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevNagaControl|AtlasDevRipasheikuControl": {
 "v": "fits",
 "used": 0,
@@ -12586,6 +12891,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevRipasheikuControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevRipasheikuControl drift=16",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevNagaControl|AtlasDevPakukameControl": {
 "v": "fits",
 "used": 0,
@@ -12754,6 +13067,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevNagaControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevNagaControl chase=16",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevPakukameControl|AtlasDevSugataControl": {
 "v": "fits",
 "used": 0,
@@ -12914,6 +13235,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevPakukameControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevPakukameControl delay=32",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevGiantBeesControl|AtlasDevSugataControl": {
 "v": "fits",
 "used": 0,
@@ -13066,6 +13395,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevSugataControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevSugataControl damage=4",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevGiantBeesControl|AtlasDevZorugeriruControl": {
 "v": "fits",
 "used": 0,
@@ -13210,6 +13547,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevGiantBeesControl|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevGiantBeesControl rise=8",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevNecronAidesControl|AtlasDevZorugeriruControl": {
 "v": "fits",
 "used": 19,
@@ -13346,6 +13691,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevZorugeriruControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevZorugeriruControl rest=4 windup=16",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevIshiisuControl|AtlasDevNecronAidesControl": {
 "v": "fits",
 "used": 19,
@@ -13474,6 +13827,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevNecronAidesControl": {
+"v": "fits",
+"used": 334,
+"lines": [
+"AtlasDevNecronAidesControl climb=4",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevIshiisuControl|AtlasDevTamazutsuControl": {
 "v": "fits",
 "used": 0,
@@ -13594,6 +13955,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevIshiisuControl|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevIshiisuControl walk=6",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevBorabohraControl|AtlasDevTamazutsuControl": {
 "v": "fits",
 "used": 0,
@@ -13706,6 +14075,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevTamazutsuControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevTamazutsuControl hide=30",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevBorabohraControl|AtlasDevMagmanControl": {
 "v": "fits",
 "used": 0,
@@ -13810,6 +14187,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevBorabohraControl|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevBorabohraControl speed=16",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevKingGrieveControl|AtlasDevMagmanControl": {
 "v": "fits",
 "used": 0,
@@ -13906,6 +14291,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevMagmanControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevMagmanControl hide=30",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevKingGrieveControl|AtlasDevNashControl": {
 "v": "fits",
 "used": 0,
@@ -13994,6 +14387,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevKingGrieveControl|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevKingGrieveControl shots=8",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevExecutionHoodControl|AtlasDevNashControl": {
 "v": "fits",
 "used": 0,
@@ -14074,6 +14475,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevNashControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevNashControl hide=60",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevExecutionHoodControl|AtlasDevShadowEuraControl": {
 "v": "fits",
 "used": 0,
@@ -14146,6 +14555,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevExecutionHoodControl|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevExecutionHoodControl walk=8",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevShadowEuraControl|AtlasDevVerticalScroll": {
 "v": "fits",
 "used": 391,
@@ -14208,6 +14625,14 @@
 "lines": [
 "AtlasDevShadowEuraControl walk=10 pause=60",
 "AtlasDevFastBlink"
+]
+},
+"AtlasDevLandingTuck|AtlasDevShadowEuraControl": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevShadowEuraControl walk=10 pause=60",
+"AtlasDevLandingTuck"
 ]
 },
 "AtlasDevVerticalScroll|SafeGifts": {
@@ -14282,6 +14707,19 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevVerticalScroll": {
+"v": "code",
+"msgs": [
+"Runtime error: AtlasDevLandingTuck: the vanilla site at $b9d1 is not intact",
+"Runtime error: AtlasDevVerticalScroll: hook site $d127 in bank 15 is not stock"
+],
+"lines": [
+"AtlasDevVerticalScroll",
+"AtlasDevLandingTuck"
+],
+"en": "🟠 **Landing Tuck + Vertical Scroll** `C`: both change the code at $D127 and the two sprite tails at $B875 and $B9D1.",
+"fr": "🟠 **Landing Tuck + Vertical Scroll** `C` : les deux modifient le code à $D127 et les deux queues de dessin des sprites à $B875 et $B9D1."
+},
 "AtlasDevNameRestoration|SafeGifts": {
 "v": "fits",
 "used": 0,
@@ -14330,6 +14768,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|SafeGifts": {
+"v": "fits",
+"used": 315,
+"lines": [
+"SafeGifts",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevNameRestoration|AtlasDevSpriteSpeed": {
 "v": "fits",
 "used": 204,
@@ -14374,6 +14820,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevNameRestoration": {
+"v": "fits",
+"used": 315,
+"lines": [
+"AtlasDevNameRestoration",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevFastTalk|AtlasDevSpriteSpeed": {
 "v": "fits",
 "used": 221,
@@ -14416,6 +14870,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevLandingTuck|AtlasDevSpriteSpeed": {
+"v": "fits",
+"used": 519,
+"lines": [
+"AtlasDevSpriteSpeed",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevCrouchControl|AtlasDevFastTalk": {
 "v": "fits",
 "used": 459,
@@ -14440,6 +14902,14 @@
 "AtlasDevFastBlink"
 ]
 },
+"AtlasDevFastTalk|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 332,
+"lines": [
+"AtlasDevFastTalk",
+"AtlasDevLandingTuck"
+]
+},
 "AtlasDevCrouchControl|AtlasDevScreenTransition": {
 "v": "fits",
 "used": 468,
@@ -14455,6 +14925,19 @@
 "AtlasDevCrouchControl",
 "AtlasDevFastBlink"
 ]
+},
+"AtlasDevCrouchControl|AtlasDevLandingTuck": {
+"v": "code",
+"msgs": [
+"Runtime error: AtlasDevCrouchControl: transition armer at bank 15, $d127 is not supported",
+"Runtime error: AtlasDevLandingTuck: the vanilla site at $ec43 is not intact"
+],
+"lines": [
+"AtlasDevCrouchControl",
+"AtlasDevLandingTuck"
+],
+"en": "🟠 **Landing Tuck + Crouch Control** `C`: both change the code at $EC43, $D127, $E0AA and $D8F4. They were one hack before Landing Tuck was split out of it.",
+"fr": "🟠 **Landing Tuck + Crouch Control** `C` : les deux modifient le code à $EC43, $D127, $E0AA et $D8F4. C'était un seul hack avant que Landing Tuck en soit séparé."
 },
 "AtlasDevFastBlink|AtlasDevScreenTransition": {
 "v": "order",
@@ -14473,6 +14956,22 @@
 ],
 "en": "**Screen Transition + Fast Blink** `↔`: list Screen Transition first (see Order). It checks the stock blank path at $DB91, which Fast Blink rewrites.",
 "fr": "**Screen Transition + Fast Blink** `↔` : mettez Screen Transition en premier (voir Ordre). Il vérifie le chemin d'effacement d'origine à $DB91, que Fast Blink réécrit."
+},
+"AtlasDevLandingTuck|AtlasDevScreenTransition": {
+"v": "fits",
+"used": 341,
+"lines": [
+"AtlasDevScreenTransition h=blink",
+"AtlasDevLandingTuck"
+]
+},
+"AtlasDevFastBlink|AtlasDevLandingTuck": {
+"v": "fits",
+"used": 383,
+"lines": [
+"AtlasDevFastBlink",
+"AtlasDevLandingTuck"
+]
 },
 "BranchesInMotion|KillSwitch": {
 "v": "standalone"
@@ -14633,6 +15132,9 @@
 "AtlasDevCrouchControl|BranchesInMotion": {
 "v": "standalone"
 },
+"AtlasDevLandingTuck|BranchesInMotion": {
+"v": "standalone"
+},
 "AtlasDevFastTalk|BranchesInMotion": {
 "v": "standalone"
 },
@@ -14653,11 +15155,11 @@
 "code": 1
 },
 "new": {
-"fits": 1139,
+"fits": 1192,
 "unsupported": 6,
-"code": 3,
+"code": 5,
 "ram": 7,
-"space": 3,
+"space": 4,
 "caution": 2,
 "order": 2
 }
