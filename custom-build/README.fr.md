@@ -1,4 +1,4 @@
-# Builds sur mesure de Faxanadu 9.2-3
+# Builds sur mesure de Faxanadu 9.2-4
 
 *[English version](README.md)*
 
@@ -18,6 +18,12 @@ IPS et BPS pour chaque version, et un README en anglais et en français.
 Les hacks marqués 🟠 ne sont pas encore dans FaxEdit. Ils sont bâtis avec FaxEdit 9.2 et
 leurs changements ajoutés.
 
+Une build peut venir avec le menu FaxOptions : les hacks roulent depuis la RAM de
+sauvegarde et un menu de pause les active et change leurs réglages pendant que vous
+jouez, comme dans FaxOptions Showcase 9.2. Il faut un émulateur ou une cartouche
+flash qui garde les sauvegardes. La page grise les hacks qui ne peuvent pas encore
+y aller.
+
 ## Non inclus
 
 Branches in Motion, Dynamic Tilesets, Item Scripts, AtlasDevStatusWard, AtlasDevLandingTuck, la version japonaise.
@@ -27,3 +33,4 @@ Branches in Motion, Dynamic Tilesets, Item Scripts, AtlasDevStatusWard, AtlasDev
 - 9.2-1 : la première version, avec les hacks du tableau de compatibilité 9.2-3.
 - 9.2-2 : ajoute Screen Blink et Fast Blink, du tableau de compatibilité 9.2-4.
 - 9.2-3 : Screen Blink devient Screen Transition, avec un style par direction, du tableau de compatibilité 9.2-5.
+- 9.2-4 : les builds avec le menu FaxOptions.

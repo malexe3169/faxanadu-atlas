@@ -24,6 +24,15 @@ body:
         - label: USA
         - label: USA Rev 1
         - label: Europe
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Build type / Type de build
+      description: With the FaxOptions menu, the hacks run from battery RAM and a pause menu changes their settings while you play. / Avec le menu FaxOptions, les hacks roulent depuis la RAM de sauvegarde et un menu de pause change leurs réglages pendant que vous jouez.
+      options:
+        - Plain / Simple
+        - With the FaxOptions menu / Avec le menu FaxOptions
+      default: 0
   - type: textarea
     id: notes
     attributes:

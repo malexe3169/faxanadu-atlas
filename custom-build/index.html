@@ -71,6 +71,7 @@ textarea { width: 100%; min-height: 140px; font: 13px/1.5 var(--mono); padding: 
 <main class="layout">
   <div id="picker"><p class="muted">Loading…</p></div>
   <aside>
+    <fieldset id="kind"></fieldset>
     <div id="checks"></div>
     <fieldset id="regions"></fieldset>
     <div>
@@ -107,6 +108,12 @@ const T = {
       unsupported: "one hack doesn't support the other", caution: "builds in one order only, not proven to work",
       silent: "builds, but part of one hack is lost", same: "two modes of the same hack", refused: "refused" },
     loadfail: "compat.json could not be loaded.",
+    kind: "Build type", plain: "Plain", withmenu: "With the FaxOptions menu",
+    menuintro: "The hacks run from battery RAM and a pause menu changes their settings while you play. Needs an emulator or flash cart that keeps battery saves.",
+    cannot: { battery: "doesn't support battery RAM", "kill-hero": "the menu's KILL HERO row does its job", "not-yet": "not in FaxOptions builds yet" },
+    groupbank: (g, u, c) => `Bank 15, ${g} group: ${u} of ${c} bytes`, battery: (u, c) => `Battery RAM: about ${u} of ${c} bytes`,
+    rows: "Menu rows this build can have", norows: "No menu row for these hacks: the menu will still have KILL HERO and DEFAULTS.",
+    tickkind: "and choose With the FaxOptions menu",
   },
   fr: {
     title: "Builds sur mesure de Faxanadu", langname: "English",
@@ -127,11 +134,18 @@ const T = {
       caution: "se bâtit dans un seul ordre, pas prouvé que ça marche", silent: "se bâtit, mais une partie d'un des hacks est perdue",
       same: "deux modes du même hack", refused: "refusé" },
     loadfail: "Impossible de charger compat.json.",
+    kind: "Type de build", plain: "Simple", withmenu: "Avec le menu FaxOptions",
+    menuintro: "Les hacks roulent depuis la RAM de sauvegarde et un menu de pause change leurs réglages pendant que vous jouez. Il faut un émulateur ou une cartouche flash qui garde les sauvegardes.",
+    cannot: { battery: "ne supporte pas la RAM de sauvegarde", "kill-hero": "la rangée KILL HERO du menu fait la même chose", "not-yet": "pas encore dans les builds FaxOptions" },
+    groupbank: (g, u, c) => `Banque 15, groupe ${g} : ${u} de ${c} octets`, battery: (u, c) => `RAM de sauvegarde : environ ${u} de ${c} octets`,
+    rows: "Rangées du menu que cette build peut avoir", norows: "Pas de rangée pour ces hacks : le menu aura quand même KILL HERO et DEFAULTS.",
+    tickkind: "et choisissez Avec le menu FaxOptions",
   },
 };
-let C = null, lang = "en";
+let C = null, lang = "en", kind = "plain";   // "plain" or "faxoptions"
 const picked = new Map();          // hack id -> settings text
 const regions = new Set();
+const cannot = (h) => kind === "faxoptions" && h.faxoptions && !["crown", "sched", "moves"].includes(h.faxoptions) ? h.faxoptions : null;
 const $ = (id) => document.getElementById(id);
 const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
 const pairKey = (a, b) => [a, b].sort().join("|");
@@ -181,8 +195,22 @@ function render() {
   $("lang").textContent = t.langname;
   $("version").textContent = `${t.matrix} ${C.version}`;
   $("version").href = `${REPO}/tree/main/faxedit-hack-compatibility-${C.version.split("-")[0]}`;
+  renderKind(t);
   renderPicker(t);
   renderPanel(t);
+}
+
+function renderKind(t) {
+  const fs = $("kind");
+  fs.replaceChildren(el("legend", null, t.kind));
+  for (const [k, label] of [["plain", t.plain], ["faxoptions", t.withmenu]]) {
+    const lab = el("label", "region"), r = el("input");
+    r.type = "radio"; r.name = "kind"; r.value = k; r.checked = kind === k;
+    r.addEventListener("change", () => { kind = k; render(); });
+    lab.append(r, el("span", null, label));
+    fs.append(lab);
+  }
+  if (kind === "faxoptions") fs.append(el("p", "muted small", t.menuintro));
 }
 
 function renderPicker(t) {
@@ -201,9 +229,12 @@ function renderPicker(t) {
     const li = el("li", "hack"), lab = el("label"), box = el("input");
     box.type = "checkbox";
     box.checked = picked.has(h.id);
-    box.disabled = h.status === "separate";
+    const why = cannot(h);
+    if (why) picked.delete(h.id);
+    box.disabled = h.status === "separate" || !!why;
     box.addEventListener("change", () => { if (box.checked) picked.set(h.id, tested(h)); else picked.delete(h.id); render(); });
     lab.append(box, el("span", "name", h.status === "separate" ? "Branches in Motion" : h.id));
+    if (why) lab.append(el("span", "tag", t.cannot[why] || why));
     if (h.status === "not-in-faxedit") lab.append(el("span", "tag", "🟠 " + t.notyet));
     if (h.status === "separate") lab.append(el("span", "tag", "🔵 " + t.separate));
     li.append(lab);
@@ -251,10 +282,27 @@ function renderPanel(t) {
     if (!bad) ul.prepend(item("ok", t.allgood));
     if (!picked.has(C.rules.scheduler) && ids.includes(C.rules.scheduler)) ul.append(item("info", t.sched));
     if (ordering) ul.append(item("info", t.order));
-    const over15 = u15 > C.rules.bank15, over14 = u14 > C.rules.bank14;
-    ul.append(item(over15 ? "bad" : "ok", t.bank15(u15, C.rules.bank15) + (over15 ? ": " + t.over : "")));
+    if (kind === "faxoptions") {
+      const groups = new Map();
+      for (const id of ids) { const g = hack(id).faxoptions; groups.set(g, (groups.get(g) || 0) + (hack(id).bank15 || 0)); }
+      for (const [g, u] of groups) ul.append(item(u > C.rules.bank15 ? "bad" : "ok", t.groupbank(g, u, C.rules.bank15) + (u > C.rules.bank15 ? ": " + t.over : "")));
+      let ram = 0;
+      for (const id of ids) ram += (hack(id).bank15 || 0) + (hack(id).bank14 || 0) + (hack(id).bank12 || 0) + (C.rules.roles.includes(id) ? 170 : 0);
+      ram += 255 * groups.size;
+      ul.append(item(ram > C.rules.battery ? "bad" : "ok", t.battery(ram, C.rules.battery) + (ram > C.rules.battery ? ": " + t.over : "")));
+    } else {
+      const over15 = u15 > C.rules.bank15;
+      ul.append(item(over15 ? "bad" : "ok", t.bank15(u15, C.rules.bank15) + (over15 ? ": " + t.over : "")));
+    }
+    const over14 = u14 > C.rules.bank14;
     ul.append(item(over14 ? "bad" : "ok", t.bank14(u14, C.rules.bank14) + (over14 ? ": " + t.over : "")));
     checks.append(ul, el("p", "muted small", t.estimate));
+    if (kind === "faxoptions") {
+      const rows = C.rows.filter((r) => ids.includes(r.hack));
+      checks.append(el("h2", null, t.rows));
+      if (!rows.length) checks.append(el("p", "muted small", t.norows));
+      else { const rl = el("ul", "checklist"); for (const r of rows) { const li = item("info", ""); li.lastChild.append(r.label + ": ", el("code", null, r.choices.join(" / "))); rl.append(li); } checks.append(rl); }
+    }
   }
   renderRegions(t, ids);
   renderOutput(t, ids);
@@ -282,14 +330,14 @@ function renderOutput(t, ids) {
   $("lines-label").textContent = t.lines;
   $("lines").value = lines;
   $("copy").textContent = t.copy;
-  const title = encodeURIComponent(`Custom build: ${ids.map((id) => nameOf(hack(id))).join(", ")}`.slice(0, 200));
+  const title = encodeURIComponent(`Custom build${kind === "faxoptions" ? " (FaxOptions)" : ""}: ${ids.map((id) => nameOf(hack(id))).join(", ")}`.slice(0, 200));
   const url = `${REPO}/issues/new?template=custom-build.yml&title=${title}&hacks=${encodeURIComponent(lines)}`;
   const tooLong = url.length > MAX_URL;
   const a = $("request");
   a.textContent = t.request;
   a.href = tooLong ? `${REPO}/issues/new?template=custom-build.yml` : url;
   a.setAttribute("aria-disabled", String(!ids.length || !regs.length));
-  $("tick").textContent = ids.length && regs.length ? t.tick(regs.map((r) => r[lang]).join(", ")) : "";
+  $("tick").textContent = ids.length && regs.length ? t.tick(regs.map((r) => r[lang]).join(", ")) + (kind === "faxoptions" ? " " + t.tickkind : "") : "";
   $("paste").hidden = !tooLong;
   $("paste").textContent = tooLong ? t.paste : "";
 }
