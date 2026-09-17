@@ -102,15 +102,26 @@ export function assess(romInfo, bundle) {
 }
 
 // ---- the picture --------------------------------------------------------------
+/** the tiles of one CHR asset placed where the PPU sees them: a pattern table
+ *  is 256 tiles, and an asset written to $1800 fills its second half, so the
+ *  nametable names those tiles as 128 and up. Missing slots stay undefined. */
+export function tilesInPatternTable(rom, movie, kind) {
+  const asset = movie.assets.find((a) => a.kind === kind);
+  const decoded = decodeChr(resolvedAssetBytes(rom, movie, kind));
+  const base = asset ? (asset.destination & 0x0fff) >> 4 : 0;
+  const table = new Array(256);
+  decoded.forEach((tile, i) => { if (base + i < 256) table[base + i] = tile; });
+  return table;
+}
+
 /** the movie at `frameIndex`, painted: { rgba, state, actors } */
 export function renderFrame(romInfo, movie, frameIndex) {
   const rgba = makeSurface();
   if (!romInfo || !romInfo.usable) return { rgba, state: null, actors: [], note: "no rom" };
   const rom = romInfo.rom;
   const palette = resolvedAssetBytes(rom, movie, AssetKind.Palette);
-  const bgTiles = decodeChr(resolvedAssetBytes(rom, movie, AssetKind.BackgroundChr));
   const nametable = resolvedAssetBytes(rom, movie, AssetKind.Nametable);
-  drawNametable(rgba, nametable, bgTiles, palette);
+  drawNametable(rgba, nametable, tilesInPatternTable(rom, movie, AssetKind.BackgroundChr), palette);
   const state = preview(movie, frameIndex);
   const frames = decodeMovieFrames(rom, movie);
   const spriteTiles = movieSpriteTiles(rom, movie);
