@@ -13,7 +13,8 @@ Ask for a Faxanadu patch with the FaxEdit general hacks you pick:
    regions and submit it.
 
 Each request is built and checked, then the patches are attached to the issue as a zip:
-IPS and BPS for each version, and a README in English and French.
+IPS and BPS for each version, and a README in English and French. Every build also
+keeps a folder in [requests](requests), so you can come back to it later.
 
 Hacks marked 🟠 are not in FaxEdit yet. They are built with FaxEdit 9.2 and their
 changes added.
