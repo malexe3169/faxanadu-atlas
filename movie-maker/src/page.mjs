@@ -258,9 +258,9 @@ export const T = {
     noRom: "Load a ROM to see the picture and to export a patched ROM.",
     errors: "Problems", none: "None.",
     markers: (n) => n === 1 ? "1 script marker will start a movie." : `${n} script markers will start movies.`,
-    markerRow: (r) => `script ${r.script} at $${r.cpu.toString(16).toUpperCase()}: @MOVIE:${r.name} → movie ${r.index}`,
+    markerRow: (r) => `script ${r.script} at $${r.cpu.toString(16).toUpperCase()}: MOVIE-${r.name} → movie ${r.index}`,
     markerStopped: (n) => `${n} script${n === 1 ? "" : "s"} use extended opcodes the page cannot read past; a marker after one is not seen.`,
-    noMarkers: "No script markers. In FaxEdit, show a message that reads @MOVIE:name from an iScript, and the export turns it into the movie.",
+    noMarkers: "No script markers. In FaxEdit, show a message that reads MOVIE-name from an iScript, and the export turns it into the movie.",
   },
   fr: {
     title: "Atlas Movie Maker", langname: "English",
@@ -295,8 +295,8 @@ export const T = {
     noRom: "Chargez une ROM pour voir l'image et exporter une ROM patchée.",
     errors: "Problèmes", none: "Aucun.",
     markers: (n) => n === 1 ? "1 marqueur de script démarrera un film." : `${n} marqueurs de script démarreront des films.`,
-    markerRow: (r) => `script ${r.script} à $${r.cpu.toString(16).toUpperCase()} : @MOVIE:${r.name} → film ${r.index}`,
+    markerRow: (r) => `script ${r.script} à $${r.cpu.toString(16).toUpperCase()} : MOVIE-${r.name} → film ${r.index}`,
     markerStopped: (n) => `${n} script${n === 1 ? "" : "s"} utilise${n === 1 ? "" : "nt"} des opcodes étendus que la page ne sait pas lire; un marqueur placé après n'est pas vu.`,
-    noMarkers: "Aucun marqueur de script. Dans FaxEdit, affichez un message qui dit @MOVIE:nom depuis un iScript, et l'export le transforme en film.",
+    noMarkers: "Aucun marqueur de script. Dans FaxEdit, affichez un message qui dit MOVIE-nom depuis un iScript, et l'export le transforme en film.",
   },
 };

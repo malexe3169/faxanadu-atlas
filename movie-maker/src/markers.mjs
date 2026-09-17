@@ -1,4 +1,4 @@
-// The script marker: a modder writes a message that reads "@MOVIE:name" in
+// The script marker: a modder writes a message that reads "MOVIE-name" in
 // FaxEdit and shows it from an iScript; this module finds those messages in
 // the built ROM and rewrites the message opcode in place to the play movie
 // opcode the installed engine answers to. Nothing in FaxEdit changes. If the
@@ -24,7 +24,10 @@ import { MovieError } from "./bytes.mjs";
 import { fileOffset } from "./engine.mjs";
 import { runtimeBundle } from "./bundle.mjs";
 
-export const MARKER = /^@MOVIE:([A-Za-z0-9_.-]+)$/i;
+// FaxEdit's message charset is letters, digits and ! ' , - . ? _ so the
+// marker is written `Msg "MOVIE-scene-1"`; `MOVIE_x`, `MOVIE x` and the
+// hand hexed `@MOVIE:x` read the same
+export const MARKER = /^@?MOVIE[-_:. ]([A-Za-z0-9_.-]+)$/i;
 export const PLAY_MOVIE_OPCODE = 0x18;
 const MESSAGE_OPCODES = new Set([0x01, 0x03]);   // ShowUnskippableMessage, ShowMessage
 const SCRIPT_BANK = 12, TEXT_BANK = 13;
