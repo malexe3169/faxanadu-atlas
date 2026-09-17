@@ -1,25 +1,36 @@
-# Faxanadu Battle 1.0
+# Faxanadu Battle 1.1
 
 *[English version](README.md)*
 
-Un jeu de combat à deux joueurs bâti sur le jeu NES *Faxanadu* : choisissez un
-combattant, choisissez une arène et affrontez un ami. Expérimental; l'équilibre est
+Un jeu de combat bâti sur le jeu NES *Faxanadu* : choisissez un combattant,
+choisissez une arène et affrontez un ami ou le CPU. Expérimental; l'équilibre est
 encore en ajustement.
 
 ## Utilisation
 
-Appliquez le patch `fax-battle-1.0.ips` ou `.bps` sur une ROM propre de la version USA
+Appliquez le patch `fax-battle-1.1.ips` ou `.bps` sur une ROM propre de la version USA
 (SHA-1 du fichier `.nes` complet : `2e2b95db2be615cf588f0d758e0f7b1ccd81590a`). Jouez
-dans un émulateur comme Mesen, avec deux manettes : le jeu a besoin de 8 Ko de
-mémoire de travail supplémentaire, il ne fonctionne donc pas sur une cartouche
-originale.
+dans un émulateur comme Mesen : le jeu a besoin de 8 Ko de mémoire de travail
+supplémentaire, il ne fonctionne donc pas sur une cartouche originale.
 
 ## Lancer une partie
 
-Allumez, appuyez sur Start, choisissez un mode, puis chaque joueur choisit un
-combattant et appuie sur A pour être prêt (B annule). Choisissez ensuite une arène
-avec Gauche/Droite : vous voyez le vrai écran avant de confirmer avec A. Select
-revient au choix du mode.
+Allumez, appuyez sur Start et choisissez un mode. À l'écran des modes, vous pouvez
+aussi régler qui joue chaque côté : Haut et Bas passent entre Joueur 1, Joueur 2 et
+Difficulté, et Gauche et Droite changent la valeur. Un côté peut être une personne
+ou un CPU, alors vous pouvez jouer en un contre un, affronter un CPU, ou regarder
+deux CPU se battre. Le Joueur 2 commence comme un CPU avec une personnalité au
+hasard.
+
+Ensuite chaque joueur choisit un combattant et appuie sur A pour être prêt (B
+annule), puis vous choisissez une arène avec Gauche/Droite : vous voyez le vrai
+écran avant de confirmer avec A. Select revient au choix du mode.
+
+## Adversaires CPU
+
+Un CPU peut jouer avec l'une de cinq personnalités : Brawler, Counter, Hunter,
+Trickster ou Survivor. Il y a aussi Random, qui tire une nouvelle personnalité à
+chaque manche. La difficulté est Easy, Normal ou Hard.
 
 ## Modes
 
@@ -35,7 +46,7 @@ revient au choix du mode.
 | A | Sauter (relâchez tôt pour un petit saut) |
 | B | Attaquer |
 | Tenir B, relâcher | Attaque chargée : dégâts doublés, plus lente, perce une garde |
-| Haut + B | Attaque montante |
+| Haut + B | Attaque montante : soulève un combattant au sol et peut contrer un sauteur |
 | B en l'air | Attaque aérienne |
 | Bas + B | Coup spécial, utilise une jauge de puissance pleine |
 | Bas en tombant | Tomber plus vite |
@@ -58,19 +69,34 @@ puissance.
 
 Il y a aussi un septième combattant secret. À vous de le trouver.
 
+## Objets
+
+Les jarres cassables contiennent un objet : du pain, une potion rouge ou des bottes
+ailées. De temps en temps un oiseau traverse l'arène et laisse tomber du pain.
+
 ## Mort subite
 
 Si une partie s'éternise, un boss arrive après 60 secondes (avec un avertissement à
 55) et lance des boules de feu qu'on ne peut pas bloquer. À 135 secondes, une partie
 non terminée prend fin : en Duel, le joueur qui a subi le moins de dégâts gagne; en
-Crown Scramble, celui qui a le plus de temps avec la couronne.
+Crown Scramble, celui qui a le plus de temps avec la couronne. Une égalité s'affiche
+comme un match nul.
 
 ## Arènes
 
-Courtyard, Ruins, High Bridge et Watchtower (Eolis), Mist Clearing (Mist) et Trunk
-Hollow (Trunk). On peut sauter sur les plateformes par en dessous. Passer à une
-autre région prend environ deux secondes de chargement.
+Neuf arènes : Courtyard, Ruins, High Bridge et Watchtower (Eolis), Mist Clearing
+(Mist), Trunk Hollow (Trunk), Zenith Loop, Dartmoor Hall et Branch Link. On peut
+sauter sur les plateformes par en dessous, et Zenith Loop est en boucle — sortez
+d'un côté et revenez de l'autre. Passer à une autre région prend environ deux
+secondes de chargement.
+
+## Résultats
+
+Après une partie, un panneau montre le gagnant (ou un match nul), le nom des deux
+combattants et leur temps de couronne ou leurs PV, et permet de rejouer ou de
+revenir modifier la configuration.
 
 ## Versions
 
+- **1.1** : jouer contre le CPU, présentations des combattants, plus d'arènes, un écran d'objets et de résultats.
 - **1.0** : première version publique.
