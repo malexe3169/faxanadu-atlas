@@ -6,7 +6,7 @@
 // Nothing here touches a window, so test/page.test.mjs can drive it all.
 import { MovieError, equalBytes } from "./bytes.mjs";
 import { parseProject, writeProject, compileBundle, validate, detailedBudget } from "./bundle.mjs";
-import { makeStarterProject } from "./editor.mjs";
+import { makeStarterProject, applyPaintedPath, simulatedPath, translateActor } from "./editor.mjs";
 import { preview } from "./preview.mjs";
 import { decodeChr, decodeMovieFrames, resolvedAssetBytes, movieSpriteTiles } from "./assets.mjs";
 import { AssetKind } from "./types.mjs";
@@ -132,10 +132,57 @@ export function renderFrame(romInfo, movie, frameIndex) {
     const frame = frames[ts.frame];
     const visible = drawn && ts.visible && !!frame;
     if (visible) drawFrame(rgba, frame, ts.x, ts.y, spriteTiles, palette.subarray(16, 32));
+    // the box the page draws and hit tests: the frame's cells, or one tile
+    const w = frame && frame.tilemap.length ? frame.tilemap[0].length * 8 : 8;
+    const h = frame && frame.tilemap.length ? frame.tilemap.length * 8 : 8;
     actors.push({ index: i, x: ts.x, y: ts.y, frame: ts.frame, visible, name: movie.tracks[i].editor_name,
-                  color: movie.tracks[i].editor_color });
+                  color: movie.tracks[i].editor_color,
+                  box: { x: ts.x + (frame ? frame.offset_x : 0), y: ts.y + (frame ? frame.offset_y : 0), w, h } });
   });
   return { rgba, state, actors };
+}
+
+// ---- the canvas as a tool ----------------------------------------------------
+/** the actor under (x, y) in picture pixels, topmost last drawn first; -1 if none */
+export function hitActor(actors, x, y) {
+  for (let i = actors.length - 1; i >= 0; i--) {
+    const b = actors[i].box;
+    if (x >= b.x && x < b.x + b.w && y >= b.y && y < b.y + b.h) return actors[i].index;
+  }
+  return -1;
+}
+
+/** move one actor and everything tied to it (waypoints, keyframe thresholds) */
+export function dragActor(movie, trackIndex, dx, dy) {
+  translateActor(movie.tracks[trackIndex], dx | 0, dy | 0);
+}
+
+/** the desktop creator's path speed, and no grid unless asked */
+export const PAINT_SPEED = 48;
+
+/** turn painted [x, y] points into the actor's path; the movie is left
+ *  untouched when the stroke is refused, and the error is thrown */
+export function paintPath(bundle, movieIndex, trackIndex, points, speed = PAINT_SPEED, snap = 0) {
+  const movie = bundle.movies[movieIndex];
+  const track = movie.tracks[trackIndex];
+  const backup = structuredClone(track);
+  try {
+    const turned = applyPaintedPath(movie, track, points, speed, snap);
+    validate(bundle);
+    return turned;
+  } catch (e) {
+    for (const key of Object.keys(track)) delete track[key];
+    Object.assign(track, backup);
+    throw e;
+  }
+}
+
+/** what to draw over the picture for the selected actor: the route the
+ *  runtime takes and the painted waypoints */
+export function pathOverlay(movie, trackIndex) {
+  const track = movie.tracks[trackIndex];
+  if (!track) return { route: [], waypoints: [] };
+  return { route: simulatedPath(track), waypoints: track.editor_waypoints.map((p) => [p.x, p.y]) };
 }
 
 // ---- the exports --------------------------------------------------------------
@@ -193,6 +240,11 @@ export const T = {
     conditions: { 1: "effect calls reach", 2: "track Y reaches", 3: "music stops", 4: "frame counter is zero", 5: "frames elapse" },
     value: "Value", track: "Track", drawMask: "Draw mask", updateMask: "Update mask",
     preview: "Preview", frame: "Frame", play: "Play", pause: "Pause",
+    draw: "Draw a path", drawing: "Drawing…", advanced: "Advanced",
+    canvasHint: "Drag an actor to move it. Draw a path: press the button, then draw on the picture with the actor selected.",
+    drawHint: "Draw the route on the picture; release to apply it. The cyan line is the exact route the game will take.",
+    pathApplied: "Path applied; cyan is the exact route the game takes.",
+    pathTurned: "Path applied up to where it turned back; a path runs one way along its main axis.",
     check: "Checks", budget: (u, c) => `${u} of ${c} bytes of movies`, sizes: "Sizes",
     exports: "Export", expAmp: "Project (.amp)", expXml: "FaxEdit override (.xml)", expNes: "Patched ROM (.nes)", expIps: "Patch (.ips)",
     xmlNote: "For a FaxEdit project: put this beside eoe_config.xml. The player must be in the ROM too, which FaxEdit does not do yet; the patched ROM export installs both.",
@@ -221,6 +273,11 @@ export const T = {
     conditions: { 1: "les effets atteignent", 2: "le Y de l'acteur atteint", 3: "la musique s'arrête", 4: "le compteur d'images est à zéro", 5: "des images passent" },
     value: "Valeur", track: "Acteur", drawMask: "Masque de dessin", updateMask: "Masque de mise à jour",
     preview: "Aperçu", frame: "Image", play: "Jouer", pause: "Pause",
+    draw: "Tracer un trajet", drawing: "Tracé…", advanced: "Avancé",
+    canvasHint: "Glissez un acteur pour le déplacer. Tracer un trajet : appuyez sur le bouton, puis dessinez sur l'image avec l'acteur sélectionné.",
+    drawHint: "Dessinez la route sur l'image; relâchez pour l'appliquer. La ligne cyan est la route exacte que le jeu suivra.",
+    pathApplied: "Trajet appliqué; le cyan est la route exacte que le jeu suit.",
+    pathTurned: "Trajet appliqué jusqu'au demi-tour; un trajet va dans un seul sens sur son axe principal.",
     check: "Vérifications", budget: (u, c) => `${u} de ${c} octets de films`, sizes: "Tailles",
     exports: "Exporter", expAmp: "Projet (.amp)", expXml: "Surcharge FaxEdit (.xml)", expNes: "ROM patchée (.nes)", expIps: "Patch (.ips)",
     xmlNote: "Pour un projet FaxEdit : mettez ce fichier à côté de eoe_config.xml. Le lecteur doit aussi être dans la ROM, ce que FaxEdit ne fait pas encore; l'export de ROM patchée installe les deux.",
