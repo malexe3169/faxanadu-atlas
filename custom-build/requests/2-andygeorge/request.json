@@ -1,0 +1,25 @@
+{
+ "number": 2,
+ "requester": "andygeorge",
+ "date": "2026-09-17",
+ "compat": "9.2-6",
+ "kind": "faxoptions",
+ "regions": [
+  "us",
+  "us-rev-a",
+  "eu"
+ ],
+ "lines": [
+  "SameWorldTransPal2Mus",
+  "FastStart",
+  "QuestFlagItemDrops",
+  "FlexibleItems",
+  "PoisonPickup",
+  "SRAM",
+  "TextSpeed",
+  "BugFixes",
+  "ConditionalScript",
+  "AtlasDevSmartMattock",
+  "AtlasDevSmartKeys"
+ ]
+}
