@@ -14,6 +14,7 @@ import { buildPackage, install, installedLayout, layout } from "./engine.mjs";
 import { ENGINE_CODE } from "./engine_code.mjs";
 import { bank12Extent, plan } from "./space.mjs";
 import { makeIps } from "./ips.mjs";
+import { markerReport, rewriteMarkers } from "./markers.mjs";
 import { makeSurface, drawNametable, drawFrame } from "./render.mjs";
 import { loadVanillaOpcodes, resolveOpcodeInfo, standaloneConfigOverride } from "./runtime.mjs";
 
@@ -85,7 +86,7 @@ export function saveProject(bundle) { return writeProject(bundle); }
 
 /** validation, budget, and the bank 12 plan for this ROM, in one call */
 export function assess(romInfo, bundle) {
-  const out = { errors: [], warnings: [], report: null, budget: null, plan: null };
+  const out = { errors: [], warnings: [], report: null, budget: null, plan: null, markers: null };
   try {
     out.report = validate(bundle);
     out.warnings = out.report.warnings.slice();
@@ -96,6 +97,9 @@ export function assess(romInfo, bundle) {
   }
   if (romInfo && romInfo.usable) {
     try { out.plan = plan(romInfo.rom, bundle); }
+    catch (e) { out.errors.push(e.message); }
+    // the script markers the mod's iScripts carry, and whether each names a movie
+    try { out.markers = markerReport(romInfo.rom, bundle); out.errors.push(...out.markers.errors); }
     catch (e) { out.errors.push(e.message); }
   }
   return out;
@@ -196,7 +200,9 @@ export function exportInstalled(romInfo, bundle) {
   const patched = Uint8Array.from(romInfo.rom);
   const pkg = buildPackage(bundle, ENGINE_CODE);
   const result = install(patched, pkg, ENGINE_CODE, undefined, p.shared.adapter);
-  return { nes: patched, ips: makeIps(romInfo.rom, patched), layout: result.layout, plan: p };
+  // with opcode $18 now answered, the script markers become play movie calls
+  const markers = rewriteMarkers(patched, bundle);
+  return { nes: patched, ips: makeIps(romInfo.rom, patched), layout: result.layout, plan: p, markers };
 }
 
 /** eoe_config_override.xml for a FaxEdit project: the standalone opcode map
@@ -251,6 +257,10 @@ export const T = {
     ipsNote: "Share the IPS, not the ROM. Apply it to a clean copy of the same file you dropped here.",
     noRom: "Load a ROM to see the picture and to export a patched ROM.",
     errors: "Problems", none: "None.",
+    markers: (n) => n === 1 ? "1 script marker will start a movie." : `${n} script markers will start movies.`,
+    markerRow: (r) => `script ${r.script} at $${r.cpu.toString(16).toUpperCase()}: @MOVIE:${r.name} → movie ${r.index}`,
+    markerStopped: (n) => `${n} script${n === 1 ? "" : "s"} use extended opcodes the page cannot read past; a marker after one is not seen.`,
+    noMarkers: "No script markers. In FaxEdit, show a message that reads @MOVIE:name from an iScript, and the export turns it into the movie.",
   },
   fr: {
     title: "Atlas Movie Maker", langname: "English",
@@ -284,5 +294,9 @@ export const T = {
     ipsNote: "Partagez l'IPS, pas la ROM. Appliquez-le sur une copie propre du même fichier que vous avez déposé ici.",
     noRom: "Chargez une ROM pour voir l'image et exporter une ROM patchée.",
     errors: "Problèmes", none: "Aucun.",
+    markers: (n) => n === 1 ? "1 marqueur de script démarrera un film." : `${n} marqueurs de script démarreront des films.`,
+    markerRow: (r) => `script ${r.script} à $${r.cpu.toString(16).toUpperCase()} : @MOVIE:${r.name} → film ${r.index}`,
+    markerStopped: (n) => `${n} script${n === 1 ? "" : "s"} utilise${n === 1 ? "" : "nt"} des opcodes étendus que la page ne sait pas lire; un marqueur placé après n'est pas vu.`,
+    noMarkers: "Aucun marqueur de script. Dans FaxEdit, affichez un message qui dit @MOVIE:nom depuis un iScript, et l'export le transforme en film.",
   },
 };

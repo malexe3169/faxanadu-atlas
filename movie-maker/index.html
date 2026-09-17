@@ -332,6 +332,13 @@ function render() {
   if (a.plan) for (const line of a.plan.messages) msg(cm, a.plan.mode === "none" ? "bad" : "ok", line);
   if (a.report && a.plan && a.plan.shared) msg(cm, a.plan.shared.fits ? "ok" : "bad", s.budget(a.report.bytes, a.plan.shared.budget));
   if (!a.errors.length && !a.warnings.length && !a.plan) msg(cm, "info", s.none);
+  if (a.markers) {
+    const ok = a.markers.rows.filter((r) => r.index >= 0);
+    if (a.markers.rows.length) msg(cm, ok.length === a.markers.rows.length ? "ok" : "warn", s.markers(ok.length));
+    for (const r of ok) msg(cm, "info", s.markerRow(r));
+    if (!a.markers.rows.length) msg(cm, "info", s.noMarkers);
+    if (a.markers.stopped) msg(cm, "warn", s.markerStopped(a.markers.stopped));
+  }
   const tbl = $("sizes"); tbl.replaceChildren();
   if (a.budget) for (const l of a.budget.movies) { const tr = el("tr"); tr.append(el("td", null, l.label), el("td", null, String(l.bytes))); tbl.append(tr); }
   const canExport = !!(romInfo && romInfo.usable && a.plan && a.plan.mode === "shared" && !romInfo.installed);
