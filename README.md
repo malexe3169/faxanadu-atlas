@@ -25,6 +25,23 @@ One folder is a guide instead: which FaxEdit hacks work together.
    or [Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) in your browser.
 4. Save the result as a new file.
 
+### Which ROM you need
+
+A dump is the right one if either hash matches. The file hash is the whole
+`.nes`; the body hash is the same file with its 16 byte header removed, which
+is what identifies the game whatever header your dump carries.
+
+| version | file SHA-1 | body SHA-1 |
+| --- | --- | --- |
+| USA | `2e2b95db2be615cf588f0d758e0f7b1ccd81590a` | `5b05c8859f356013d37f0545f5de5fa1693da5da` |
+| USA Rev 1 | `bfb085472127eecbe5d89cd8f35bfdda2b4153be` | `d0c6af83c44f2dc90bcb0792a69c93f8d167f988` |
+| Europe | `9c178d2247045f0569bb7a86ddd2600a55d25f12` | `0711bc8d0bf42a0829391c2320393a0d3df2dd1f` |
+| Japan | `2f3788f36bddd61c64c554ea64f3eda1ed373e65` | `6501f61fd717ae603c2265d0df074ac2a4dcb8c7` |
+
+Check the file hash with `sha1sum your.nes`, and the body hash with
+`tail -c +17 your.nes | sha1sum`. No patch here is for the Japan version; it
+is listed so you can tell it apart.
+
 The QoL Edition, SpeedRunner Training and FaxOptions builds keep settings or
 saves in battery RAM, so use an emulator that keeps battery saves. Faxanadu
 Battle needs 8 KB of extra work RAM, so it plays in emulators, not on an
