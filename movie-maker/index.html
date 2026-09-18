@@ -88,7 +88,7 @@ table.sizes td { padding: 2px 4px; border-top: 1px solid var(--line); } table.si
     <section class="panel">
       <h2 id="h-preview"></h2>
       <canvas id="screen" width="256" height="240"></canvas>
-      <div class="row"><label id="l-frame" for="frame"></label><input id="frame" type="range" min="0" max="600" value="0"><span id="frame-n" class="small muted">0</span><button id="play" type="button"></button><button id="draw" type="button"></button></div>
+      <div class="row"><label id="l-frame" for="frame"></label><input id="frame" type="range" min="0" max="600" value="0"><span id="frame-n" class="small muted">0</span><button id="play" type="button"></button><button id="draw" type="button"></button><label class="small"><input id="depth" type="checkbox" checked> <span id="l-depth"></span></label></div>
       <p id="hint" class="hint"></p>
     </section>
     <section class="panel">
@@ -221,7 +221,8 @@ function pointerEnd() {
   if (drag) { const moved = drag.moved; drag = null; if (moved) render(); }
   if (stroke) {
     const points = stroke; stroke = null; drawMode = false;
-    try { const turned = P.paintPath(project, movieIndex, actorIndex, points); frame = 0; $("frame").value = 0; pristine = false; hint = turned ? t().pathTurned : t().pathApplied; }
+    try { const ladder = $("depth").checked && romInfo ? P.stockLadder(romInfo.rom) : null;
+      const turned = P.paintPath(project, movieIndex, actorIndex, points, undefined, undefined, ladder); frame = 0; $("frame").value = 0; pristine = false; hint = turned ? t().pathTurned : t().pathApplied; }
     catch (e) { hint = e.message; }
     render();
   }
@@ -313,6 +314,7 @@ function render() {
     ["exp-nes", "expNes"], ["exp-ips", "expIps"], ["xml-note", "xmlNote"], ["ips-note", "ipsNote"]]) $(id).textContent = s[key];
   $("play").textContent = playing ? s.pause : s.play;
   $("from-rom").disabled = !(romInfo && romInfo.stock);
+  $("l-depth").textContent = s.depth; $("depth").disabled = !(romInfo && romInfo.stock);
   $("project-note").textContent = projectNote || (romInfo && romInfo.shaped && !romInfo.stock ? s.noStock : "");
   $("draw").textContent = drawMode ? s.drawing : s.draw; $("draw").classList.toggle("on", drawMode);
   $("screen").classList.toggle("pen", drawMode); $("screen").classList.remove("hand");
