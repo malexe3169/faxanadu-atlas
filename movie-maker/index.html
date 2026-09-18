@@ -11,7 +11,7 @@
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }   /* the menu, the drawer and the sheet set display themselves, so hidden must win */
 body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.45 var(--sans); }
-.wrap { max-width: 820px; margin: 0 auto; padding: 12px 16px 40px; display: grid; gap: 10px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 12px 16px 40px; display: grid; gap: 10px; }
 .bar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
 .bar .sp { flex:1; }
 button, select, input[type=text], input[type=number] { font:inherit; border:1px solid var(--line); background:var(--panel); color:var(--ink); border-radius:8px; padding:6px 12px; }
@@ -26,7 +26,10 @@ canvas.hand { cursor:grab; } canvas.grabbing { cursor:grabbing; } canvas.pen { c
 .tools { position:absolute; left:8px; top:8px; display:flex; flex-direction:column; gap:6px; }
 .tools button { width:36px; height:36px; padding:0; font-size:18px; background:rgba(22,28,35,.9); }
 .tools button.on { background:var(--accent); color:#06141b; }
-.drawer { position:absolute; right:8px; top:8px; bottom:8px; overflow:auto; width:240px; background:rgba(22,28,35,.96); border:1px solid var(--line); border-radius:10px; padding:10px; display:grid; gap:8px; font-size:14px; }
+.stage-row { display:flex; gap:10px; align-items:flex-start; }
+.stage-row .stagebox { flex:1; min-width:0; }
+@media (max-width: 760px) { .stage-row { flex-direction:column; } .drawer { width:100%; max-height:none; } }
+.drawer { width:240px; flex:none; max-height:720px; overflow:auto; overflow-x:hidden; background:rgba(22,28,35,.96); border:1px solid var(--line); border-radius:10px; padding:10px; display:grid; gap:8px; font-size:14px; }
 .drawer h3 { margin:0; font-size:15px; display:flex; justify-content:space-between; align-items:center; }
 .drawer .row { display:flex; gap:6px; align-items:center; }
 .drawer .row label { color:var(--muted); width:64px; font-size:13px; }
@@ -73,6 +76,7 @@ h1#h1 { margin:4px 0 0; font-size:19px; }
     <button id="lang" class="chip" type="button"></button>
     <button id="help" class="chip" type="button">?</button>
   </div>
+  <div class="stage-row">
   <div class="stagebox" id="stagebox">
     <canvas id="screen" width="256" height="240"></canvas>
     <div class="tools" id="tools">
@@ -81,8 +85,9 @@ h1#h1 { margin:4px 0 0; font-size:19px; }
       <button id="t-stop" type="button" title="stop" hidden>◼</button>
       <button id="t-mute" type="button" title="sound" hidden>🔊</button>
     </div>
-    <div class="drawer" id="drawer" hidden></div>
     <div class="toast" id="toast" hidden></div>
+  </div>
+  <div class="drawer" id="drawer" hidden></div>
   </div>
   <p id="intro" class="small muted"></p>
   <div class="scrub"><button id="step-back" class="chip" type="button">◀</button><button id="step-fwd" class="chip" type="button">▶</button><input id="frame" type="range" min="0" max="600" value="0"><span id="frame-n" class="small muted">0 / 0</span><button id="loop" class="chip" type="button">▶ loop</button></div>
