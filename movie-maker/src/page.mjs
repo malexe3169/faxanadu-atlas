@@ -9,12 +9,13 @@ import { parseProject, writeProject, compileBundle, validate, detailedBudget } f
 import { makeStarterProject, applyPaintedPath, simulatedPath, translateActor } from "./editor.mjs";
 import { preview } from "./preview.mjs";
 import { decodeChr, decodeMovieFrames, resolvedAssetBytes, movieSpriteTiles } from "./assets.mjs";
-import { AssetKind, Coordinate, Comparison } from "./types.mjs";
+import { AssetKind, Coordinate, Comparison, ProjectRole } from "./types.mjs";
 import { buildPackage, install, installedLayout, layout } from "./engine.mjs";
 import { ENGINE_CODE } from "./engine_code.mjs";
 import { bank12Extent, plan } from "./space.mjs";
 import { makeIps } from "./ips.mjs";
 import { markerReport, rewriteMarkers } from "./markers.mjs";
+import { stockAvailable, stockBundle } from "./stock.mjs";
 import { makeSurface, drawNametable, drawFrame } from "./render.mjs";
 import { loadVanillaOpcodes, resolveOpcodeInfo, standaloneConfigOverride } from "./runtime.mjs";
 
@@ -71,6 +72,7 @@ export function loadRom(bytes) {
     usable: shaped && bodySha1 !== null && (region === null || region.key === "usa" || true) && bodySha1 !== BODIES_JAPAN,
     extent: shaped ? bank12Extent(rom) : null,
     installed: shaped ? installedLayout(rom, ENGINE_CODE) : null,
+    stock: shaped && stockAvailable(rom),   // the game's own intro and ending can be read as movies
   };
   // the engine is pinned to the USA game's code: a stock USA dump, or a mod
   // built from one (install checks the five signature spans itself)
@@ -97,6 +99,17 @@ export function newProject() {
   return project;
 }
 export function openProject(bytes) { return parseProject(Uint8Array.from(bytes)); }
+
+/** the ROM's own intro and ending as the project, with the starter's extra
+ *  scene kept so a script marker has something to point at */
+export function stockProject(romInfo) {
+  if (!romInfo || !romInfo.stock) throw new MovieError("this ROM does not carry the game's own intro engine");
+  const project = stockBundle(romInfo.rom);
+  const extra = newProject().movies.find((m) => m.project_role === ProjectRole.Normal);
+  if (extra) project.movies.push(extra);
+  validate(project);
+  return project;
+}
 export function saveProject(bundle) { return writeProject(bundle); }
 
 /** validation, budget, and the bank 12 plan for this ROM, in one call */
@@ -249,7 +262,9 @@ export const T = {
     unusable: "The engine is written for the USA game. Load a USA dump or a mod built from one.",
     already: "This ROM already has the movie engine in it, at",
     extent: (end, free) => `Bank 12 data ends at $${end.toString(16).toUpperCase()}; ${free} bytes free above it.`,
-    project: "Project", newp: "New", open: "Open .amp", save: "Save .amp",
+    project: "Project", newp: "New", open: "Open .amp", save: "Save .amp", fromRom: "This ROM's intro and ending",
+    stockLoaded: "The project is this ROM's own intro and ending, read from the game, plus an extra scene.",
+    noStock: "This ROM has lost the game's own intro engine, so its intro and ending cannot be read.",
     movies: "Movies", addMovie: "Add movie", removeMovie: "Remove", enabled: "enabled",
     role: "Role", roles: { 0: "extra movie", 1: "intro", 2: "ending" },
     exit: "Exit", exits: { 1: "new game", 2: "title", 3: "reload screen" }, music: "Music ($FF keeps)",
@@ -286,7 +301,9 @@ export const T = {
     unusable: "Le moteur est écrit pour le jeu USA. Chargez une copie USA ou un mod bâti dessus.",
     already: "Cette ROM contient déjà le moteur de films, à",
     extent: (end, free) => `Les données de la banque 12 finissent à $${end.toString(16).toUpperCase()}; ${free} octets libres au-dessus.`,
-    project: "Projet", newp: "Nouveau", open: "Ouvrir .amp", save: "Enregistrer .amp",
+    project: "Projet", newp: "Nouveau", open: "Ouvrir .amp", save: "Enregistrer .amp", fromRom: "L'intro et la fin de cette ROM",
+    stockLoaded: "Le projet est l'intro et la fin de cette ROM, lues dans le jeu, plus une scène en extra.",
+    noStock: "Cette ROM a perdu le moteur d'intro du jeu, donc son intro et sa fin ne peuvent pas être lues.",
     movies: "Films", addMovie: "Ajouter un film", removeMovie: "Retirer", enabled: "actif",
     role: "Rôle", roles: { 0: "film supplémentaire", 1: "intro", 2: "fin" },
     exit: "Sortie", exits: { 1: "nouvelle partie", 2: "titre", 3: "recharger l'écran" }, music: "Musique ($FF garde)",

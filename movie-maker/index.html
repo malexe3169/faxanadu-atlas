@@ -75,7 +75,8 @@ table.sizes td { padding: 2px 4px; border-top: 1px solid var(--line); } table.si
     </section>
     <section class="panel">
       <h2 id="h-project">Project</h2>
-      <div class="row"><button id="new" type="button"></button><button id="open" type="button"></button><button id="save" type="button"></button></div>
+      <div class="row"><button id="new" type="button"></button><button id="open" type="button"></button><button id="save" type="button"></button><button id="from-rom" type="button"></button></div>
+      <p id="project-note" class="small muted"></p>
       <input id="amp" type="file" accept=".amp" hidden>
       <h2 id="h-movies"></h2>
       <ul id="movies" class="list"></ul>
@@ -128,6 +129,7 @@ const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls)
 let lang = localStorage.getItem("atlas-movie-lang") === "fr" ? "fr" : "en";
 let romInfo = null, project = P.newProject(), movieIndex = 0, actorIndex = 0, phaseIndex = 0, frame = 0, playing = null;
 let drawMode = false, stroke = null, drag = null, lastPic = null, hint = "";
+let pristine = true, projectNote = "";   // pristine: the project is still the untouched starter, so a ROM's own scenes may replace it
 const t = () => P.T[lang];
 const movie = () => project.movies[movieIndex];
 
@@ -135,6 +137,7 @@ const movie = () => project.movies[movieIndex];
 async function takeRom(file) {
   const bytes = new Uint8Array(await file.arrayBuffer());
   romInfo = P.loadRom(bytes); romInfo.name = file.name;
+  if (pristine && romInfo.stock) fromRom();
   render();
 }
 $("drop").addEventListener("click", () => $("file").click());
@@ -145,11 +148,16 @@ for (const ev of ["dragleave", "drop"]) $("drop").addEventListener(ev, (e) => { 
 $("drop").addEventListener("drop", (e) => { const f = e.dataTransfer.files[0]; if (f) takeRom(f); });
 
 // ---- the project -------------------------------------------------------------
-$("new").addEventListener("click", () => { project = P.newProject(); movieIndex = actorIndex = phaseIndex = 0; render(); });
+$("new").addEventListener("click", () => { project = P.newProject(); movieIndex = actorIndex = phaseIndex = 0; pristine = true; projectNote = ""; render(); });
+function fromRom() {
+  try { project = P.stockProject(romInfo); movieIndex = actorIndex = phaseIndex = 0; frame = 0; $("frame").value = 0; pristine = false; projectNote = t().stockLoaded; }
+  catch (e) { projectNote = e.message; }
+}
+$("from-rom").addEventListener("click", () => { fromRom(); render(); });
 $("open").addEventListener("click", () => $("amp").click());
 $("amp").addEventListener("change", async () => {
   const f = $("amp").files[0]; if (!f) return;
-  try { project = P.openProject(new Uint8Array(await f.arrayBuffer())); movieIndex = actorIndex = phaseIndex = 0; render(); }
+  try { project = P.openProject(new Uint8Array(await f.arrayBuffer())); movieIndex = actorIndex = phaseIndex = 0; pristine = false; projectNote = ""; render(); }
   catch (e) { alert(e.message); }
 });
 $("save").addEventListener("click", () => download(P.saveProject(project), P.downloadName(romInfo, "amp")));
@@ -205,7 +213,7 @@ $("screen").addEventListener("pointermove", (e) => {
   if (!movie()) return;
   const [x, y] = pixel(e);
   if (stroke) { const last = stroke[stroke.length - 1]; if (last[0] !== x || last[1] !== y) stroke.push([x, y]); paint(); return; }
-  if (drag) { const dx = x - drag.x, dy = y - drag.y; if (dx || dy) { P.dragActor(movie(), actorIndex, dx, dy); drag.x = x; drag.y = y; drag.moved = true; paint(); } return; }
+  if (drag) { const dx = x - drag.x, dy = y - drag.y; if (dx || dy) { P.dragActor(movie(), actorIndex, dx, dy); drag.x = x; drag.y = y; drag.moved = true; pristine = false; paint(); } return; }
   if (lastPic) $("screen").classList.toggle("hand", !drawMode && P.hitActor(lastPic.actors, x, y) >= 0);
 });
 function pointerEnd() {
@@ -213,7 +221,7 @@ function pointerEnd() {
   if (drag) { const moved = drag.moved; drag = null; if (moved) render(); }
   if (stroke) {
     const points = stroke; stroke = null; drawMode = false;
-    try { const turned = P.paintPath(project, movieIndex, actorIndex, points); frame = 0; $("frame").value = 0; hint = turned ? t().pathTurned : t().pathApplied; }
+    try { const turned = P.paintPath(project, movieIndex, actorIndex, points); frame = 0; $("frame").value = 0; pristine = false; hint = turned ? t().pathTurned : t().pathApplied; }
     catch (e) { hint = e.message; }
     render();
   }
@@ -236,10 +244,10 @@ $("exp-ips").addEventListener("click", () => { try { download(P.exportInstalled(
 function field(form, label, control) { form.append(el("label", null, label), control); }
 // the numbers the engine needs and a first time modder does not: behind a fold
 function advanced(form) { const d = el("details", "adv"); d.open = localStorage.getItem("atlas-movie-adv") === "1"; d.addEventListener("toggle", () => localStorage.setItem("atlas-movie-adv", d.open ? "1" : "0")); d.append(el("summary", null, t().advanced)); const inner = el("div", "form"); d.append(inner); form.append(d); return inner; }
-function num(value, min, max, on) { const i = el("input"); i.type = "number"; i.min = min; i.max = max; i.value = value; i.addEventListener("change", () => { on(+i.value); render(); }); return i; }
-function txt(value, on) { const i = el("input"); i.type = "text"; i.value = value; i.addEventListener("change", () => { on(i.value); render(); }); return i; }
-function sel(options, value, on) { const s = el("select"); for (const [k, v] of Object.entries(options)) { const o = el("option", null, v); o.value = k; if (+k === +value) o.selected = true; s.append(o); } s.addEventListener("change", () => { on(+s.value); render(); }); return s; }
-function area(value, on) { const a = el("textarea"); a.value = value; a.addEventListener("change", () => { on(a.value); render(); }); return a; }
+function num(value, min, max, on) { const i = el("input"); i.type = "number"; i.min = min; i.max = max; i.value = value; i.addEventListener("change", () => { pristine = false; on(+i.value); render(); }); return i; }
+function txt(value, on) { const i = el("input"); i.type = "text"; i.value = value; i.addEventListener("change", () => { pristine = false; on(i.value); render(); }); return i; }
+function sel(options, value, on) { const s = el("select"); for (const [k, v] of Object.entries(options)) { const o = el("option", null, v); o.value = k; if (+k === +value) o.selected = true; s.append(o); } s.addEventListener("change", () => { pristine = false; on(+s.value); render(); }); return s; }
+function area(value, on) { const a = el("textarea"); a.value = value; a.addEventListener("change", () => { pristine = false; on(a.value); render(); }); return a; }
 const parseRows = (text) => text.split(/\n/).map((l) => l.trim()).filter(Boolean).map((l) => l.split(/[,\s]+/).map((x) => +x));
 const rowsText = (rows) => rows.map((r) => r.join(", ")).join("\n");
 
@@ -301,9 +309,11 @@ function render() {
   for (const [id, key] of [["h-rom", "rom"], ["h-project", "project"], ["h-movies", "movies"], ["h-preview", "preview"], ["h-actors", "actors"],
     ["h-phases", "phases"], ["h-check", "check"], ["h-export", "exports"], ["new", "newp"], ["open", "open"], ["save", "save"],
     ["add-movie", "addMovie"], ["remove-movie", "removeMovie"], ["add-actor", "addActor"], ["remove-actor", "removeActor"],
-    ["add-phase", "addPhase"], ["remove-phase", "removePhase"], ["l-frame", "frame"], ["exp-amp", "expAmp"], ["exp-xml", "expXml"],
+    ["add-phase", "addPhase"], ["remove-phase", "removePhase"], ["l-frame", "frame"], ["exp-amp", "expAmp"], ["exp-xml", "expXml"], ["from-rom", "fromRom"],
     ["exp-nes", "expNes"], ["exp-ips", "expIps"], ["xml-note", "xmlNote"], ["ips-note", "ipsNote"]]) $(id).textContent = s[key];
   $("play").textContent = playing ? s.pause : s.play;
+  $("from-rom").disabled = !(romInfo && romInfo.stock);
+  $("project-note").textContent = projectNote || (romInfo && romInfo.shaped && !romInfo.stock ? s.noStock : "");
   $("draw").textContent = drawMode ? s.drawing : s.draw; $("draw").classList.toggle("on", drawMode);
   $("screen").classList.toggle("pen", drawMode); $("screen").classList.remove("hand");
   $("hint").textContent = hint || (drawMode ? s.drawHint : s.canvasHint);
