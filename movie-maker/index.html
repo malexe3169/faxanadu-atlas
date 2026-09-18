@@ -95,6 +95,13 @@ table.sizes td { padding: 2px 4px; border-top: 1px solid var(--line); } table.si
       <p id="hint" class="hint"></p>
     </section>
     <section class="panel">
+      <h2 id="h-art"></h2>
+      <p id="art-hint" class="hint"></p>
+      <div class="row"><button id="art-bg" type="button"></button><button id="art-fig" type="button"></button></div>
+      <input id="art-bg-file" type="file" accept="image/*" hidden><input id="art-fig-file" type="file" accept="image/png,image/*" hidden>
+      <p id="art-note" class="small muted"></p>
+    </section>
+    <section class="panel">
       <h2 id="h-pieces"></h2>
       <p id="pieces-hint" class="hint"></p>
       <div class="row"><select id="piece-mode"><option value="add"></option><option value="set"></option></select></div>
@@ -239,6 +246,34 @@ function pointerEnd() {
 $("screen").addEventListener("pointerup", pointerEnd);
 $("screen").addEventListener("pointercancel", pointerEnd);
 
+// ---- art from images -----------------------------------------------------------
+let artNote = "";
+async function imagePixels(file, size) {
+  const bitmap = await createImageBitmap(file);
+  const w = size ? size[0] : bitmap.width, h = size ? size[1] : bitmap.height;
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const ctx = c.getContext("2d", { willReadFrequently: true });
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(bitmap, 0, 0, w, h);
+  const img = ctx.getImageData(0, 0, w, h);
+  return { rgba: img.data, w, h };
+}
+$("art-bg").addEventListener("click", () => $("art-bg-file").click());
+$("art-fig").addEventListener("click", () => $("art-fig-file").click());
+$("art-bg-file").addEventListener("change", async () => {
+  const f = $("art-bg-file").files[0]; if (!f || !movie()) return;
+  try { const { rgba, w, h } = await imagePixels(f, [256, 240]); const art = P.setBackgroundArt(romInfo, movie(), rgba, w, h); artNote = t().artDone(art.tiles, art.warnings); pristine = false; piecesFor = null; }
+  catch (e) { artNote = e.message; }
+  $("art-bg-file").value = ""; render();
+});
+$("art-fig-file").addEventListener("change", async () => {
+  const f = $("art-fig-file").files[0]; if (!f || !movie()) return;
+  try { const { rgba, w, h } = await imagePixels(f); const name = f.name.replace(/\.[^.]+$/, ""); actorIndex = P.addFigureArt(project, movieIndex, romInfo, rgba, w, h, name);
+    artNote = t().artFigureDone(name, (movie().imports.find((i) => i.kind === 1) || { data: [] }).data.length / 16); pristine = false; piecesFor = null; }
+  catch (e) { artNote = e.message; }
+  $("art-fig-file").value = ""; render();
+});
+
 // ---- exports -------------------------------------------------------------------
 function download(bytes, name) {
   const blob = new Blob([bytes], { type: "application/octet-stream" });
@@ -344,11 +379,12 @@ function render() {
     ["h-phases", "phases"], ["h-check", "check"], ["h-export", "exports"], ["new", "newp"], ["open", "open"], ["save", "save"],
     ["add-movie", "addMovie"], ["remove-movie", "removeMovie"], ["add-actor", "addActor"], ["remove-actor", "removeActor"],
     ["add-phase", "addPhase"], ["remove-phase", "removePhase"], ["l-frame", "frame"], ["exp-amp", "expAmp"], ["exp-xml", "expXml"], ["from-rom", "fromRom"],
-    ["h-pieces", "pieces"], ["pieces-hint", "pieceHint"],
+    ["h-pieces", "pieces"], ["pieces-hint", "pieceHint"], ["h-art", "art"], ["art-hint", "artHint"], ["art-bg", "artBackground"], ["art-fig", "artFigure"],
     ["exp-nes", "expNes"], ["exp-ips", "expIps"], ["xml-note", "xmlNote"], ["ips-note", "ipsNote"]]) $(id).textContent = s[key];
   $("play").textContent = playing ? s.pause : s.play;
   $("from-rom").disabled = !(romInfo && romInfo.stock);
   $("l-depth").textContent = s.depth;
+  $("art-bg").disabled = $("art-fig").disabled = !(romInfo && romInfo.usable); $("art-note").textContent = artNote;
   $("piece-mode").options[0].textContent = s.pieceAdd; $("piece-mode").options[1].textContent = s.pieceSet; $("depth").disabled = !(romInfo && romInfo.stock);
   $("project-note").textContent = projectNote || (romInfo && romInfo.shaped && !romInfo.stock ? s.noStock : "");
   $("draw").textContent = drawMode ? s.drawing : s.draw; $("draw").classList.toggle("on", drawMode);

@@ -8,8 +8,9 @@ import { MovieError, equalBytes } from "./bytes.mjs";
 import { parseProject, writeProject, compileBundle, validate, detailedBudget } from "./bundle.mjs";
 import { makeStarterProject, applyPaintedPath, simulatedPath, translateActor, defaultTrack } from "./editor.mjs";
 import { preview } from "./preview.mjs";
-import { decodeChr, decodeMovieFrames, resolvedAssetBytes, movieSpriteTiles } from "./assets.mjs";
-import { AssetKind, Coordinate, Comparison, ProjectRole, TrackKind, ACTOR_COLORS } from "./types.mjs";
+import { decodeChr, decodeMovieFrames, resolvedAssetBytes, movieSpriteTiles, findAsset, findImport, replaceImport, encodeMetaspriteLibrary, encodeChr } from "./assets.mjs";
+import { importBackground, importFigure } from "./art.mjs";
+import { AssetKind, Coordinate, Comparison, ProjectRole, TrackKind, ACTOR_COLORS, ImportKind, makeImport } from "./types.mjs";
 import { buildPackage, install, installedLayout, layout } from "./engine.mjs";
 import { ENGINE_CODE } from "./engine_code.mjs";
 import { bank12Extent, plan } from "./space.mjs";
@@ -262,6 +263,63 @@ export function setPose(movie, trackIndex, frameIndex) {
   if (track.kind === TrackKind.Path && !track.stage_frames.length) track.stage_frames = [[frameIndex]];
 }
 
+// ---- art from images -----------------------------------------------------------
+/** the movie's background becomes this 256x240 picture: tiles, nametable and
+ *  the 16 background colours as imports; the sprite colours are kept */
+export function setBackgroundArt(romInfo, movie, rgba, w, h) {
+  if (!romInfo || !romInfo.usable) throw new MovieError("load a ROM first");
+  const art = importBackground(rgba, w, h);
+  const palette = Uint8Array.from(resolvedAssetBytes(romInfo.rom, movie, AssetKind.Palette));
+  palette.set(art.palette, 0);
+  replaceImport(movie, makeImport({ kind: ImportKind.BackgroundChr, label: "art background", destination: 0x1800, data: art.chr }));
+  replaceImport(movie, makeImport({ kind: ImportKind.Nametable, label: "art background", destination: 0x2000, data: art.nametable }));
+  replaceImport(movie, makeImport({ kind: ImportKind.Palette, label: "art palette", destination: 0x0293, data: palette }));
+  return art;
+}
+
+const ART_LABEL = /^art figures over (\d+)$/;
+/** how many frames the movie's table had before any art figure */
+export function stockFrameCount(movie) {
+  const lib = findImport(movie, ImportKind.MetaspriteLibrary);
+  const m = lib ? ART_LABEL.exec(lib.label) : null;
+  return m ? +m[1] : movie.metasprite_count;
+}
+
+/** a figure from an image joins the movie: its tiles after the movie's own
+ *  in the sprite pattern table, its frame after the movie's own in the
+ *  table, its three colours in a sprite sub palette (3, 2, 1 in turn, the
+ *  hero's 0 kept), and a new actor standing on it. Returns the track index. */
+export function addFigureArt(bundle, movieIndex, romInfo, rgba, w, h, name = "Figure") {
+  if (!romInfo || !romInfo.usable) throw new MovieError("load a ROM first");
+  const movie = bundle.movies[movieIndex], rom = romInfo.rom;
+  if (movie.tracks.length >= 8) throw new MovieError("a movie draws at most 8 actors");
+  const base = findAsset(movie, AssetKind.SpriteChr);
+  if (!base) throw new MovieError("the movie has no sprite CHR");
+  const prior = findImport(movie, ImportKind.SpriteChr);
+  const priorData = prior ? prior.data : new Uint8Array(0);
+  const firstTile = base.bytes / 16 + priorData.length / 16;
+  const frames = decodeMovieFrames(rom, movie);
+  const stock = stockFrameCount(movie);
+  const figureIndex = frames.length - stock;
+  const slot = 3 - (figureIndex % 3);
+  const art = importFigure(rgba, w, h, firstTile, slot);
+  // the tiles
+  const data = new Uint8Array(priorData.length + art.tiles.length * 16);
+  data.set(priorData, 0); data.set(encodeChr(art.tiles), priorData.length);
+  replaceImport(movie, makeImport({ kind: ImportKind.SpriteChr, label: "art figures", destination: base.bytes, data }));
+  // the frame, after every frame the movie already draws
+  frames.push(art.frame);
+  replaceImport(movie, makeImport({ kind: ImportKind.MetaspriteLibrary, label: `art figures over ${stock}`, destination: 0, aux: frames.length, data: encodeMetaspriteLibrary(frames) }));
+  movie.metasprite_count = frames.length;
+  // the colours
+  const palette = Uint8Array.from(resolvedAssetBytes(rom, movie, AssetKind.Palette));
+  for (let k = 0; k < 3; k++) palette[16 + slot * 4 + 1 + k] = art.colours[k];
+  replaceImport(movie, makeImport({ kind: ImportKind.Palette, label: "art palette", destination: 0x0293, data: palette }));
+  const track = addPiece(bundle, movieIndex, frames.length - 1);
+  movie.tracks[track].editor_name = name;
+  return track;
+}
+
 /** what to draw over the picture for the selected actor: the route the
  *  runtime takes and the painted waypoints */
 export function pathOverlay(movie, trackIndex) {
@@ -329,6 +387,10 @@ export const T = {
     conditions: { 1: "effect calls reach", 2: "track Y reaches", 3: "music stops", 4: "frame counter is zero", 5: "frames elapse" },
     value: "Value", track: "Track", drawMask: "Draw mask", updateMask: "Update mask",
     preview: "Preview", frame: "Frame", play: "Play", pause: "Pause",
+    art: "Art", artBackground: "Background from an image…", artFigure: "Figure from an image…",
+    artHint: "Any picture becomes the background (scaled to 256x240, 4 palettes of 3 colours, 128 tiles). A PNG with transparency becomes a figure and a new actor.",
+    artDone: (n, w) => `Background imported: ${n} tiles.${w.length ? " " + w.join(" ") : ""}`,
+    artFigureDone: (name, tiles) => `${name} imported: ${tiles} tiles, standing on the road.`,
     pieces: "Pieces", pieceAdd: "click: add as a new actor", pieceSet: "click: dress the selected actor", pieceHint: "Every figure this movie can draw. Add one, then drag it and draw its path.",
     draw: "Draw a path", drawing: "Drawing…", advanced: "Advanced", depth: "Depth: shrink when walking up, grow coming down",
     canvasHint: "Drag an actor to move it. Draw a path: press the button, then draw on the picture with the actor selected.",
@@ -369,6 +431,10 @@ export const T = {
     conditions: { 1: "les effets atteignent", 2: "le Y de l'acteur atteint", 3: "la musique s'arrête", 4: "le compteur d'images est à zéro", 5: "des images passent" },
     value: "Valeur", track: "Acteur", drawMask: "Masque de dessin", updateMask: "Masque de mise à jour",
     preview: "Aperçu", frame: "Image", play: "Jouer", pause: "Pause",
+    art: "Art", artBackground: "Fond depuis une image…", artFigure: "Figure depuis une image…",
+    artHint: "Toute image devient le fond (mise à 256x240, 4 palettes de 3 couleurs, 128 tuiles). Un PNG avec transparence devient une figure et un nouvel acteur.",
+    artDone: (n, w) => `Fond importé : ${n} tuiles.${w.length ? " " + w.join(" ") : ""}`,
+    artFigureDone: (name, tiles) => `${name} importée : ${tiles} tuiles, debout sur la route.`,
     pieces: "Pièces", pieceAdd: "clic : ajouter comme nouvel acteur", pieceSet: "clic : habiller l'acteur sélectionné", pieceHint: "Toutes les figures que ce film peut dessiner. Ajoutez-en une, puis glissez-la et tracez son trajet.",
     draw: "Tracer un trajet", drawing: "Tracé…", advanced: "Avancé", depth: "Profondeur : rapetisse en montant, grandit en descendant",
     canvasHint: "Glissez un acteur pour le déplacer. Tracer un trajet : appuyez sur le bouton, puis dessinez sur l'image avec l'acteur sélectionné.",
