@@ -1,4 +1,4 @@
-# Faxanadu Battle 1.1 — the fighters
+# Faxanadu Battle 1.5 — the fighters
 
 *[Version française](FIGHTERS.fr.md)* · *[Back to Faxanadu Battle](README.md)*
 
@@ -24,12 +24,12 @@ monsters behave in Faxanadu.
 
 | Fighter | Speed | Jump | Damage | Reach | Startup / active / recovery |
 | --- | ---: | ---: | ---: | ---: | --- |
-| Hero | 1 | 6 | 12 | 29 | 3 / 5 / 10 |
-| Sword Dwarf | 2 | 5 | 12 | 29 | 5 / 5 / 14 |
-| Skeleton Knight | 1 | 6 | 16 | 37 | 7 / 5 / 16 |
-| Wolfman | 2 | 7 | 8 | 25 | 2 / 5 / 10 |
-| Giant Strider | 1 | 4 | 20 | 33 | 10 / 5 / 17 |
-| Grimlock | 3 | 5 | 10 | 27 | 4 / 5 / 13 |
+| Hero | 1 | 6 | 12 | 29 | 3 / 5 / 7 |
+| Sword Dwarf | 2 | 5 | 12 | 29 | 5 / 5 / 10 |
+| Skeleton Knight | 1 | 6 | 16 | 37 | 7 / 5 / 11 |
+| Wolfman | 2 | 7 | 8 | 25 | 2 / 5 / 7 |
+| Giant Strider | 1 | 4 | 20 | 33 | 10 / 5 / 12 |
+| Grimlock | 3 | 5 | 10 | 27 | 4 / 5 / 9 |
 
 | Fighter | Special | Damage | What it does |
 | --- | --- | ---: | --- |
@@ -50,7 +50,7 @@ monsters behave in Faxanadu.
 
 The one everybody already knows how to use. Nothing about the Hero is
 extreme: middling damage, middling reach, and the second fastest swing in the
-game at three updates of startup with only ten of recovery. That short
+game at three updates of startup with only seven of recovery. That short
 recovery is the real quality. You can press a button, be wrong, and still be
 standing when it matters.
 
@@ -68,7 +68,7 @@ others.
 ![Sword Dwarf's card from the opening.](img/sword-dwarf.png)
 
 The Hero's damage and reach, but it walks twice as fast and jumps a little
-lower. The cost is in the swing: five updates of startup and fourteen of
+lower. The cost is in the swing: five updates of startup and ten of
 recovery, so it loses straight races against the quick fighters and stays put
 longer when it whiffs.
 
@@ -86,7 +86,7 @@ Play it as pressure. Walk someone into a corner and make them jump.
 
 The longest ordinary reach in the game at 37 pixels, and 16 damage behind it.
 It is slow on its feet and slow to swing, seven updates of startup and
-sixteen of recovery, which is the price of standing outside everyone else's
+eleven of recovery, which is the price of standing outside everyone else's
 range.
 
 **Skewer** reaches 53 pixels, further than any other move. It is committed,
@@ -101,7 +101,7 @@ chases.
 
 ![Wolfman's card from the opening.](img/wolfman.png)
 
-The fastest hands in the game: two updates of startup, ten of recovery, and
+The fastest hands in the game: two updates of startup, seven of recovery, and
 the highest jump. It also does the least damage, eight a hit, and has the
 shortest reach at 25, so it has to get inside and stay there.
 
@@ -122,12 +122,12 @@ The most demanding fighter here, and the most rewarding when it works.
 
 Twenty damage a hit, the hardest normal in the game, with 33 reach behind it.
 Everything else is a concession: slow, the weakest jump at four, ten updates
-of startup and seventeen of recovery. When it misses, everyone in the arena
+of startup and twelve of recovery. When it misses, everyone in the arena
 knows.
 
 **Ground Slam** is the one move with no facing at all. It hops, drops fast,
 and hits all around where it lands, 46 pixels in every direction, but only
-once it has landed. Eight active updates, then thirty-two of recovery, so it
+once it has landed. Eight active updates, then twenty-three of recovery, so it
 is either a round-winner or the worst thing you have ever done.
 
 Three clean hits is a Duel. Getting three clean hits is the whole problem.
@@ -159,16 +159,16 @@ it is part of the game, so this guide is not going to tell you.
 
 **Charged attack.** Hold B and let go. Double damage, four more pixels of
 reach, and it goes through a guard. It also costs four more updates of
-startup and four more of recovery, so it is a read, not a habit.
+startup and three more of recovery, so it is a read, not a habit.
 
 **Rising attack.** Up and B. It lifts a grounded opponent and can catch
 someone coming down on you. Reach is 22 for everyone, timing is four updates
-of startup and thirteen of recovery, and the damage runs 14, 16, 16, 12, 22
-and 12 down the roster in the order above.
+of startup, seven active and nine of recovery, and the damage runs 14, 16, 16,
+12, 22 and 12 down the roster in the order above.
 
 **Aerial attack.** B while airborne. Two less damage than the ground swing
 with a floor of eight, two more reach, and much shorter timing at two updates
-of startup and nine of recovery.
+of startup, seven active and six of recovery.
 
 **Guard.** Hold Down on the ground to block an attack from the front. It
 spends power, and a charged attack goes through it.
@@ -184,7 +184,7 @@ the first special can arrive at any moment.
 
 A swing can only damage its opponent once, so you cannot run an active move
 through someone for extra hits. Projectiles disappear after 48 updates.
-Contact freezes both fighters for three updates, which is what makes a hit
+Contact freezes both fighters for two updates, which is what makes a hit
 read as a hit; attack timers do not advance during it and your inputs are not
 thrown away.
 
