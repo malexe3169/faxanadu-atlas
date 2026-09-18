@@ -1,4 +1,4 @@
-# Faxanadu Battle 1.1
+# Faxanadu Battle 1.5
 
 *[Version française](README.fr.md)*
 
@@ -8,21 +8,25 @@ and fight a friend or the CPU. Experimental; the balance is still being tuned.
 ## Use
 
 Patch a clean dump of the USA release (SHA-1 of the full `.nes` file:
-`2e2b95db2be615cf588f0d758e0f7b1ccd81590a`) with `fax-battle-1.1.ips` or `.bps`. Play in an
+`2e2b95db2be615cf588f0d758e0f7b1ccd81590a`) with `fax-battle-1.5.ips` or `.bps`. Play in an
 emulator such as Mesen: the game needs 8 KB of extra work RAM, so it doesn't run on an
 original cartridge.
 
 ## Starting a match
 
-Power on, press Start, and choose a mode. At the mode screen you can also set who
-plays each side: Up and Down move between Player 1, Player 2 and Difficulty, and
-Left and Right change the value. A side can be a person or a CPU, so you can play
-one on one, take on a CPU, or watch two CPUs fight. Player 2 starts as a CPU with a
-random personality.
+Power on, press Start, and the match setup panel opens: Up and Down move between
+Mode, Player 1, Player 2 and Difficulty, Left and Right change the value, and A
+goes on to the fighters from any row. A side can be a person or a CPU, so you can
+play one on one, take on a CPU, or watch two CPUs fight. Player 2 starts as a CPU
+with a random personality, on Easy.
 
 Then each player picks a fighter and presses A to be ready (B cancels), and you
 pick an arena with Left/Right, seeing the real screen before you confirm with A.
-Select returns to the mode choice.
+Select returns to the setup panel.
+
+Start pauses a fight. While paused, Up/Down and Left/Right pick a new CPU
+personality and difficulty for the next round, A restarts the round, Select quits
+to the setup panel, Start resumes.
 
 ## CPU opponents
 
@@ -38,7 +42,8 @@ levels — they are different opponents:
 | Survivor | grabs what it needs, backs away when hurt, protects a lead |
 
 There is also Random, which draws a new personality each round. Difficulty is
-Easy, Normal or Hard, and it is set separately from personality.
+Easy, Normal or Hard, and it is set separately from personality. Easy is the
+default: it thinks slower and holds back about half of its attacks up close.
 
 ## Modes
 
@@ -58,7 +63,9 @@ Easy, Normal or Hard, and it is set separately from personality.
 | Down + B | Special move, uses a full power meter |
 | Down while falling | Fall faster |
 | Hold Down on the ground | Guard against an attack from the front (costs power) |
-| Select | Back to the mode choice |
+| Up / Down at a ladder | Climb (Dartmoor Hall) |
+| Start | Pause |
+| Select | Back to the setup panel |
 
 Hits you land and hits you take fill your power meter, so it rewards fighting
 rather than waiting: a hit you land is worth twice one you take. Both fighters
@@ -92,7 +99,25 @@ it, with a melee swing or a projectile, and either can pick up what falls out.
 The three pickups heal you, refill your power meter, or give you an extra air
 jump for eight seconds. A pickup left alone disappears on its own.
 
-Now and then a bird flies across the arena and drops bread as it goes.
+Now and then a bird flies across the arena and drops bread as it goes, with a cry
+for each loaf.
+
+## Visitors
+
+Three characters from the game drop in on a fight.
+
+- **The Hornet** (Courtyard, High Bridge, Mist Clearing, Trunk Hollow): a pickup
+  left on the floor for five seconds, or a loaf for four, gets stolen. It flies in,
+  grabs it and leaves. Hit it and it drops what it carries.
+- **The Guru** (Ruins, Watchtower, Zenith Loop, Dartmoor Hall, Branch Link): ten
+  seconds into the round he appears on his spot and stays for twenty-five. Stand
+  still beside him and he heals you, 4 HP every half second. Land a hit on a
+  fighter he is healing and he vanishes in a burst; he is back twenty seconds
+  later.
+- **Bihoruda** (every arena): twenty seconds in, and every thirty after that, it
+  swoops in on whoever is leading (more HP in a Duel, the crown holder or the
+  higher score in Crown Scramble), carries them helpless for two seconds, drops
+  them somewhere over the floor and leaves fast. A held fighter can still be hit.
 
 ## Sudden death
 
@@ -101,20 +126,41 @@ and throws fireballs that can't be blocked. At 135 seconds an unfinished match
 ends: in a Duel the player who took less damage wins, in Crown Scramble the one
 with more crown time. A tie shows as a draw.
 
+A knockout, or the thirtieth second of crown time, ends in the game's own death
+burst and sound before the results come up.
+
 ## Arenas
 
 Nine arenas: Courtyard, Ruins, High Bridge and Watchtower (Eolis), Mist Clearing
 (Mist), Trunk Hollow (Trunk), Zenith Loop, Dartmoor Hall and Branch Link.
-Platforms can be jumped onto from below, and Zenith Loop wraps around — leave one
-side and come back from the other. Switching to a different region takes about two
-seconds to load.
+Platforms can be jumped onto from below, Dartmoor Hall's ladders can be climbed
+(the CPU climbs them too), and Zenith Loop wraps around — leave one side and come
+back from the other. Switching to a different region takes about two seconds to
+load.
+
+Each arena has a trick of its own:
+
+| Arena | Trick |
+| --- | --- |
+| Courtyard | the well: stand on the floor at the left edge to heal 1 HP every half second |
+| Ruins | the two ledges crumble after a second of standing, and come back three seconds later |
+| High Bridge | the centre of the span gives way after a second and a half |
+| Watchtower | the bird's nest: the bread bird comes twice as often |
+| Mist Clearing | the fog rolls in for two seconds at a time |
+| Trunk Hollow | gusts push whoever is in the air, one way then the other |
+| Zenith Loop | wraps around |
+| Dartmoor Hall | ladders |
+| Branch Link | two chambers joined by a ladder |
 
 ## Results
 
 After a match a panel shows the winner (or a draw), both fighters' names and their
 final crown time or health, and lets you rematch or go back to change the setup.
+The victory music loops until you leave.
 
 ## Versions
 
+- **1.5**: match setup panel, pause menu, a trick in every arena, Dartmoor ladders,
+  three visitors, knockout burst, snappier hits.
 - **1.1**: play against the CPU, fighter intros, more arenas, an items and results screen.
 - **1.0**: first public release.
