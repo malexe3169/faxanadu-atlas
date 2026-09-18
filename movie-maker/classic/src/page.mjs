@@ -374,7 +374,6 @@ export function makeHistory(limit = 100) {
     canUndo() { return past.length > 0; },
     canRedo() { return future.length > 0; },
     clear() { past = []; future = []; },
-    discard() { past.pop(); },
   };
 }
 
@@ -626,7 +625,6 @@ export function compactBackground(movie) {
 /** a line of the game's own font baked into the background at `row` */
 export function caption(romInfo, movie, text, row) {
   if (!romInfo || !romInfo.usable) throw new MovieError("load a ROM first");
-  if (!text || !text.trim()) throw new MovieError("write something to caption");
   const rom = romInfo.rom;
   const r = rasterCaption(rom, text);
   // the background as imports, so the page owns the bytes it is about to change

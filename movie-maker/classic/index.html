@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas Movie Maker (classic)</title>
+<style>
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --ink: #1b1f24; --muted: #5b6470; --line: #d9dee5; --chip: #eef2f6;
+  --accent: #1f6f8b; --ok: #1d7a46; --warn: #9a6700; --bad: #b42318;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0f1419; --panel: #161c23; --ink: #e6edf3; --muted: #9aa7b4; --line: #2a333d; --chip: #1f2730;
+          --accent: #58a6c8; --ok: #3fb27f; --warn: #d4a72c; --bad: #f47067; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 var(--sans); }
+header { max-width: 1280px; margin: 0 auto; padding: 24px 24px 8px; display: grid; gap: 8px; }
+.top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+h1 { font-size: 26px; margin: 0; }
+h2 { font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+#intro { max-width: 78ch; margin: 0; color: var(--muted); }
+button, .button, select, input[type=text], input[type=number] { font: inherit; border: 1px solid var(--line); background: var(--panel);
+  color: var(--ink); border-radius: 6px; padding: 5px 10px; }
+button { cursor: pointer; }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button:disabled { opacity: .45; cursor: default; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.layout { max-width: 1280px; margin: 0 auto; padding: 12px 24px 48px; display: grid;
+  grid-template-columns: 300px minmax(0, 1fr) 340px; gap: 20px; align-items: start; }
+@media (max-width: 1100px) { .layout { grid-template-columns: 1fr; } }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 12px; }
+.col { display: grid; gap: 16px; }
+#drop { border: 2px dashed var(--line); border-radius: 10px; padding: 18px; text-align: center; color: var(--muted); cursor: pointer; }
+#drop.over { border-color: var(--accent); color: var(--accent); }
+canvas { width: 100%; max-width: 768px; image-rendering: pixelated; background: #000; border-radius: 6px; display: block; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.list li { display: flex; gap: 8px; align-items: center; padding: 6px 8px; border-radius: 6px; cursor: pointer; }
+.list li.sel { background: var(--chip); }
+.list .swatch { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+.form { display: grid; grid-template-columns: max-content 1fr; gap: 6px 10px; align-items: center; font-size: 14px; }
+.form input, .form select { width: 100%; }
+.form textarea { grid-column: 1 / -1; width: 100%; font: 13px var(--mono); min-height: 52px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); padding: 6px; }
+.msgs { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 14px; }
+.msgs li { padding-left: 14px; position: relative; }
+.msgs li::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
+.msgs li.ok::before { background: var(--ok); } .msgs li.warn::before { background: var(--warn); } .msgs li.bad::before { background: var(--bad); }
+.muted { color: var(--muted); } .small { font-size: 13px; } code { font-family: var(--mono); font-size: .92em; background: var(--chip); border-radius: 4px; padding: 1px 4px; }
+#frame { width: 100%; }
+canvas.hand { cursor: grab; } canvas.grabbing { cursor: grabbing; } canvas.pen { cursor: crosshair; }
+#draw.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+details.adv { grid-column: 1 / -1; } details.adv summary { cursor: pointer; color: var(--muted); font-size: 13px; }
+details.adv .form { margin-top: 8px; }
+.hint { font-size: 13px; color: var(--muted); margin: 0; }
+.pieces { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-end; }
+.pieces canvas { width: auto; max-width: none; image-rendering: pixelated; background: var(--chip); border: 1px solid var(--line); border-radius: 4px; cursor: pointer; padding: 2px; }
+.pieces canvas:hover { border-color: var(--accent); }
+table.sizes { border-collapse: collapse; font-size: 13px; width: 100%; }
+table.sizes td { padding: 2px 4px; border-top: 1px solid var(--line); } table.sizes td:last-child { text-align: right; font-family: var(--mono); }
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><h1 id="h1">Atlas Movie Maker</h1><button id="lang" type="button">Français</button></div>
+  <p id="intro"></p>
+</header>
+<div class="layout">
+  <div class="col">
+    <section class="panel">
+      <h2 id="h-rom">ROM</h2>
+      <div id="drop" tabindex="0"></div>
+      <input id="file" type="file" accept=".nes" hidden>
+      <ul id="rom-msgs" class="msgs"></ul>
+    </section>
+    <section class="panel">
+      <h2 id="h-project">Project</h2>
+      <div class="row"><button id="new" type="button"></button><button id="open" type="button"></button><button id="save" type="button"></button><button id="from-rom" type="button"></button></div>
+      <p id="project-note" class="small muted"></p>
+      <input id="amp" type="file" accept=".amp" hidden>
+      <h2 id="h-movies"></h2>
+      <ul id="movies" class="list"></ul>
+      <div class="row"><button id="add-movie" type="button"></button><button id="remove-movie" type="button"></button></div>
+      <div id="movie-form" class="form"></div>
+    </section>
+  </div>
+  <div class="col">
+    <section class="panel">
+      <h2 id="h-preview"></h2>
+      <canvas id="screen" width="256" height="240"></canvas>
+      <div class="row"><label id="l-frame" for="frame"></label><input id="frame" type="range" min="0" max="600" value="0"><span id="frame-n" class="small muted">0</span><button id="play" type="button"></button><button id="draw" type="button"></button><label class="small"><input id="depth" type="checkbox" checked> <span id="l-depth"></span></label></div>
+      <p id="hint" class="hint"></p>
+    </section>
+    <section class="panel">
+      <h2 id="h-art"></h2>
+      <p id="art-hint" class="hint"></p>
+      <div class="row"><button id="art-bg" type="button"></button><button id="art-fig" type="button"></button></div>
+      <input id="art-bg-file" type="file" accept="image/*" hidden><input id="art-fig-file" type="file" accept="image/png,image/*" hidden>
+      <p id="art-note" class="small muted"></p>
+    </section>
+    <section class="panel">
+      <h2 id="h-pieces"></h2>
+      <p id="pieces-hint" class="hint"></p>
+      <div class="row"><select id="piece-mode"><option value="add"></option><option value="set"></option></select></div>
+      <div id="pieces" class="pieces"></div>
+    </section>
+    <section class="panel">
+      <h2 id="h-actors"></h2>
+      <ul id="actors" class="list"></ul>
+      <div class="row"><button id="add-actor" type="button"></button><button id="remove-actor" type="button"></button></div>
+      <div id="actor-form" class="form"></div>
+    </section>
+    <section class="panel">
+      <h2 id="h-phases"></h2>
+      <ul id="phases" class="list"></ul>
+      <div class="row"><button id="add-phase" type="button"></button><button id="remove-phase" type="button"></button></div>
+      <div id="phase-form" class="form"></div>
+    </section>
+  </div>
+  <div class="col">
+    <section class="panel">
+      <h2 id="h-check"></h2>
+      <ul id="check-msgs" class="msgs"></ul>
+      <table class="sizes" id="sizes"></table>
+    </section>
+    <section class="panel">
+      <h2 id="h-export"></h2>
+      <div class="row"><button id="exp-amp" type="button"></button><button id="exp-xml" type="button"></button></div>
+      <p id="xml-note" class="small muted"></p>
+      <div class="row"><button id="exp-nes" type="button" class="primary"></button><button id="exp-ips" type="button"></button></div>
+      <p id="ips-note" class="small muted"></p>
+    </section>
+  </div>
+</div>
+<script type="module">
+import * as P from "./src/page.mjs";
+import { TrackKind, Condition, makeMovie, makeTrack, makePhase, ProjectRole, Exit } from "./src/types.mjs";
+import { defaultTrack, ensureUniqueId } from "./src/editor.mjs";
+
+const $ = (id) => document.getElementById(id);
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+let lang = localStorage.getItem("atlas-movie-lang") === "fr" ? "fr" : "en";
+let romInfo = null, project = P.newProject(), movieIndex = 0, actorIndex = 0, phaseIndex = 0, frame = 0, playing = null;
+let drawMode = false, stroke = null, drag = null, lastPic = null, hint = "";
+let pristine = true, projectNote = "";   // pristine: the project is still the untouched starter, so a ROM's own scenes may replace it
+const t = () => P.T[lang];
+const movie = () => project.movies[movieIndex];
+
+// ---- the ROM -----------------------------------------------------------------
+async function takeRom(file) {
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  romInfo = P.loadRom(bytes); romInfo.name = file.name;
+  if (pristine && romInfo.stock) fromRom();
+  render();
+}
+$("drop").addEventListener("click", () => $("file").click());
+$("drop").addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") $("file").click(); });
+$("file").addEventListener("change", () => { if ($("file").files[0]) takeRom($("file").files[0]); });
+for (const ev of ["dragenter", "dragover"]) $("drop").addEventListener(ev, (e) => { e.preventDefault(); $("drop").classList.add("over"); });
+for (const ev of ["dragleave", "drop"]) $("drop").addEventListener(ev, (e) => { e.preventDefault(); $("drop").classList.remove("over"); });
+$("drop").addEventListener("drop", (e) => { const f = e.dataTransfer.files[0]; if (f) takeRom(f); });
+
+// ---- the project -------------------------------------------------------------
+$("new").addEventListener("click", () => { project = P.newProject(); movieIndex = actorIndex = phaseIndex = 0; pristine = true; projectNote = ""; render(); });
+function fromRom() {
+  try { project = P.stockProject(romInfo); movieIndex = actorIndex = phaseIndex = 0; frame = 0; $("frame").value = 0; pristine = false; projectNote = t().stockLoaded; }
+  catch (e) { projectNote = e.message; }
+}
+$("from-rom").addEventListener("click", () => { fromRom(); render(); });
+$("open").addEventListener("click", () => $("amp").click());
+$("amp").addEventListener("change", async () => {
+  const f = $("amp").files[0]; if (!f) return;
+  try { project = P.openProject(new Uint8Array(await f.arrayBuffer())); movieIndex = actorIndex = phaseIndex = 0; pristine = false; projectNote = ""; render(); }
+  catch (e) { alert(e.message); }
+});
+$("save").addEventListener("click", () => download(P.saveProject(project), P.downloadName(romInfo, "amp")));
+$("add-movie").addEventListener("click", () => {
+  const m = makeMovie({ id: "movie" }); ensureUniqueId(project, m);
+  const from = movie(); if (from) { m.assets = structuredClone(from.assets); m.metasprite_bank = from.metasprite_bank;
+    m.metasprite_pointer_lo = from.metasprite_pointer_lo; m.metasprite_pointer_hi = from.metasprite_pointer_hi; m.metasprite_count = from.metasprite_count; }
+  m.tracks.push(defaultTrack(TrackKind.Path)); m.phases.push(makePhase({ condition_value: 120 }));
+  project.movies.push(m); movieIndex = project.movies.length - 1; actorIndex = phaseIndex = 0; render();
+});
+$("remove-movie").addEventListener("click", () => { if (project.movies.length > 1) { project.movies.splice(movieIndex, 1); movieIndex = Math.max(0, movieIndex - 1); render(); } });
+$("add-actor").addEventListener("click", () => { pristine = false; try { actorIndex = P.addPiece(project, movieIndex, 0); } catch (e) { hint = e.message; } render(); });
+$("remove-actor").addEventListener("click", () => { if (movie().tracks.length > 1) { movie().tracks.splice(actorIndex, 1); actorIndex = Math.max(0, actorIndex - 1); render(); } });
+$("add-phase").addEventListener("click", () => { movie().phases.push(makePhase({ condition_value: 60 })); phaseIndex = movie().phases.length - 1; render(); });
+$("remove-phase").addEventListener("click", () => { if (movie().phases.length > 1) { movie().phases.splice(phaseIndex, 1); phaseIndex = Math.max(0, phaseIndex - 1); render(); } });
+
+// ---- preview --------------------------------------------------------------------
+$("frame").addEventListener("input", () => { frame = +$("frame").value; paint(); });
+$("play").addEventListener("click", () => {
+  if (playing) { clearInterval(playing); playing = null; }
+  else playing = setInterval(() => { frame = (frame + 1) % (+$("frame").max + 1); $("frame").value = frame; paint(); }, 1000 / 60);
+  $("play").textContent = playing ? t().pause : t().play;
+});
+function paint() {
+  const ctx = $("screen").getContext("2d");
+  $("frame-n").textContent = String(frame);
+  if (!movie()) return;
+  try {
+    const pic = P.renderFrame(romInfo, movie(), frame); lastPic = pic;
+    ctx.putImageData(new ImageData(pic.rgba, 256, 240), 0, 0);
+    for (const a of pic.actors) { ctx.strokeStyle = a.index === actorIndex ? "#fff" : "rgba(255,255,255,.35)"; ctx.strokeRect(a.box.x - .5, a.box.y - .5, a.box.w + 1, a.box.h + 1); }
+    // the selected actor's route (cyan, the exact compiled one) and the painted waypoints
+    const ov = P.pathOverlay(movie(), actorIndex);
+    if (ov.route.length > 1) { ctx.strokeStyle = "rgba(80,220,255,.9)"; ctx.beginPath(); ov.route.forEach(([x, y], i) => i ? ctx.lineTo(x + .5, y + .5) : ctx.moveTo(x + .5, y + .5)); ctx.stroke(); }
+    ctx.fillStyle = "#ffd166"; for (const [x, y] of ov.waypoints) ctx.fillRect(x - 1, y - 1, 3, 3);
+    if (stroke) { ctx.strokeStyle = "#fff"; ctx.beginPath(); stroke.forEach(([x, y], i) => i ? ctx.lineTo(x + .5, y + .5) : ctx.moveTo(x + .5, y + .5)); ctx.stroke(); }
+  } catch (e) { ctx.fillStyle = "#000"; ctx.fillRect(0, 0, 256, 240); ctx.fillStyle = "#f47067"; ctx.font = "12px monospace"; ctx.fillText(e.message.slice(0, 40), 6, 16); }
+}
+
+// ---- the canvas as a tool ---------------------------------------------------------
+// picture pixels from a pointer event, the canvas being scaled by css
+function pixel(e) { const r = $("screen").getBoundingClientRect(); return [Math.max(0, Math.min(255, Math.floor((e.clientX - r.left) * 256 / r.width))), Math.max(0, Math.min(239, Math.floor((e.clientY - r.top) * 240 / r.height)))]; }
+$("draw").addEventListener("click", () => { drawMode = !drawMode; hint = ""; render(); });
+$("screen").addEventListener("pointerdown", (e) => {
+  if (!movie() || !lastPic) return;
+  const [x, y] = pixel(e);
+  $("screen").setPointerCapture(e.pointerId);
+  if (drawMode) { stroke = [[x, y]]; paint(); return; }
+  const hit = P.hitActor(lastPic.actors, x, y);
+  if (hit >= 0) { if (hit !== actorIndex) { actorIndex = hit; render(); } drag = { x, y, moved: false }; $("screen").classList.add("grabbing"); }
+});
+$("screen").addEventListener("pointermove", (e) => {
+  if (!movie()) return;
+  const [x, y] = pixel(e);
+  if (stroke) { const last = stroke[stroke.length - 1]; if (last[0] !== x || last[1] !== y) stroke.push([x, y]); paint(); return; }
+  if (drag) { const dx = x - drag.x, dy = y - drag.y; if (dx || dy) { P.dragActor(movie(), actorIndex, dx, dy); drag.x = x; drag.y = y; drag.moved = true; pristine = false; paint(); } return; }
+  if (lastPic) $("screen").classList.toggle("hand", !drawMode && P.hitActor(lastPic.actors, x, y) >= 0);
+});
+function pointerEnd() {
+  $("screen").classList.remove("grabbing");
+  if (drag) { const moved = drag.moved; drag = null; if (moved) render(); }
+  if (stroke) {
+    const points = stroke; stroke = null; drawMode = false;
+    try { const ladder = $("depth").checked && romInfo ? P.stockLadder(romInfo.rom) : null;
+      const turned = P.paintPath(project, movieIndex, actorIndex, points, undefined, undefined, ladder); frame = 0; $("frame").value = 0; pristine = false; hint = turned ? t().pathTurned : t().pathApplied; }
+    catch (e) { hint = e.message; }
+    render();
+  }
+}
+$("screen").addEventListener("pointerup", pointerEnd);
+$("screen").addEventListener("pointercancel", pointerEnd);
+
+// ---- art from images -----------------------------------------------------------
+let artNote = "";
+async function imagePixels(file, size) {
+  const bitmap = await createImageBitmap(file);
+  const w = size ? size[0] : bitmap.width, h = size ? size[1] : bitmap.height;
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const ctx = c.getContext("2d", { willReadFrequently: true });
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(bitmap, 0, 0, w, h);
+  const img = ctx.getImageData(0, 0, w, h);
+  return { rgba: img.data, w, h };
+}
+$("art-bg").addEventListener("click", () => $("art-bg-file").click());
+$("art-fig").addEventListener("click", () => $("art-fig-file").click());
+$("art-bg-file").addEventListener("change", async () => {
+  const f = $("art-bg-file").files[0]; if (!f || !movie()) return;
+  try { const { rgba, w, h } = await imagePixels(f, [256, 240]); const art = P.setBackgroundArt(romInfo, movie(), rgba, w, h); artNote = t().artDone(art.tiles, art.warnings); pristine = false; piecesFor = null; }
+  catch (e) { artNote = e.message; }
+  $("art-bg-file").value = ""; render();
+});
+$("art-fig-file").addEventListener("change", async () => {
+  const f = $("art-fig-file").files[0]; if (!f || !movie()) return;
+  try { const { rgba, w, h } = await imagePixels(f); const name = f.name.replace(/\.[^.]+$/, ""); actorIndex = P.addFigureArt(project, movieIndex, romInfo, rgba, w, h, name);
+    artNote = t().artFigureDone(name, (movie().imports.find((i) => i.kind === 1) || { data: [] }).data.length / 16); pristine = false; piecesFor = null; }
+  catch (e) { artNote = e.message; }
+  $("art-fig-file").value = ""; render();
+});
+
+// ---- exports -------------------------------------------------------------------
+function download(bytes, name) {
+  const blob = new Blob([bytes], { type: "application/octet-stream" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+$("exp-amp").addEventListener("click", () => download(P.saveProject(project), P.downloadName(romInfo, "amp")));
+$("exp-xml").addEventListener("click", () => { try { download(new TextEncoder().encode(P.exportOverride(romInfo, project)), P.downloadName(romInfo, "xml")); } catch (e) { alert(e.message); } });
+$("exp-nes").addEventListener("click", () => { try { download(P.exportInstalled(romInfo, project).nes, P.downloadName(romInfo, "nes")); } catch (e) { alert(e.message); } });
+$("exp-ips").addEventListener("click", () => { try { download(P.exportInstalled(romInfo, project).ips, P.downloadName(romInfo, "ips")); } catch (e) { alert(e.message); } });
+
+// ---- forms --------------------------------------------------------------------
+function field(form, label, control) { form.append(el("label", null, label), control); }
+// the numbers the engine needs and a first time modder does not: behind a fold
+function advanced(form) { const d = el("details", "adv"); d.open = localStorage.getItem("atlas-movie-adv") === "1"; d.addEventListener("toggle", () => localStorage.setItem("atlas-movie-adv", d.open ? "1" : "0")); d.append(el("summary", null, t().advanced)); const inner = el("div", "form"); d.append(inner); form.append(d); return inner; }
+function num(value, min, max, on) { const i = el("input"); i.type = "number"; i.min = min; i.max = max; i.value = value; i.addEventListener("change", () => { pristine = false; on(+i.value); render(); }); return i; }
+function txt(value, on) { const i = el("input"); i.type = "text"; i.value = value; i.addEventListener("change", () => { pristine = false; on(i.value); render(); }); return i; }
+function sel(options, value, on) { const s = el("select"); for (const [k, v] of Object.entries(options)) { const o = el("option", null, v); o.value = k; if (+k === +value) o.selected = true; s.append(o); } s.addEventListener("change", () => { pristine = false; on(+s.value); render(); }); return s; }
+function area(value, on) { const a = el("textarea"); a.value = value; a.addEventListener("change", () => { pristine = false; on(a.value); render(); }); return a; }
+const parseRows = (text) => text.split(/\n/).map((l) => l.trim()).filter(Boolean).map((l) => l.split(/[,\s]+/).map((x) => +x));
+const rowsText = (rows) => rows.map((r) => r.join(", ")).join("\n");
+
+let piecesFor = null;   // the movie the thumbnails were drawn for; redrawn when it changes
+function renderPieces() {
+  const m = movie(), box = $("pieces");
+  const key = m ? `${movieIndex}:${romInfo ? romInfo.bodySha1 : ""}:${m.metasprite_pointer_lo}:${m.imports.length}` : "";
+  if (key === piecesFor) return;
+  piecesFor = key; box.replaceChildren();
+  if (!m) return;
+  let list = [];
+  try { list = P.pieces(romInfo, m); } catch (e) { box.append(el("span", "small muted", e.message)); return; }
+  for (const piece of list) {
+    const c = el("canvas"); c.width = piece.w; c.height = piece.h; c.style.width = `${piece.w * 2}px`; c.style.height = `${piece.h * 2}px`;
+    c.title = `${piece.index}: ${piece.w}x${piece.h}`;
+    c.getContext("2d").putImageData(new ImageData(piece.rgba, piece.w, piece.h), 0, 0);
+    c.addEventListener("click", () => {
+      pristine = false;
+      try {
+        if ($("piece-mode").value === "set" && movie().tracks[actorIndex]) P.setPose(movie(), actorIndex, piece.index);
+        else actorIndex = P.addPiece(project, movieIndex, piece.index);
+      } catch (e) { hint = e.message; }
+      render();
+    });
+    box.append(c);
+  }
+}
+function renderMovieForm() {
+  const f = $("movie-form"); f.replaceChildren(); const m = movie(); if (!m) return;
+  field(f, t().name, txt(m.id, (v) => { m.id = v; }));
+  field(f, t().role, sel(t().roles, m.project_role, (v) => { m.project_role = v; }));
+  field(f, t().exit, sel(t().exits, m.exit_mode, (v) => { m.exit_mode = v; }));
+  const en = el("input"); en.type = "checkbox"; en.checked = m.enabled; en.addEventListener("change", () => { m.enabled = en.checked; render(); });
+  field(f, t().enabled, en);
+  const adv = advanced(f);
+  field(adv, t().music, num(m.entry_music, 0, 255, (v) => { m.entry_music = v; }));
+}
+function renderActorForm() {
+  const f = $("actor-form"); f.replaceChildren(); const m = movie(); if (!m) return; const tr = m.tracks[actorIndex]; if (!tr) return;
+  field(f, t().name, txt(tr.editor_name, (v) => { tr.editor_name = v; }));
+  field(f, t().kind, sel(t().kinds, tr.kind, (v) => { const n = defaultTrack(v); n.editor_name = tr.editor_name; n.editor_color = tr.editor_color; m.tracks[actorIndex] = n; }));
+  field(f, t().x, num(tr.x, 0, 255, (v) => { tr.x = v; }));
+  field(f, t().y, num(tr.y, 0, 255, (v) => { tr.y = v; }));
+  const adv = advanced(f);
+  if (tr.kind !== TrackKind.CounterToggle) {
+    field(adv, t().vx, num(tr.velocity_x, -128, 127, (v) => { tr.velocity_x = v; }));
+    field(adv, t().vy, num(tr.velocity_y, -128, 127, (v) => { tr.velocity_y = v; }));
+    field(adv, t().shift, num(tr.integrator_shift, 0, 8, (v) => { tr.integrator_shift = v; }));
+    field(adv, t().dwell, num(tr.dwell_frames, 1, 255, (v) => { tr.dwell_frames = v; }));
+  }
+  if (tr.kind === TrackKind.Path) {
+    field(adv, t().keyframes, el("span"));
+    adv.append(area(rowsText(tr.keyframes.map((k) => [k.threshold, k.velocity_x, k.velocity_y])), (v) => { tr.keyframes = parseRows(v).map(([threshold, velocity_x, velocity_y]) => ({ threshold: threshold | 0, velocity_x: velocity_x | 0, velocity_y: velocity_y | 0 })); }));
+    field(adv, t().stages, el("span"));
+    adv.append(area(rowsText(tr.stage_frames.map((s) => Array.from(s))), (v) => { tr.stage_frames = parseRows(v).map((r) => Uint8Array.from(r)); }));
+  }
+}
+function renderPhaseForm() {
+  const f = $("phase-form"); f.replaceChildren(); const m = movie(); if (!m) return; const ph = m.phases[phaseIndex]; if (!ph) return;
+  field(f, t().condition, sel(t().conditions, ph.condition, (v) => { ph.condition = v; }));
+  field(f, t().value, num(ph.condition_value, 0, 65535, (v) => { ph.condition_value = v; }));
+  const adv = advanced(f);
+  field(adv, t().track, num(ph.condition_track === 0xff ? -1 : ph.condition_track, -1, 7, (v) => { ph.condition_track = v < 0 ? 0xff : v; }));
+  field(adv, t().updateMask, num(ph.update_mask, 0, 255, (v) => { ph.update_mask = v; }));
+  field(adv, t().drawMask, num(ph.draw_mask, 0, 255, (v) => { ph.draw_mask = v; }));
+}
+function list(ul, items, selected, onPick) {
+  ul.replaceChildren();
+  items.forEach((it, i) => {
+    const li = el("li", i === selected ? "sel" : "");
+    if (it.color != null) { const s = el("span", "swatch"); s.style.background = "#" + (it.color & 0xffffff).toString(16).padStart(6, "0"); li.append(s); }
+    li.append(el("span", null, it.label)); if (it.tag) li.append(el("span", "small muted", it.tag));
+    li.addEventListener("click", () => { onPick(i); render(); });
+    ul.append(li);
+  });
+}
+function msg(ul, kind, text) { const li = el("li", kind, text); ul.append(li); }
+
+function render() {
+  const s = t();
+  document.documentElement.lang = lang; localStorage.setItem("atlas-movie-lang", lang);
+  $("h1").textContent = s.title; $("lang").textContent = s.langname; $("intro").textContent = s.intro;
+  for (const [id, key] of [["h-rom", "rom"], ["h-project", "project"], ["h-movies", "movies"], ["h-preview", "preview"], ["h-actors", "actors"],
+    ["h-phases", "phases"], ["h-check", "check"], ["h-export", "exports"], ["new", "newp"], ["open", "open"], ["save", "save"],
+    ["add-movie", "addMovie"], ["remove-movie", "removeMovie"], ["add-actor", "addActor"], ["remove-actor", "removeActor"],
+    ["add-phase", "addPhase"], ["remove-phase", "removePhase"], ["l-frame", "frame"], ["exp-amp", "expAmp"], ["exp-xml", "expXml"], ["from-rom", "fromRom"],
+    ["h-pieces", "pieces"], ["pieces-hint", "pieceHint"], ["h-art", "art"], ["art-hint", "artHint"], ["art-bg", "artBackground"], ["art-fig", "artFigure"],
+    ["exp-nes", "expNes"], ["exp-ips", "expIps"], ["xml-note", "xmlNote"], ["ips-note", "ipsNote"]]) $(id).textContent = s[key];
+  $("play").textContent = playing ? s.pause : s.play;
+  $("from-rom").disabled = !(romInfo && romInfo.stock);
+  $("l-depth").textContent = s.depth;
+  $("art-bg").disabled = $("art-fig").disabled = !(romInfo && romInfo.usable); $("art-note").textContent = artNote;
+  $("piece-mode").options[0].textContent = s.pieceAdd; $("piece-mode").options[1].textContent = s.pieceSet; $("depth").disabled = !(romInfo && romInfo.stock);
+  $("project-note").textContent = projectNote || (romInfo && romInfo.shaped && !romInfo.stock ? s.noStock : "");
+  $("draw").textContent = drawMode ? s.drawing : s.draw; $("draw").classList.toggle("on", drawMode);
+  $("screen").classList.toggle("pen", drawMode); $("screen").classList.remove("hand");
+  $("hint").textContent = hint || (drawMode ? s.drawHint : s.canvasHint);
+  $("drop").textContent = romInfo ? s.romInfo(romInfo.name, s.region[romInfo.region] || romInfo.region, romInfo.bytes) : s.drop;
+  const rm = $("rom-msgs"); rm.replaceChildren();
+  if (romInfo && !romInfo.shaped) msg(rm, "bad", s.notrom);
+  else if (romInfo && !romInfo.usable) msg(rm, "bad", s.unusable);
+  else if (romInfo) {
+    msg(rm, "ok", `${s.region[romInfo.region] || romInfo.region} · sha1 ${romInfo.bodySha1.slice(0, 12)}…`);
+    msg(rm, "info", s.extent(romInfo.extent.dataEndCpu, romInfo.extent.freeTail));
+    if (romInfo.installed) msg(rm, "warn", `${s.already} $${romInfo.installed.adapter.toString(16).toUpperCase()}`);
+  } else msg(rm, "info", s.noRom);
+
+  list($("movies"), project.movies.map((m) => ({ label: m.id, tag: (s.roles[m.project_role] || "") + (m.enabled ? "" : " · off") })), movieIndex, (i) => { movieIndex = i; actorIndex = phaseIndex = 0; });
+  renderMovieForm();
+  const m = movie();
+  list($("actors"), m ? m.tracks.map((tr) => ({ label: tr.editor_name || "Actor", tag: s.kinds[tr.kind], color: tr.editor_color })) : [], actorIndex, (i) => { actorIndex = i; });
+  renderActorForm();
+  renderPieces();
+  list($("phases"), m ? m.phases.map((ph, i) => ({ label: `${i + 1}`, tag: `${s.conditions[ph.condition] || ph.condition} ${ph.condition_value}` })) : [], phaseIndex, (i) => { phaseIndex = i; });
+  renderPhaseForm();
+
+  const a = P.assess(romInfo, project);
+  const cm = $("check-msgs"); cm.replaceChildren();
+  for (const e of a.errors) msg(cm, "bad", e);
+  for (const w of a.warnings) msg(cm, "warn", w);
+  if (a.plan) for (const line of a.plan.messages) msg(cm, a.plan.mode === "none" ? "bad" : "ok", line);
+  if (a.report && a.plan && a.plan.shared) msg(cm, a.plan.shared.fits ? "ok" : "bad", s.budget(a.report.bytes, a.plan.shared.budget));
+  if (!a.errors.length && !a.warnings.length && !a.plan) msg(cm, "info", s.none);
+  if (a.markers) {
+    const ok = a.markers.rows.filter((r) => r.index >= 0);
+    if (a.markers.rows.length) msg(cm, ok.length === a.markers.rows.length ? "ok" : "warn", s.markers(ok.length));
+    for (const r of ok) msg(cm, "info", s.markerRow(r));
+    if (!a.markers.rows.length) msg(cm, "info", s.noMarkers);
+    if (a.markers.stopped) msg(cm, "warn", s.markerStopped(a.markers.stopped));
+  }
+  const tbl = $("sizes"); tbl.replaceChildren();
+  if (a.budget) for (const l of a.budget.movies) { const tr = el("tr"); tr.append(el("td", null, l.label), el("td", null, String(l.bytes))); tbl.append(tr); }
+  const canExport = !!(romInfo && romInfo.usable && a.plan && a.plan.mode === "shared" && !romInfo.installed);
+  $("exp-nes").disabled = $("exp-ips").disabled = !canExport;
+  paint();
+}
+$("lang").addEventListener("click", () => { lang = lang === "en" ? "fr" : "en"; render(); });
+render();
+</script>
+</body>
+</html>
