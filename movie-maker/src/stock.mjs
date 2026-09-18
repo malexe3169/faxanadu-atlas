@@ -118,6 +118,34 @@ export function stockOutro(rom) {
   return movie;
 }
 
+/** the game's own way of doing depth: the hero is not scaled (the NES cannot),
+ *  he changes metasprite as he climbs, five sizes from 16x40 at the bottom of
+ *  the road to 8x16 near the castle, one set walking away (the intro) and one
+ *  walking toward (the ending). Read from the same tables: for each facing,
+ *  rows of four poses with the lowest Y that row is drawn at, biggest first.
+ *  A movie that uses the stock 32 frame table can use this ladder. */
+export function stockLadder(rom) {
+  if (!stockAvailable(rom)) return null;
+  const tables = stageTables(rom);
+  const rows = (scene, thresholds) => Array.from({ length: FRAME_STAGES }, (_, stage) => ({
+    floor: stage < STAGES ? thresholds[stage] : 0,
+    frames: Array.from({ length: 4 }, (_, k) => byte(rom, FRAME_TABLE[scene] + stage * 4 + k)),
+  }));
+  // the intro's stages run bottom to top (thresholds descend); the ending's
+  // run top to bottom, so its rows are reversed to read biggest first
+  const away = rows("intro", tables.intro_thresholds);
+  const outro = rows("outro", tables.outro_thresholds);
+  const toward = outro.map((row, i) => ({ floor: away[i].floor, frames: outro[FRAME_STAGES - 1 - i].frames }));
+  return { away, toward, usesStockTable: (movie) => movie.metasprite_pointer_lo === 0xab17 && movie.metasprite_count === 32 };
+}
+
+/** the ladder row for a figure at `y` moving by `vy`: away when climbing
+ *  (or still), toward when coming down */
+export function ladderRow(ladder, y, vy) {
+  const facing = vy > 0 ? ladder.toward : ladder.away;
+  return (facing.find((row) => y >= row.floor) || facing[facing.length - 1]).frames.slice();
+}
+
 /** both stock movies as a project; throws when the ROM has lost the engine */
 export function stockBundle(rom) {
   if (!stockAvailable(rom)) throw new MovieError("this ROM no longer carries the game's own intro engine, so its intro and ending cannot be read");

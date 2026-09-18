@@ -15,7 +15,7 @@ import { ENGINE_CODE } from "./engine_code.mjs";
 import { bank12Extent, plan } from "./space.mjs";
 import { makeIps } from "./ips.mjs";
 import { markerReport, rewriteMarkers } from "./markers.mjs";
-import { stockAvailable, stockBundle } from "./stock.mjs";
+import { stockAvailable, stockBundle, stockLadder, ladderRow } from "./stock.mjs";
 import { makeSurface, drawNametable, drawFrame } from "./render.mjs";
 import { loadVanillaOpcodes, resolveOpcodeInfo, standaloneConfigOverride } from "./runtime.mjs";
 
@@ -194,12 +194,13 @@ export const PAINT_SPEED = 48;
 
 /** turn painted [x, y] points into the actor's path; the movie is left
  *  untouched when the stroke is refused, and the error is thrown */
-export function paintPath(bundle, movieIndex, trackIndex, points, speed = PAINT_SPEED, snap = 0) {
+export function paintPath(bundle, movieIndex, trackIndex, points, speed = PAINT_SPEED, snap = 0, depth = null) {
   const movie = bundle.movies[movieIndex];
   const track = movie.tracks[trackIndex];
   const backup = structuredClone(track);
   try {
     const turned = applyPaintedPath(movie, track, points, speed, snap);
+    if (depth && depth.usesStockTable(movie)) applyDepth(track, depth);
     validate(bundle);
     return turned;
   } catch (e) {
@@ -208,6 +209,24 @@ export function paintPath(bundle, movieIndex, trackIndex, points, speed = PAINT_
     throw e;
   }
 }
+
+/** perspective the way the game does it: each stage of a painted path gets
+ *  the ladder row for where that segment is on the screen and which way it
+ *  goes, so a figure walking up the road shrinks and one coming down grows.
+ *  Off for a flat scene, the C++ facing frames stay. */
+export function applyDepth(track, ladder) {
+  const wp = track.editor_waypoints;
+  if (wp.length < 2) return;
+  const rows = [];
+  for (let stage = 0; stage < track.stage_frames.length; stage++) {
+    const a = wp[Math.min(stage, wp.length - 1)], b = wp[Math.min(stage + 1, wp.length - 1)];
+    const last = stage + 1 >= wp.length;   // standing at the end: face the way he arrived
+    const from = last ? wp[wp.length - 2] : a, to = last ? wp[wp.length - 1] : b;
+    rows.push(ladderRow(ladder, Math.round((a.y + b.y) / 2), to.y - from.y));
+  }
+  track.stage_frames = rows;
+}
+export { stockLadder };
 
 /** what to draw over the picture for the selected actor: the route the
  *  runtime takes and the painted waypoints */
@@ -276,7 +295,7 @@ export const T = {
     conditions: { 1: "effect calls reach", 2: "track Y reaches", 3: "music stops", 4: "frame counter is zero", 5: "frames elapse" },
     value: "Value", track: "Track", drawMask: "Draw mask", updateMask: "Update mask",
     preview: "Preview", frame: "Frame", play: "Play", pause: "Pause",
-    draw: "Draw a path", drawing: "Drawing…", advanced: "Advanced",
+    draw: "Draw a path", drawing: "Drawing…", advanced: "Advanced", depth: "Depth: shrink when walking up, grow coming down",
     canvasHint: "Drag an actor to move it. Draw a path: press the button, then draw on the picture with the actor selected.",
     drawHint: "Draw the route on the picture; release to apply it. The cyan line is the exact route the game will take.",
     pathApplied: "Path applied; cyan is the exact route the game takes.",
@@ -315,7 +334,7 @@ export const T = {
     conditions: { 1: "les effets atteignent", 2: "le Y de l'acteur atteint", 3: "la musique s'arrête", 4: "le compteur d'images est à zéro", 5: "des images passent" },
     value: "Valeur", track: "Acteur", drawMask: "Masque de dessin", updateMask: "Masque de mise à jour",
     preview: "Aperçu", frame: "Image", play: "Jouer", pause: "Pause",
-    draw: "Tracer un trajet", drawing: "Tracé…", advanced: "Avancé",
+    draw: "Tracer un trajet", drawing: "Tracé…", advanced: "Avancé", depth: "Profondeur : rapetisse en montant, grandit en descendant",
     canvasHint: "Glissez un acteur pour le déplacer. Tracer un trajet : appuyez sur le bouton, puis dessinez sur l'image avec l'acteur sélectionné.",
     drawHint: "Dessinez la route sur l'image; relâchez pour l'appliquer. La ligne cyan est la route exacte que le jeu suivra.",
     pathApplied: "Trajet appliqué; le cyan est la route exacte que le jeu suit.",
