@@ -28,9 +28,19 @@ annule), puis vous choisissez une arène avec Gauche/Droite : vous voyez le vrai
 
 ## Adversaires CPU
 
-Un CPU peut jouer avec l'une de cinq personnalités : Brawler, Counter, Hunter,
-Trickster ou Survivor. Il y a aussi Random, qui tire une nouvelle personnalité à
-chaque manche. La difficulté est Easy, Normal ou Hard.
+Un CPU joue avec l'une de cinq personnalités, et ce ne sont pas des niveaux de
+difficulté : ce sont des adversaires différents.
+
+| Personnalité | Sa façon de se battre |
+| --- | --- |
+| Brawler | colle à vous et frappe sans arrêt |
+| Counter | attend, garde, et punit ce que vous ratez |
+| Hunter | fonce sur la couronne et les objets |
+| Trickster | recule pour appâter une attaque, puis revient aussitôt |
+| Survivor | prend ce dont il a besoin, recule quand il est blessé, protège son avance |
+
+Il y a aussi Random, qui tire une nouvelle personnalité à chaque manche. La
+difficulté est Easy, Normal ou Hard, et elle se règle séparément.
 
 ## Modes
 
@@ -58,21 +68,35 @@ puissance.
 
 ## Combattants
 
-| Combattant | Coup spécial |
-| --- | --- |
-| Hero | Blade Beam, un projectile rapide |
-| Sword Dwarf | Shoulder Rush, une charge vers l'avant |
-| Skeleton Knight | Skewer, un long estoc |
-| Wolfman | Pounce, un bond vers l'avant |
-| Giant Strider | Ground Slam, frappe tout autour de là où il atterrit |
-| Grimlock | Retreat Shot, recule et tire |
+Six au départ, et ils se jouent différemment : vitesse, saut, portée, dégâts et
+timing sont propres à chacun.
+
+| Combattant | En une ligne | Coup spécial |
+| --- | --- | --- |
+| Hero | équilibré, récupère vite | Blade Beam, un projectile rapide |
+| Sword Dwarf | rapide à pied, lent à frapper | Shoulder Rush, une charge vers l'avant |
+| Skeleton Knight | la plus longue portée, les mains les plus lentes | Skewer, un long estoc |
+| Wolfman | l'attaque la plus rapide, les dégâts les plus faibles | Pounce, un bond vers l'avant |
+| Giant Strider | frappe le plus fort, rate le plus mal | Ground Slam, frappe tout autour de là où il atterrit |
+| Grimlock | le marcheur le plus rapide, se bat à distance | Retreat Shot, recule et tire |
 
 Il y a aussi un septième combattant secret. À vous de le trouver.
 
+**[Guide complet des combattants](FIGHTERS.fr.md)** — les chiffres de chacun, ce
+que fait vraiment son coup spécial, et comment marchent les coups communs.
+
 ## Objets
 
-Les jarres cassables contiennent un objet : du pain, une potion rouge ou des bottes
-ailées. De temps en temps un oiseau traverse l'arène et laisse tomber du pain.
+Une jarre cassable apparaît au sol dix secondes après le début du combat, et une
+autre suit un moment après que chacune a été ramassée ou a disparu. N'importe
+lequel des deux combattants peut la casser, au corps à corps ou avec un
+projectile, et n'importe lequel peut ramasser ce qui en sort.
+
+Les trois objets vous soignent, remplissent votre jauge de pouvoir, ou vous
+donnent un saut aérien supplémentaire pendant huit secondes. Un objet laissé au
+sol disparaît tout seul.
+
+De temps en temps un oiseau traverse l'arène et laisse tomber du pain.
 
 ## Mort subite
 

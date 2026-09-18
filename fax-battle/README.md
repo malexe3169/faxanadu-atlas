@@ -26,9 +26,19 @@ Select returns to the mode choice.
 
 ## CPU opponents
 
-A CPU can play with one of five personalities: Brawler, Counter, Hunter, Trickster
-or Survivor. There is also Random, which draws a new personality each round.
-Difficulty is Easy, Normal or Hard.
+A CPU plays with one of five personalities, and they are not difficulty
+levels — they are different opponents:
+
+| Personality | How it fights |
+| --- | --- |
+| Brawler | closes and keeps swinging |
+| Counter | waits, guards, and punishes what you miss |
+| Hunter | goes for the crown and the pickups |
+| Trickster | backs off to bait an attack, then comes straight back in |
+| Survivor | grabs what it needs, backs away when hurt, protects a lead |
+
+There is also Random, which draws a new personality each round. Difficulty is
+Easy, Normal or Hard, and it is set separately from personality.
 
 ## Modes
 
@@ -50,25 +60,39 @@ Difficulty is Easy, Normal or Hard.
 | Hold Down on the ground | Guard against an attack from the front (costs power) |
 | Select | Back to the mode choice |
 
-Hits you land and hits you take fill your power meter.
+Hits you land and hits you take fill your power meter, so it rewards fighting
+rather than waiting: a hit you land is worth twice one you take. Both fighters
+start a round with one special already available.
 
 ## Fighters
 
-| Fighter | Special |
-| --- | --- |
-| Hero | Blade Beam, a fast projectile |
-| Sword Dwarf | Shoulder Rush, a forward charge |
-| Skeleton Knight | Skewer, a long thrust |
-| Wolfman | Pounce, a forward leap |
-| Giant Strider | Ground Slam, hits all around where it lands |
-| Grimlock | Retreat Shot, steps back and fires |
+Six to start with, and they play differently: speed, jump, reach, damage and
+timing are all their own.
+
+| Fighter | In one line | Special |
+| --- | --- | --- |
+| Hero | balanced, quick to recover | Blade Beam, a fast projectile |
+| Sword Dwarf | fast on foot, slow to swing | Shoulder Rush, a forward charge |
+| Skeleton Knight | the longest reach, the slowest hands | Skewer, a long thrust |
+| Wolfman | fastest attack, lowest damage | Pounce, a forward leap |
+| Giant Strider | hits hardest, misses worst | Ground Slam, hits all around where it lands |
+| Grimlock | fastest walker, fights at range | Retreat Shot, steps back and fires |
 
 There is also a secret seventh fighter. Finding it is up to you.
 
+**[Full fighter guide](FIGHTERS.md)** — every fighter's numbers, what its
+special really does, and how the shared moves work.
+
 ## Items
 
-Breakable jars hold a pickup: bread, a red potion or wing boots. Now and then a
-bird flies across the arena and drops bread as it goes.
+A breakable jar appears on the floor ten seconds into a fight, and another
+follows a while after each one is taken or expires. Either fighter can break
+it, with a melee swing or a projectile, and either can pick up what falls out.
+
+The three pickups heal you, refill your power meter, or give you an extra air
+jump for eight seconds. A pickup left alone disappears on its own.
+
+Now and then a bird flies across the arena and drops bread as it goes.
 
 ## Sudden death
 
