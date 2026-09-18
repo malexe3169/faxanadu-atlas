@@ -13,7 +13,7 @@ import { MovieError } from "./bytes.mjs";
 import { fileOffset } from "./engine.mjs";
 import {
   makeMovie, makeTrack, makePhase, makeSfx, makeBundle, makeKeyframe, AssetKind, Destination,
-  TrackKind, Coordinate, Comparison, Condition, Effect, EnterAction, Exit, ProjectRole, ACTOR_COLORS,
+  TrackKind, Coordinate, Comparison, Condition, Effect, EnterAction, Exit, ProjectRole, ACTOR_COLORS, ImportKind,
 } from "./types.mjs";
 
 const BANK = 12, ASSET_BANK = 10;
@@ -136,7 +136,11 @@ export function stockLadder(rom) {
   const away = rows("intro", tables.intro_thresholds);
   const outro = rows("outro", tables.outro_thresholds);
   const toward = outro.map((row, i) => ({ floor: away[i].floor, frames: outro[FRAME_STAGES - 1 - i].frames }));
-  return { away, toward, usesStockTable: (movie) => movie.metasprite_pointer_lo === 0xab17 && movie.metasprite_count === 32 };
+  // the stock table, or an art library that keeps the stock frames first
+  const usesStockTable = (movie) => (movie.metasprite_pointer_lo === 0xab17 && movie.metasprite_count === 32
+    && !(movie.imports || []).some((i) => i.kind === ImportKind.MetaspriteLibrary))
+    || (movie.imports || []).some((i) => i.kind === ImportKind.MetaspriteLibrary && /^art figures over 32$/.test(i.label));
+  return { away, toward, usesStockTable };
 }
 
 /** the ladder row for a figure at `y` moving by `vy`: away when climbing
