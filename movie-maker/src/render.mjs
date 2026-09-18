@@ -69,6 +69,17 @@ export function drawNametable(rgba, nametable, tiles, palette) {
   }
 }
 
+/** one frame on its own, cropped to its cells, transparent where nothing is
+ *  drawn: { w, h, rgba } for a thumbnail */
+export function frameThumbnail(frame, tiles, spritePalette) {
+  const w = frame.tilemap.length ? frame.tilemap[0].length * 8 : 8, h = frame.tilemap.length * 8 || 8;
+  const full = new Uint8ClampedArray(WIDTH * HEIGHT * 4);   // alpha 0 everywhere
+  drawFrame(full, frame, -(frame.offset_x || 0), -(frame.offset_y || 0), tiles, spritePalette);
+  const rgba = new Uint8ClampedArray(w * h * 4);
+  for (let y = 0; y < h; y++) rgba.set(full.subarray(y * WIDTH * 4, y * WIDTH * 4 + w * 4), y * w * 4);
+  return { w, h, rgba };
+}
+
 /** a metasprite frame (its `tilemap`: rows of cells, null for an empty slot,
  *  as assets_frame.mjs decodes it) at (x, y) over `tiles`, with the 16 sprite
  *  palette bytes (palette[16..31] of the movie) */
