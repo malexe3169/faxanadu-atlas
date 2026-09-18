@@ -18,6 +18,7 @@ button, select, input[type=text], input[type=number] { font:inherit; border:1px 
 button { cursor:pointer; } button:disabled { opacity:.4; cursor:default; }
 button.go { background:var(--accent); border-color:var(--accent); color:#06141b; font-weight:600; }
 button.chip { padding:4px 10px; font-size:13px; }
+button.chip.on { background:var(--accent); border-color:var(--accent); color:#06141b; }
 :focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
 .stagebox { position:relative; background:#000; border-radius:10px; overflow:hidden; }
 canvas#screen { display:block; width:100%; image-rendering: pixelated; aspect-ratio: 256/240; }
@@ -25,7 +26,7 @@ canvas.hand { cursor:grab; } canvas.grabbing { cursor:grabbing; } canvas.pen { c
 .tools { position:absolute; left:8px; top:8px; display:flex; flex-direction:column; gap:6px; }
 .tools button { width:36px; height:36px; padding:0; font-size:18px; background:rgba(22,28,35,.9); }
 .tools button.on { background:var(--accent); color:#06141b; }
-.drawer { position:absolute; right:8px; top:8px; width:240px; background:rgba(22,28,35,.96); border:1px solid var(--line); border-radius:10px; padding:10px; display:grid; gap:8px; font-size:14px; }
+.drawer { position:absolute; right:8px; top:8px; bottom:8px; overflow:auto; width:240px; background:rgba(22,28,35,.96); border:1px solid var(--line); border-radius:10px; padding:10px; display:grid; gap:8px; font-size:14px; }
 .drawer h3 { margin:0; font-size:15px; display:flex; justify-content:space-between; align-items:center; }
 .drawer .row { display:flex; gap:6px; align-items:center; }
 .drawer .row label { color:var(--muted); width:64px; font-size:13px; }
@@ -85,6 +86,7 @@ h1#h1 { margin:4px 0 0; font-size:19px; }
   </div>
   <p id="intro" class="small muted"></p>
   <div class="scrub"><button id="step-back" class="chip" type="button">◀</button><button id="step-fwd" class="chip" type="button">▶</button><input id="frame" type="range" min="0" max="600" value="0"><span id="frame-n" class="small muted">0 / 0</span><button id="loop" class="chip" type="button">▶ loop</button></div>
+  <div class="line" id="actors-line"><span id="l-actors"></span><span id="actors" class="bar"></span></div>
   <div class="line"><span id="l-length"></span><select id="length-kind"></select><input id="length-value" type="number" min="1" max="65535" style="width:90px"><span id="length-other" class="small"></span></div>
   <details class="more" id="movie-more"><summary id="l-movie-more"></summary><div id="movie-more-body"></div></details>
   <div class="tray" id="tray"></div>
@@ -114,7 +116,7 @@ let lang = localStorage.getItem("atlas-movie-lang") === "fr" ? "fr" : "en";
 const t = () => P.T[lang];
 
 // ---- state ----------------------------------------------------------------------
-let romInfo = null, project = P.newProject(), movieIndex = 0, actorIndex = -1, phaseIndex = 0, frame = 0, looping = null;
+let romInfo = null, project = P.newProject(), movieIndex = 0, actorIndex = 0, phaseIndex = 0, frame = 0, looping = null;
 let tool = "move", stroke = null, drag = null, lastPic = null, pristine = true, piecesKey = null;
 let moreOpen = false, movieMoreOpen = false;
 const history = P.makeHistory(100);
@@ -162,7 +164,7 @@ async function takeRom(file) {
   romInfo = P.loadRom(bytes); romInfo.name = file.name;
   if (!romInfo.shaped) toast(t().notrom, "bad");
   else if (!romInfo.usable) toast(t().unusable, "bad");
-  else { if (store) store.saveRom(file.name, bytes).catch(() => {}); if (pristine && romInfo.stock) { project = P.stockProject(romInfo); pristine = false; history.clear(); autosave(); } }
+  else { if (store) store.saveRom(file.name, bytes).catch(() => {}); if (pristine && romInfo.stock) { project = P.stockProject(romInfo); movieIndex = 0; actorIndex = 0; pristine = false; history.clear(); autosave(); } }
   render();
 }
 $("rom").addEventListener("click", () => $("file").click());
@@ -171,18 +173,18 @@ for (const ev of ["dragenter", "dragover"]) document.addEventListener(ev, (e) =>
 document.addEventListener("drop", (e) => { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f && /\.nes$/i.test(f.name)) takeRom(f); else if (f && /\.amp$/i.test(f.name)) openAmp(f); else if (f) toast(t().notrom, "bad"); });
 
 // ---- the project ------------------------------------------------------------------
-async function openAmp(f) { try { project = P.openProject(new Uint8Array(await f.arrayBuffer())); movieIndex = 0; actorIndex = -1; phaseIndex = 0; pristine = false; history.clear(); autosave(); render(); } catch (e) { toast(e.message, "bad"); } }
+async function openAmp(f) { try { project = P.openProject(new Uint8Array(await f.arrayBuffer())); movieIndex = 0; actorIndex = 0; phaseIndex = 0; pristine = false; history.clear(); autosave(); render(); } catch (e) { toast(e.message, "bad"); } }
 $("movie").addEventListener("change", () => {
   if (player) stopPlay();
   const v = $("movie").value;
   if (v === "+") { $("movie").value = String(movieIndex); showTemplates(); return; }
-  movieIndex = +v; actorIndex = -1; phaseIndex = 0; frame = 0; render();
+  movieIndex = +v; actorIndex = 0; phaseIndex = 0; frame = 0; render();
 });
-$("from-rom").addEventListener("click", () => { const ok = edit(() => { project = P.stockProject(romInfo); movieIndex = 0; actorIndex = -1; phaseIndex = 0; frame = 0; }); if (ok) toast(t().stockLoaded, "ok"); });
+$("from-rom").addEventListener("click", () => { const ok = edit(() => { project = P.stockProject(romInfo); movieIndex = 0; actorIndex = 0; phaseIndex = 0; frame = 0; }); if (ok) toast(t().stockLoaded, "ok"); });
 function showTemplates() {
   const body = $("sheet-body"); body.replaceChildren(el("h3", null, t().template));
-  for (const tpl of P.templates()) { const b = el("button", null, tpl[lang]); b.disabled = !(romInfo && romInfo.stock); b.addEventListener("click", () => { $("sheet").hidden = true; edit(() => { movieIndex = P.addTemplate(romInfo, project, tpl.key); actorIndex = -1; frame = 0; }); }); body.append(b); }
-  const blank = el("button", null, t().blank); blank.addEventListener("click", () => { $("sheet").hidden = true; edit(() => { const extra = P.newProject().movies.find((m) => m.project_role === ProjectRole.Normal); extra.id = "scene"; ensureUniqueId(project, extra); project.movies.push(extra); movieIndex = project.movies.length - 1; actorIndex = -1; validate(project); }); }); body.append(blank);
+  for (const tpl of P.templates()) { const b = el("button", null, tpl[lang]); b.disabled = !(romInfo && romInfo.stock); b.addEventListener("click", () => { $("sheet").hidden = true; edit(() => { movieIndex = P.addTemplate(romInfo, project, tpl.key); actorIndex = 0; frame = 0; }); }); body.append(b); }
+  const blank = el("button", null, t().blank); blank.addEventListener("click", () => { $("sheet").hidden = true; edit(() => { const extra = P.newProject().movies.find((m) => m.project_role === ProjectRole.Normal); extra.id = "scene"; ensureUniqueId(project, extra); project.movies.push(extra); movieIndex = project.movies.length - 1; actorIndex = 0; validate(project); }); }); body.append(blank);
   const close = el("button", "chip", "×"); close.addEventListener("click", () => { $("sheet").hidden = true; }); body.append(close);
   $("sheet").hidden = false;
 }
@@ -207,7 +209,7 @@ function paint() {
 }
 function pixel(e) { const r = $("screen").getBoundingClientRect(); return [Math.max(0, Math.min(255, Math.floor((e.clientX - r.left) * 256 / r.width))), Math.max(0, Math.min(239, Math.floor((e.clientY - r.top) * 240 / r.height)))]; }
 $("t-move").addEventListener("click", () => { tool = "move"; render(); });
-$("t-draw").addEventListener("click", () => { tool = tool === "draw" ? "move" : "draw"; render(); });
+$("t-draw").addEventListener("click", () => { if (actorIndex < 0 && movie() && movie().tracks.length) actorIndex = 0; tool = tool === "draw" ? "move" : "draw"; render(); });
 $("screen").addEventListener("pointerdown", (e) => {
   if (player || !movie() || !lastPic) return;
   const [x, y] = pixel(e);
@@ -215,7 +217,6 @@ $("screen").addEventListener("pointerdown", (e) => {
   const hit = P.hitActor(lastPic.actors, x, y);
   if ((tool === "draw" || e.shiftKey) && actorIndex >= 0) { stroke = [[x, y]]; paint(); return; }
   if (hit >= 0) { actorIndex = hit; drag = { x, y, moved: false, pushed: false }; $("screen").classList.add("grabbing"); render(); }
-  else { actorIndex = -1; render(); }
 });
 $("screen").addEventListener("pointermove", (e) => {
   if (player || !movie()) return;
@@ -239,7 +240,7 @@ document.addEventListener("keydown", (e) => {
   if (player) { if (e.code === "Escape") stopPlay(); else if (KEYS[e.code] !== undefined) { player.press(KEYS[e.code]); e.preventDefault(); } return; }
   if (["INPUT", "SELECT", "TEXTAREA"].includes((document.activeElement || {}).tagName)) return;
   if (e.code === "Escape") { actorIndex = -1; tool = "move"; render(); }
-  else if ((e.code === "Delete" || e.code === "Backspace") && actorIndex >= 0) edit(() => { P.removeActor(project, movieIndex, actorIndex); actorIndex = -1; });
+  else if ((e.code === "Delete" || e.code === "Backspace") && actorIndex >= 0) edit(() => { P.removeActor(project, movieIndex, actorIndex); actorIndex = 0; });
   else if ((e.ctrlKey || e.metaKey) && e.code === "KeyD" && actorIndex >= 0) { e.preventDefault(); edit(() => { actorIndex = P.duplicateActor(project, movieIndex, actorIndex); }); }
   else if ((e.ctrlKey || e.metaKey) && e.code === "KeyZ") { e.preventDefault(); (e.shiftKey ? $("redo") : $("undo")).click(); }
 });
@@ -275,7 +276,7 @@ function renderDrawer() {
     const s = el("input"); s.type = "range"; s.min = 0.25; s.max = 8; s.step = 0.125; s.value = P.speedOf(tr).toFixed(2); s.addEventListener("change", () => edit(() => P.setSpeed(tr, +s.value))); row.append(s); d.append(row);
     if (romInfo && romInfo.stock && tr.kind === TrackKind.Path) { const w = el("button", "chip", t().walkCycle); w.addEventListener("click", () => edit(() => { const ladder = P.stockLadder(romInfo.rom); tr.stage_frames = tr.stage_frames.map(() => ladder.away[0].frames.slice()); tr.dwell_frames = 8; })); d.append(w); }
   }
-  const acts = el("div", "row"); const dup = el("button", "chip", t().duplicate); dup.addEventListener("click", () => edit(() => { actorIndex = P.duplicateActor(project, movieIndex, actorIndex); })); const del = el("button", "chip", t().deleteActor); del.addEventListener("click", () => edit(() => { P.removeActor(project, movieIndex, actorIndex); actorIndex = -1; })); acts.append(dup, del); d.append(acts);
+  const acts = el("div", "row"); const dup = el("button", "chip", t().duplicate); dup.addEventListener("click", () => edit(() => { actorIndex = P.duplicateActor(project, movieIndex, actorIndex); })); const del = el("button", "chip", t().deleteActor); del.addEventListener("click", () => edit(() => { P.removeActor(project, movieIndex, actorIndex); actorIndex = 0; })); acts.append(dup, del); d.append(acts);
   const more = el("details", "more"); more.open = moreOpen; more.addEventListener("toggle", () => { moreOpen = more.open; }); more.append(el("summary", null, t().more)); const f = el("div", "form");
   f.append(el("label", null, t().kind), sel(t().kinds, tr.kind, (v) => edit(() => { const n = defaultTrack(v); n.editor_name = tr.editor_name; n.editor_color = tr.editor_color; n.x = tr.x; n.y = tr.y; m.tracks[actorIndex] = n; })));
   const num = (label, get, set, min, max) => { const i = el("input"); i.type = "number"; i.min = min; i.max = max; i.value = get(); i.addEventListener("change", () => edit(() => set(+i.value))); f.append(el("label", null, label), i); };
@@ -305,7 +306,7 @@ function renderMovieMore() {
   const enLabel = el("label"); enLabel.append(en, " " + s.enabled);
   f.append(el("span"), enLabel);
   const rm = el("button", "chip", s.removeMovie);
-  rm.addEventListener("click", () => edit(() => { project.movies.splice(movieIndex, 1); movieIndex = Math.max(0, movieIndex - 1); actorIndex = -1; phaseIndex = 0; validate(project); }));
+  rm.addEventListener("click", () => edit(() => { project.movies.splice(movieIndex, 1); movieIndex = Math.max(0, movieIndex - 1); actorIndex = 0; phaseIndex = 0; validate(project); }));
   f.append(el("span"), rm);
   body.append(f);
 
@@ -406,7 +407,7 @@ function renderExportMenu() {
   item(s.expAmp, () => download(P.saveProject(project), P.downloadName(romInfo, "amp")));
   item(s.open, () => { const i = el("input"); i.type = "file"; i.accept = ".amp"; i.addEventListener("change", () => { if (i.files[0]) openAmp(i.files[0]); }); i.click(); });
   item(s.expXml, () => download(new TextEncoder().encode(P.exportOverride(romInfo, project)), P.downloadName(romInfo, "xml")));
-  item(s.newp, () => { if (confirm(s.newConfirm)) { project = P.newProject(); movieIndex = 0; actorIndex = -1; phaseIndex = 0; pristine = true; history.clear(); if (store) store.clear().catch(() => {}); render(); } });
+  item(s.newp, () => { if (confirm(s.newConfirm)) { project = P.newProject(); movieIndex = 0; actorIndex = 0; phaseIndex = 0; pristine = true; history.clear(); if (store) store.clear().catch(() => {}); render(); } });
   item(s.checks, () => showChecks(a));
   return { a, can, why };
 }
@@ -436,7 +437,10 @@ function render() {
   $("play").textContent = player ? s.stopBtn : s.playBtn; $("export").textContent = s.exportBtn + " ▾";
   $("undo").disabled = !history.canUndo() || !!player; $("redo").disabled = !history.canRedo() || !!player;
   $("t-move").classList.toggle("on", tool === "move"); $("t-draw").classList.toggle("on", tool === "draw"); $("t-move").hidden = $("t-draw").hidden = !!player; $("t-stop").hidden = $("t-mute").hidden = !player;
-  $("t-draw").disabled = actorIndex < 0; $("screen").classList.toggle("pen", tool === "draw" && !player);
+  const cur = movie();   // m is declared further down in render
+  $("t-draw").disabled = !(cur && cur.tracks.length); $("screen").classList.toggle("pen", tool === "draw" && !player);
+  $("l-actors").textContent = s.actors; const chips = $("actors"); chips.replaceChildren();
+  if (cur) cur.tracks.forEach((tr, i) => { const b = el("button", "chip" + (i === actorIndex ? " on" : ""), tr.editor_name || `${s.actors} ${i + 1}`); b.disabled = !!player; b.addEventListener("click", () => { actorIndex = i; render(); }); chips.append(b); });
   const picker = $("movie"); picker.replaceChildren();
   project.movies.forEach((m, i) => { const o = el("option", null, `${m.id}${m.project_role ? " · " + s.roles[m.project_role] : ""}`); o.value = String(i); if (i === movieIndex) o.selected = true; picker.append(o); });
   const plus = el("option", null, "+ " + s.movieAdd); plus.value = "+"; picker.append(plus);
