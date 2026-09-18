@@ -9,7 +9,7 @@ import { parseProject, writeProject, compileBundle, validate, detailedBudget } f
 import { makeStarterProject, applyPaintedPath, simulatedPath, translateActor } from "./editor.mjs";
 import { preview } from "./preview.mjs";
 import { decodeChr, decodeMovieFrames, resolvedAssetBytes, movieSpriteTiles } from "./assets.mjs";
-import { AssetKind } from "./types.mjs";
+import { AssetKind, Coordinate, Comparison } from "./types.mjs";
 import { buildPackage, install, installedLayout, layout } from "./engine.mjs";
 import { ENGINE_CODE } from "./engine_code.mjs";
 import { bank12Extent, plan } from "./space.mjs";
@@ -80,7 +80,22 @@ export function loadRom(bytes) {
 const BODIES_JAPAN = "6501f61fd717ae603c2265d0df074ac2a4dcb8c7";
 
 // ---- the project --------------------------------------------------------------
-export function newProject() { return makeStarterProject(); }
+/** the desktop creator's starter, with its actor walking: the C++ starter
+ *  stands still for 120 frames, which reads as a frozen screen in the game
+ *  (the owner's first play: "only a screen, no animation") */
+export function newProject() {
+  const project = makeStarterProject();
+  for (const movie of project.movies) {
+    const actor = movie.tracks[0];
+    actor.velocity_x = 48; actor.integrator_shift = 7; actor.dwell_frames = 8;      // 3/8 px a frame, the painted path speed
+    actor.coordinate = Coordinate.X; actor.comparison = Comparison.GreaterEqual;              // the default track gates on Y
+    actor.keyframes = [{ threshold: Math.min(actor.x + 96, 240), velocity_x: 0, velocity_y: 0 }];
+    actor.stage_frames = [[0, 1, 2, 1], [0, 0, 0, 0]];                              // the stock walk cycle, then standing (rows share a slot count)
+    movie.phases[0].condition_value = 300;
+  }
+  validate(project);
+  return project;
+}
 export function openProject(bytes) { return parseProject(Uint8Array.from(bytes)); }
 export function saveProject(bundle) { return writeProject(bundle); }
 
