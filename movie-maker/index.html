@@ -56,6 +56,9 @@ canvas.hand { cursor: grab; } canvas.grabbing { cursor: grabbing; } canvas.pen {
 details.adv { grid-column: 1 / -1; } details.adv summary { cursor: pointer; color: var(--muted); font-size: 13px; }
 details.adv .form { margin-top: 8px; }
 .hint { font-size: 13px; color: var(--muted); margin: 0; }
+.pieces { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-end; }
+.pieces canvas { width: auto; max-width: none; image-rendering: pixelated; background: var(--chip); border: 1px solid var(--line); border-radius: 4px; cursor: pointer; padding: 2px; }
+.pieces canvas:hover { border-color: var(--accent); }
 table.sizes { border-collapse: collapse; font-size: 13px; width: 100%; }
 table.sizes td { padding: 2px 4px; border-top: 1px solid var(--line); } table.sizes td:last-child { text-align: right; font-family: var(--mono); }
 </style>
@@ -90,6 +93,12 @@ table.sizes td { padding: 2px 4px; border-top: 1px solid var(--line); } table.si
       <canvas id="screen" width="256" height="240"></canvas>
       <div class="row"><label id="l-frame" for="frame"></label><input id="frame" type="range" min="0" max="600" value="0"><span id="frame-n" class="small muted">0</span><button id="play" type="button"></button><button id="draw" type="button"></button><label class="small"><input id="depth" type="checkbox" checked> <span id="l-depth"></span></label></div>
       <p id="hint" class="hint"></p>
+    </section>
+    <section class="panel">
+      <h2 id="h-pieces"></h2>
+      <p id="pieces-hint" class="hint"></p>
+      <div class="row"><select id="piece-mode"><option value="add"></option><option value="set"></option></select></div>
+      <div id="pieces" class="pieces"></div>
     </section>
     <section class="panel">
       <h2 id="h-actors"></h2>
@@ -169,7 +178,7 @@ $("add-movie").addEventListener("click", () => {
   project.movies.push(m); movieIndex = project.movies.length - 1; actorIndex = phaseIndex = 0; render();
 });
 $("remove-movie").addEventListener("click", () => { if (project.movies.length > 1) { project.movies.splice(movieIndex, 1); movieIndex = Math.max(0, movieIndex - 1); render(); } });
-$("add-actor").addEventListener("click", () => { movie().tracks.push(defaultTrack(TrackKind.Path)); actorIndex = movie().tracks.length - 1; render(); });
+$("add-actor").addEventListener("click", () => { pristine = false; try { actorIndex = P.addPiece(project, movieIndex, 0); } catch (e) { hint = e.message; } render(); });
 $("remove-actor").addEventListener("click", () => { if (movie().tracks.length > 1) { movie().tracks.splice(actorIndex, 1); actorIndex = Math.max(0, actorIndex - 1); render(); } });
 $("add-phase").addEventListener("click", () => { movie().phases.push(makePhase({ condition_value: 60 })); phaseIndex = movie().phases.length - 1; render(); });
 $("remove-phase").addEventListener("click", () => { if (movie().phases.length > 1) { movie().phases.splice(phaseIndex, 1); phaseIndex = Math.max(0, phaseIndex - 1); render(); } });
@@ -252,6 +261,30 @@ function area(value, on) { const a = el("textarea"); a.value = value; a.addEvent
 const parseRows = (text) => text.split(/\n/).map((l) => l.trim()).filter(Boolean).map((l) => l.split(/[,\s]+/).map((x) => +x));
 const rowsText = (rows) => rows.map((r) => r.join(", ")).join("\n");
 
+let piecesFor = null;   // the movie the thumbnails were drawn for; redrawn when it changes
+function renderPieces() {
+  const m = movie(), box = $("pieces");
+  const key = m ? `${movieIndex}:${romInfo ? romInfo.bodySha1 : ""}:${m.metasprite_pointer_lo}:${m.imports.length}` : "";
+  if (key === piecesFor) return;
+  piecesFor = key; box.replaceChildren();
+  if (!m) return;
+  let list = [];
+  try { list = P.pieces(romInfo, m); } catch (e) { box.append(el("span", "small muted", e.message)); return; }
+  for (const piece of list) {
+    const c = el("canvas"); c.width = piece.w; c.height = piece.h; c.style.width = `${piece.w * 2}px`; c.style.height = `${piece.h * 2}px`;
+    c.title = `${piece.index}: ${piece.w}x${piece.h}`;
+    c.getContext("2d").putImageData(new ImageData(piece.rgba, piece.w, piece.h), 0, 0);
+    c.addEventListener("click", () => {
+      pristine = false;
+      try {
+        if ($("piece-mode").value === "set" && movie().tracks[actorIndex]) P.setPose(movie(), actorIndex, piece.index);
+        else actorIndex = P.addPiece(project, movieIndex, piece.index);
+      } catch (e) { hint = e.message; }
+      render();
+    });
+    box.append(c);
+  }
+}
 function renderMovieForm() {
   const f = $("movie-form"); f.replaceChildren(); const m = movie(); if (!m) return;
   field(f, t().name, txt(m.id, (v) => { m.id = v; }));
@@ -311,10 +344,12 @@ function render() {
     ["h-phases", "phases"], ["h-check", "check"], ["h-export", "exports"], ["new", "newp"], ["open", "open"], ["save", "save"],
     ["add-movie", "addMovie"], ["remove-movie", "removeMovie"], ["add-actor", "addActor"], ["remove-actor", "removeActor"],
     ["add-phase", "addPhase"], ["remove-phase", "removePhase"], ["l-frame", "frame"], ["exp-amp", "expAmp"], ["exp-xml", "expXml"], ["from-rom", "fromRom"],
+    ["h-pieces", "pieces"], ["pieces-hint", "pieceHint"],
     ["exp-nes", "expNes"], ["exp-ips", "expIps"], ["xml-note", "xmlNote"], ["ips-note", "ipsNote"]]) $(id).textContent = s[key];
   $("play").textContent = playing ? s.pause : s.play;
   $("from-rom").disabled = !(romInfo && romInfo.stock);
-  $("l-depth").textContent = s.depth; $("depth").disabled = !(romInfo && romInfo.stock);
+  $("l-depth").textContent = s.depth;
+  $("piece-mode").options[0].textContent = s.pieceAdd; $("piece-mode").options[1].textContent = s.pieceSet; $("depth").disabled = !(romInfo && romInfo.stock);
   $("project-note").textContent = projectNote || (romInfo && romInfo.shaped && !romInfo.stock ? s.noStock : "");
   $("draw").textContent = drawMode ? s.drawing : s.draw; $("draw").classList.toggle("on", drawMode);
   $("screen").classList.toggle("pen", drawMode); $("screen").classList.remove("hand");
@@ -334,6 +369,7 @@ function render() {
   const m = movie();
   list($("actors"), m ? m.tracks.map((tr) => ({ label: tr.editor_name || "Actor", tag: s.kinds[tr.kind], color: tr.editor_color })) : [], actorIndex, (i) => { actorIndex = i; });
   renderActorForm();
+  renderPieces();
   list($("phases"), m ? m.phases.map((ph, i) => ({ label: `${i + 1}`, tag: `${s.conditions[ph.condition] || ph.condition} ${ph.condition_value}` })) : [], phaseIndex, (i) => { phaseIndex = i; });
   renderPhaseForm();
 

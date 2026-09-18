@@ -6,17 +6,17 @@
 // Nothing here touches a window, so test/page.test.mjs can drive it all.
 import { MovieError, equalBytes } from "./bytes.mjs";
 import { parseProject, writeProject, compileBundle, validate, detailedBudget } from "./bundle.mjs";
-import { makeStarterProject, applyPaintedPath, simulatedPath, translateActor } from "./editor.mjs";
+import { makeStarterProject, applyPaintedPath, simulatedPath, translateActor, defaultTrack } from "./editor.mjs";
 import { preview } from "./preview.mjs";
 import { decodeChr, decodeMovieFrames, resolvedAssetBytes, movieSpriteTiles } from "./assets.mjs";
-import { AssetKind, Coordinate, Comparison, ProjectRole } from "./types.mjs";
+import { AssetKind, Coordinate, Comparison, ProjectRole, TrackKind, ACTOR_COLORS } from "./types.mjs";
 import { buildPackage, install, installedLayout, layout } from "./engine.mjs";
 import { ENGINE_CODE } from "./engine_code.mjs";
 import { bank12Extent, plan } from "./space.mjs";
 import { makeIps } from "./ips.mjs";
 import { markerReport, rewriteMarkers } from "./markers.mjs";
 import { stockAvailable, stockBundle, stockLadder, ladderRow } from "./stock.mjs";
-import { makeSurface, drawNametable, drawFrame } from "./render.mjs";
+import { makeSurface, drawNametable, drawFrame, frameThumbnail } from "./render.mjs";
 import { loadVanillaOpcodes, resolveOpcodeInfo, standaloneConfigOverride } from "./runtime.mjs";
 
 export const VERSION = "1";
@@ -228,6 +228,40 @@ export function applyDepth(track, ladder) {
 }
 export { stockLadder };
 
+// ---- the pieces ---------------------------------------------------------------
+/** every figure the movie can draw, as thumbnails: the frames of its
+ *  metasprite table (the game's own 32 for the stock scenes) */
+export function pieces(romInfo, movie) {
+  if (!romInfo || !romInfo.usable) return [];
+  const rom = romInfo.rom;
+  const palette = resolvedAssetBytes(rom, movie, AssetKind.Palette).subarray(16, 32);
+  const tiles = movieSpriteTiles(rom, movie);
+  return decodeMovieFrames(rom, movie).map((frame, index) => ({ index, ...frameThumbnail(frame, tiles, palette) }));
+}
+
+/** a new actor standing on `frame` at (x, y), drawn and updated in every
+ *  phase; the movie's eight track limit is the validator's to refuse */
+export function addPiece(bundle, movieIndex, frameIndex, x = 128, y = 160) {
+  const movie = bundle.movies[movieIndex];
+  if (movie.tracks.length >= 8) throw new MovieError("a movie draws at most 8 actors");
+  const track = defaultTrack(TrackKind.Path, frameIndex);
+  track.x = x; track.y = y;
+  track.editor_name = `Piece ${frameIndex}`; track.editor_color = ACTOR_COLORS[movie.tracks.length % ACTOR_COLORS.length];
+  movie.tracks.push(track);
+  const bit = 1 << (movie.tracks.length - 1);
+  for (const phase of movie.phases) { phase.update_mask |= bit; phase.draw_mask |= bit; }
+  return movie.tracks.length - 1;
+}
+
+/** the selected actor now wears `frame` in every pose */
+export function setPose(movie, trackIndex, frameIndex) {
+  const track = movie.tracks[trackIndex];
+  if (track.kind === TrackKind.Path) track.stage_frames = track.stage_frames.map((row) => row.map(() => frameIndex));
+  else if (track.kind === TrackKind.Cyclic) track.visible_frames = track.visible_frames.map(() => frameIndex);
+  else track.toggle_frames = track.toggle_frames.map(() => frameIndex);
+  if (track.kind === TrackKind.Path && !track.stage_frames.length) track.stage_frames = [[frameIndex]];
+}
+
 /** what to draw over the picture for the selected actor: the route the
  *  runtime takes and the painted waypoints */
 export function pathOverlay(movie, trackIndex) {
@@ -295,6 +329,7 @@ export const T = {
     conditions: { 1: "effect calls reach", 2: "track Y reaches", 3: "music stops", 4: "frame counter is zero", 5: "frames elapse" },
     value: "Value", track: "Track", drawMask: "Draw mask", updateMask: "Update mask",
     preview: "Preview", frame: "Frame", play: "Play", pause: "Pause",
+    pieces: "Pieces", pieceAdd: "click: add as a new actor", pieceSet: "click: dress the selected actor", pieceHint: "Every figure this movie can draw. Add one, then drag it and draw its path.",
     draw: "Draw a path", drawing: "Drawing…", advanced: "Advanced", depth: "Depth: shrink when walking up, grow coming down",
     canvasHint: "Drag an actor to move it. Draw a path: press the button, then draw on the picture with the actor selected.",
     drawHint: "Draw the route on the picture; release to apply it. The cyan line is the exact route the game will take.",
@@ -334,6 +369,7 @@ export const T = {
     conditions: { 1: "les effets atteignent", 2: "le Y de l'acteur atteint", 3: "la musique s'arrête", 4: "le compteur d'images est à zéro", 5: "des images passent" },
     value: "Valeur", track: "Acteur", drawMask: "Masque de dessin", updateMask: "Masque de mise à jour",
     preview: "Aperçu", frame: "Image", play: "Jouer", pause: "Pause",
+    pieces: "Pièces", pieceAdd: "clic : ajouter comme nouvel acteur", pieceSet: "clic : habiller l'acteur sélectionné", pieceHint: "Toutes les figures que ce film peut dessiner. Ajoutez-en une, puis glissez-la et tracez son trajet.",
     draw: "Tracer un trajet", drawing: "Tracé…", advanced: "Avancé", depth: "Profondeur : rapetisse en montant, grandit en descendant",
     canvasHint: "Glissez un acteur pour le déplacer. Tracer un trajet : appuyez sur le bouton, puis dessinez sur l'image avec l'acteur sélectionné.",
     drawHint: "Dessinez la route sur l'image; relâchez pour l'appliquer. La ligne cyan est la route exacte que le jeu suivra.",
