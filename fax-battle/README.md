@@ -1,4 +1,4 @@
-# Faxanadu Battle 1.5
+# Faxanadu Battle 1.6
 
 *[Version française](README.fr.md)*
 
@@ -8,7 +8,7 @@ and fight a friend or the CPU. Experimental; the balance is still being tuned.
 ## Use
 
 Patch a clean dump of the USA release (SHA-1 of the full `.nes` file:
-`2e2b95db2be615cf588f0d758e0f7b1ccd81590a`) with `fax-battle-1.5.ips` or `.bps`. Play in an
+`2e2b95db2be615cf588f0d758e0f7b1ccd81590a`) with `fax-battle-1.6.ips` or `.bps`. Play in an
 emulator such as Mesen: the game needs 8 KB of extra work RAM, so it doesn't run on an
 original cartridge.
 
@@ -48,7 +48,8 @@ default: it thinks slower and holds back about half of its attacks up close.
 ## Modes
 
 - **Crown Scramble:** hold the crown for a total of 30 seconds. A hit makes the
-  holder drop it, and it can't be picked up again straight away.
+  holder drop it, and it can't be picked up again straight away. Whoever dropped
+  it has to wait two seconds; the other fighter can take it at once.
 - **Duel:** both players start at 99 HP. Knock the other one out.
 
 ## Controls
@@ -100,7 +101,9 @@ The three pickups heal you, refill your power meter, or give you an extra air
 jump for eight seconds. A pickup left alone disappears on its own.
 
 Now and then a bird flies across the arena and drops bread as it goes, with a cry
-for each loaf.
+for each loaf. One loaf in four is a book instead: pick it up and a monster of
+the region fights at your side for fifteen seconds. It takes four hits to put
+down, and it hits for 8.
 
 ## Visitors
 
@@ -118,6 +121,10 @@ Three characters from the game drop in on a fight.
   swoops in on whoever is leading (more HP in a Duel, the crown holder or the
   higher score in Crown Scramble), carries them helpless for two seconds, drops
   them somewhere over the floor and leaves fast. A held fighter can still be hit.
+  In Crown Scramble the grab makes the holder drop the crown where they stood.
+- **Sugata and Nash** (from a book): the monster of the arena's region, Sugata in
+  Eolis and Mist, Nash further on. It walks at whoever you are fighting, strikes
+  when it is close, and leaves after fifteen seconds. Either fighter can hit it.
 
 ## Sudden death
 
@@ -160,6 +167,9 @@ The victory music loops until you leave.
 
 ## Versions
 
+- **1.6**: a book that summons a monster, the crown drops when Bihoruda grabs its
+  holder and the dropper waits two seconds for it, visitors in their own colours,
+  the Hero's beam is the game's Thunder spell, Zenith Loop's ledges match the rock.
 - **1.5**: match setup panel, pause menu, a trick in every arena, Dartmoor ladders,
   three visitors, knockout burst, snappier hits.
 - **1.1**: play against the CPU, fighter intros, more arenas, an items and results screen.

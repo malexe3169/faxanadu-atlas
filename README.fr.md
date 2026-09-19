@@ -15,7 +15,7 @@ Un dossier est plutôt un guide : quels hacks de FaxEdit fonctionnent ensemble.
 | [faxedit-hack-compatibility-9.2](faxedit-hack-compatibility-9.2) | 9.2-6 | Quels hacks généraux de FaxEdit 9.2 fonctionnent ensemble, plus les hacks pas encore dans FaxEdit, marqués : chaque paire bâtie dans les deux ordres, les paires qui ne marchent pas et pourquoi. | FaxEdit 9.2 |
 | [movie-maker](movie-maker) | 2.1.1 | Atlas Movie Maker 2 : une seule image, glissez les acteurs et tracez leurs trajets, Jouer démarre le jeu dans la page avec le son, des modèles, des légendes dans la police du jeu, de l'art depuis vos images, annuler. Votre ROM reste dans votre navigateur ; vous recevez un IPS. La page 1.7 reste à movie-maker/classic. | USA, et les mods bâtis dessus |
 | [custom-build](custom-build) | 9.2-4 | Demandez un patch avec les hacks de FaxEdit de votre choix : une page qui les vérifie, un formulaire de demande, et des patches IPS et BPS bâtis pour vous, simple ou avec le menu FaxOptions. | USA, USA Rev 1, Europe |
-| [fax-battle](fax-battle) | 1.5 | Faxanadu Battle : un jeu de combat bâti sur Faxanadu — affrontez un ami ou le CPU — avec les modes Crown Scramble et Duel, sept combattants et neuf arènes. Expérimental. | USA |
+| [fax-battle](fax-battle) | 1.6 | Faxanadu Battle : un jeu de combat bâti sur Faxanadu — affrontez un ami ou le CPU — avec les modes Crown Scramble et Duel, sept combattants et neuf arènes. Expérimental. | USA |
 
 ## Comment appliquer un patch
 

@@ -1,4 +1,4 @@
-# Faxanadu Battle 1.5 — the fighters
+# Faxanadu Battle 1.6 — the fighters
 
 *[Version française](FIGHTERS.fr.md)* · *[Back to Faxanadu Battle](README.md)*
 
@@ -56,7 +56,8 @@ standing when it matters.
 
 **Blade Beam** is the only special that threatens across the whole arena. Six
 pixels an update is fast enough that a distant opponent has to respect it, so
-the Hero can force someone to move rather than wait.
+the Hero can force someone to move rather than wait. It is drawn with the
+game's own Thunder spell.
 
 Pick the Hero to learn the game. Nothing you learn on it is wasted on the
 others.

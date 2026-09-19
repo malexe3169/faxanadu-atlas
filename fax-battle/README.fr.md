@@ -1,4 +1,4 @@
-# Faxanadu Battle 1.5
+# Faxanadu Battle 1.6
 
 *[English version](README.md)*
 
@@ -8,7 +8,7 @@ encore en ajustement.
 
 ## Utilisation
 
-Appliquez le patch `fax-battle-1.5.ips` ou `.bps` sur une ROM propre de la version USA
+Appliquez le patch `fax-battle-1.6.ips` ou `.bps` sur une ROM propre de la version USA
 (SHA-1 du fichier `.nes` complet : `2e2b95db2be615cf588f0d758e0f7b1ccd81590a`). Jouez
 dans un émulateur comme Mesen : le jeu a besoin de 8 Ko de mémoire de travail
 supplémentaire, il ne fonctionne donc pas sur une cartouche originale.
@@ -52,7 +52,8 @@ ses attaques de près.
 
 - **Crown Scramble :** gardez la couronne pendant 30 secondes au total. Un coup
   fait tomber la couronne de celui qui la tient, et elle ne peut pas être reprise
-  tout de suite.
+  tout de suite. Celui qui l'a laissée tomber doit attendre deux secondes; l'autre
+  peut la prendre aussitôt.
 - **Duel :** les deux joueurs commencent à 99 PV. Mettez l'autre K.-O.
 
 ## Commandes
@@ -105,7 +106,9 @@ donnent un saut aérien supplémentaire pendant huit secondes. Un objet laissé 
 sol disparaît tout seul.
 
 De temps en temps un oiseau traverse l'arène et laisse tomber du pain, avec un
-cri pour chaque miche.
+cri pour chaque miche. Une miche sur quatre est un livre : ramassez-le et un
+monstre de la région se bat à vos côtés pendant quinze secondes. Il encaisse
+quatre coups et frappe à 8.
 
 ## Visiteurs
 
@@ -123,7 +126,12 @@ Trois personnages du jeu s'invitent dans un combat.
   trente secondes, il fond sur celui qui mène (le plus de PV en Duel, le porteur de
   la couronne ou le meilleur score en Crown Scramble), l'emporte sans défense
   pendant deux secondes, le lâche quelque part au-dessus du sol et repart très
-  vite. Un combattant tenu en l'air peut encore être touché.
+  vite. Un combattant tenu en l'air peut encore être touché. En Crown Scramble,
+  la prise fait tomber la couronne à l'endroit où il se tenait.
+- **Sugata et Nash** (par le livre) : le monstre de la région de l'arène, Sugata à
+  Eolis et dans la brume, Nash plus loin. Il marche vers votre adversaire, frappe
+  de près, et repart après quinze secondes. Les deux combattants peuvent le
+  toucher.
 
 ## Mort subite
 
@@ -168,6 +176,7 @@ jusqu'à ce que vous partiez.
 
 ## Versions
 
+- **1.6** : un livre qui invoque un monstre, la couronne tombe quand Bihoruda saisit son porteur et celui qui l'a perdue attend deux secondes, les visiteurs dans leurs propres couleurs, le rayon du Hero est le sort Thunder du jeu, les corniches de Zenith Loop suivent la roche.
 - **1.5** : panneau de préparation du match, menu de pause, un truc dans chaque arène, les échelles de Dartmoor, trois visiteurs, explosion de K.-O., coups plus nerveux.
 - **1.1** : jouer contre le CPU, présentations des combattants, plus d'arènes, un écran d'objets et de résultats.
 - **1.0** : première version publique.

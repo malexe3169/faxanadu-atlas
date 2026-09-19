@@ -1,4 +1,4 @@
-# Faxanadu Battle 1.5 — les combattants
+# Faxanadu Battle 1.6 — les combattants
 
 *[English version](FIGHTERS.md)* · *[Retour à Faxanadu Battle](README.fr.md)*
 
@@ -58,7 +58,8 @@ récupération courte qui fait sa qualité : vous pouvez appuyer, avoir tort, et
 
 **Blade Beam** est la seule spéciale qui menace d'un bout à l'autre de
 l'arène. Six pixels par mise à jour, c'est assez vite pour qu'un adversaire
-lointain doive bouger au lieu d'attendre.
+lointain doive bouger au lieu d'attendre. Il est dessiné avec le sort Thunder
+du jeu.
 
 Prenez le Hero pour apprendre. Rien de ce que vous apprenez avec lui n'est
 perdu sur les autres.
