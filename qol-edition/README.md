@@ -1,12 +1,20 @@
-# Faxanadu QoL Edition 1.2
+# Faxanadu QoL Edition 1.3
 
 *[Version française](README.fr.md)*
 
 A quality-of-life patch for the NES game *Faxanadu* (USA release). It
-changes nothing about the game's content, difficulty, or story — only how
-it feels to play.
+keeps the original world and story while improving controls, responsiveness,
+and combat feedback.
 
 ## What it changes
+
+- **Enemy health bar.** Hit an enemy with your sword or magic to show its
+  remaining health. The bar stays visible until that enemy dies, disappears,
+  or you change rooms. Bar only, without enemy names; enabled by default.
+- **Shorter blank redraws (FastBlink).** Doorway and other blank-and-redraw
+  transitions spend less time waiting. Horizontal scrolling stays intact.
+- **Ointment protection fixed.** Active Ointment also blocks magic while you
+  have a shield equipped, including Sugata's screen-wide flash.
 
 - **Faster screen transitions.** The pause that used to happen when the
   screen scrolled or the game paged in new content is substantially
@@ -36,7 +44,7 @@ it feels to play.
 ## Use
 
 Patch a clean dump of the USA release (SHA-1 of the full `.nes` file:
-`2e2b95db2be615cf588f0d758e0f7b1ccd81590a`) with `faxanadu-qol-edition-1.2.ips` or `.bps`.
+`2e2b95db2be615cf588f0d758e0f7b1ccd81590a`) with `faxanadu-qol-edition-1.3.ips` or `.bps`.
 Use an emulator that keeps battery saves.
 
 ## Credits
@@ -48,6 +56,9 @@ what we know about how the game works comes from chipx86's
 [Faxanadu disassembly](https://github.com/chipx86/faxanadu).
 
 ## Versions
+
+- **1.3**: persistent enemy health bar, FastBlink, OintmentFix, and a correction
+  to CONTINUE so battery saves load properly alongside PASSWORD.
 
 - **1.2**: smart mattock use, and PASSWORD back on the start screen.
 - **1.1**: smart key use.
