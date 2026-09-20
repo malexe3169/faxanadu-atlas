@@ -1,4 +1,4 @@
-# Faxanadu QoL Edition 1.1
+# Faxanadu QoL Edition 1.2
 
 *[English version](README.md)*
 
@@ -19,15 +19,22 @@ contenu, à la difficulté ni à l'histoire du jeu, seulement la façon dont il 
   restent d'une partie à l'autre sur une vraie console ou dans un émulateur qui
   gère les sauvegardes sur batterie.
 - **Sauvegardes sur batterie.** Le jeu enregistre maintenant votre progression en
-  mémoire sur batterie, au lieu du système de mots de passe (ou en plus de celui-ci).
+  mémoire sur batterie. L'écran de départ offre **START**, **CONTINUE** et
+  **PASSWORD** : les mantras d'origine fonctionnent toujours comme avant.
 - **Clés automatiques.** Avoir la bonne clé sur soi ouvre une porte verrouillée
   automatiquement, sans passer par le menu des objets pour la choisir. Les clés
   s'usent toujours à raison d'une par porte, sont toujours comptées et s'achètent
   toujours en magasin; seul le détour par le menu disparaît.
+- **Pioche automatique.** Un rocher que vous pouviez déjà creuser se creuse
+  maintenant sans choisir la pioche d'avance : appuyez sur le bouton d'objet devant
+  lui, ou entrez simplement dedans en continuant de pousser un moment. La pioche
+  reste nécessaire et s'use toujours comme avant, et les rochers que le jeu
+  original refusait — en plein saut, dans une échelle ou tout au bord droit d'un
+  écran — refusent toujours.
 
 ## Utilisation
 
-Appliquez le patch `faxanadu-qol-edition-1.1.ips` ou `.bps` sur une ROM propre de la
+Appliquez le patch `faxanadu-qol-edition-1.2.ips` ou `.bps` sur une ROM propre de la
 version USA (SHA-1 du fichier `.nes` complet :
 `2e2b95db2be615cf588f0d758e0f7b1ccd81590a`). Utilisez un émulateur qui conserve les
 sauvegardes sur batterie.
@@ -36,11 +43,12 @@ sauvegardes sur batterie.
 
 Les sauvegardes sur batterie utilisent un hack général de
 [FaxEdit](https://github.com/kaimitai/faxedit) (« Echoes of Eolis ») de Kai E. Frøland, et
-les clés automatiques sont notre propre hack, qui fait maintenant partie des hacks
-généraux de FaxEdit. L'essentiel de ce que nous savons du fonctionnement du jeu vient
-du [désassemblage de Faxanadu](https://github.com/chipx86/faxanadu) de chipx86.
+les clés et la pioche automatiques sont nos propres hacks, qui font maintenant partie
+des hacks généraux de FaxEdit. L'essentiel de ce que nous savons du fonctionnement du
+jeu vient du [désassemblage de Faxanadu](https://github.com/chipx86/faxanadu) de chipx86.
 
 ## Versions
 
+- **1.2** : la pioche automatique, et PASSWORD de retour sur l'écran de départ.
 - **1.1** : clés automatiques.
 - **1.0** : transitions d'écran plus rapides, le menu d'options et les sauvegardes sur batterie.

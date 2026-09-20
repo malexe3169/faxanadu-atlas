@@ -8,7 +8,7 @@ Un dossier est plutôt un guide : quels hacks de FaxEdit fonctionnent ensemble.
 
 | Dossier | Version | Ce que c'est | Pour |
 |---|---|---|---|
-| [qol-edition](qol-edition) | 1.1 | Le jeu original, plus agréable à jouer : transitions d'écran plus rapides, un menu d'options, des sauvegardes sur batterie et des clés qui ouvrent les portes toutes seules. | USA |
+| [qol-edition](qol-edition) | 1.2 | Le jeu original, plus agréable à jouer : transitions d'écran plus rapides, un menu d'options, des sauvegardes sur batterie, et des clés et une pioche qui servent sans passer par le menu des objets. | USA |
 | [speedrunner-training](speedrunner-training) | 5.1 | Le jeu original avec des outils d'entraînement au speedrun dans le menu de pause : chronomètre, splits, téléportation, points de départ et affichages à l'écran. Avec les réglages par défaut, il se joue exactement comme l'original. | USA, USA Rev 1, Europe |
 | [faxoptions-showcase-9.2](faxoptions-showcase-9.2) | 9.2-1 | FaxOptions Showcase 9.2 (Crown Jewels) : les hacks généraux de FaxEdit 9.2 dans une seule ROM, avec un panneau dans le menu de pause qui les active et change leurs réglages pendant la partie. | USA, USA Rev 1, Europe |
 | [faxoptions-debug-9.2](faxoptions-debug-9.2) | 9.2-1 | FaxOptions Debug 9.2 : Crown Jewels plus un exécuteur de scripts, pour lancer les commandes de script du jeu depuis le menu de pause. Pour les tests, pas pour jouer. | USA, USA Rev 1, Europe |
