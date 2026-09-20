@@ -1,11 +1,20 @@
-# Faxanadu QoL Edition 1.2
+# Faxanadu QoL Edition 1.3
 
 *[English version](README.md)*
 
-Un patch de confort pour le jeu NES *Faxanadu* (version USA). Il ne change rien au
-contenu, à la difficulté ni à l'histoire du jeu, seulement la façon dont il se joue.
+Un patch de confort pour le jeu NES *Faxanadu* (version USA). Il conserve le monde et
+l'histoire d'origine tout en améliorant les commandes, la réactivité et la
+lisibilité des combats.
 
 ## Ce qu'il change
+
+- **Barre de vie ennemie.** Touchez un ennemi à l'épée ou avec un sort pour
+  afficher sa vie restante. La barre reste visible jusqu'à sa mort, sa
+  disparition ou un changement de salle. Sans nom d'ennemi; active par défaut.
+- **Écrans noirs plus courts (FastBlink).** Les transitions avec effacement
+  et redessin attendent moins longtemps. Le défilement horizontal est conservé.
+- **Protection de l'onguent corrigée.** L'onguent actif bloque aussi la magie
+  quand un bouclier est équipé, y compris l'éclair de Sugata sur tout l'écran.
 
 - **Transitions d'écran plus rapides.** La pause qui survenait quand l'écran
   défilait ou que le jeu chargeait du nouveau contenu est nettement plus courte,
@@ -34,7 +43,7 @@ contenu, à la difficulté ni à l'histoire du jeu, seulement la façon dont il 
 
 ## Utilisation
 
-Appliquez le patch `faxanadu-qol-edition-1.2.ips` ou `.bps` sur une ROM propre de la
+Appliquez le patch `faxanadu-qol-edition-1.3.ips` ou `.bps` sur une ROM propre de la
 version USA (SHA-1 du fichier `.nes` complet :
 `2e2b95db2be615cf588f0d758e0f7b1ccd81590a`). Utilisez un émulateur qui conserve les
 sauvegardes sur batterie.
@@ -48,6 +57,9 @@ des hacks généraux de FaxEdit. L'essentiel de ce que nous savons du fonctionne
 jeu vient du [désassemblage de Faxanadu](https://github.com/chipx86/faxanadu) de chipx86.
 
 ## Versions
+
+- **1.3** : barre de vie ennemie persistante, FastBlink, OintmentFix et
+  correction de CONTINUE pour charger les sauvegardes avec PASSWORD présent.
 
 - **1.2** : la pioche automatique, et PASSWORD de retour sur l'écran de départ.
 - **1.1** : clés automatiques.
