@@ -15,6 +15,18 @@ Patchs
   NES 2.0 et un émulateur qui conserve les sauvegardes sur batterie (Mesen, FCEUX,
   cœurs RetroArch). Les réglages sont gardés en mémoire sur batterie.
 
+  Votre ROM est la bonne si l'une des deux sommes correspond. La somme du fichier
+  couvre tout le .nes; celle du corps couvre le même fichier sans son entête de
+  16 octets, et c'est elle qui identifie le jeu peu importe l'entête de votre copie.
+
+    version      SHA-1 du fichier                          SHA-1 du corps
+    USA          2e2b95db2be615cf588f0d758e0f7b1ccd81590a  5b05c8859f356013d37f0545f5de5fa1693da5da
+    USA Rev 1    bfb085472127eecbe5d89cd8f35bfdda2b4153be  d0c6af83c44f2dc90bcb0792a69c93f8d167f988
+    Europe       9c178d2247045f0569bb7a86ddd2600a55d25f12  0711bc8d0bf42a0829391c2320393a0d3df2dd1f
+
+  Somme du fichier : sha1sum votre.nes
+  Somme du corps   : tail -c +17 votre.nes | sha1sum
+
 Écran de départ
 ---------------
   START        une nouvelle partie

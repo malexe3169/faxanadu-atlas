@@ -11,6 +11,18 @@ Patches
   USA, USA Rev 1 (NTSC timer) and Europe (PAL timer), IPS or BPS. Use a clean dump
   and an emulator that keeps battery saves. No Japan version.
 
+  Your dump is the right one if either hash matches. The file hash is the whole
+  .nes; the body hash is the same file without its 16 byte header, and it
+  identifies the game whatever header your dump carries.
+
+    version      file SHA-1                                body SHA-1
+    USA          2e2b95db2be615cf588f0d758e0f7b1ccd81590a  5b05c8859f356013d37f0545f5de5fa1693da5da
+    USA Rev 1    bfb085472127eecbe5d89cd8f35bfdda2b4153be  d0c6af83c44f2dc90bcb0792a69c93f8d167f988
+    Europe       9c178d2247045f0569bb7a86ddd2600a55d25f12  0711bc8d0bf42a0829391c2320393a0d3df2dd1f
+
+  Check the file hash with: sha1sum your.nes
+  Check the body hash with: tail -c +17 your.nes | sha1sum
+
 Timer
 -----
   Starts        at character control: the first moment you can move after
