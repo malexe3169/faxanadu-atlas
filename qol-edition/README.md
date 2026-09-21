@@ -43,9 +43,19 @@ and combat feedback.
 
 ## Use
 
-Patch a clean dump of the USA release (SHA-1 of the full `.nes` file:
-`2e2b95db2be615cf588f0d758e0f7b1ccd81590a`) with `faxanadu-qol-edition-1.3.ips` or `.bps`.
+Patch a clean dump of the USA release with `faxanadu-qol-edition-1.3.ips` or `.bps`.
 Use an emulator that keeps battery saves.
+
+The dump is the right one if either hash matches:
+
+| hash | value | check with |
+| --- | --- | --- |
+| file SHA-1 | `2e2b95db2be615cf588f0d758e0f7b1ccd81590a` | `sha1sum your.nes` |
+| body SHA-1 | `5b05c8859f356013d37f0545f5de5fa1693da5da` | `tail -c +17 your.nes \| sha1sum` |
+
+The file hash is the whole `.nes`; the body hash is the same file with its 16
+byte header removed, which is what identifies the game whatever header your
+dump carries.
 
 ## Credits
 
