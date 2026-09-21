@@ -8,10 +8,20 @@ encore en ajustement.
 
 ## Utilisation
 
-Appliquez le patch `fax-battle-1.6.ips` ou `.bps` sur une ROM propre de la version USA
-(SHA-1 du fichier `.nes` complet : `2e2b95db2be615cf588f0d758e0f7b1ccd81590a`). Jouez
-dans un émulateur comme Mesen : le jeu a besoin de 8 Ko de mémoire de travail
+Appliquez le patch `fax-battle-1.6.ips` ou `.bps` sur une ROM propre de la version USA.
+Jouez dans un émulateur comme Mesen : le jeu a besoin de 8 Ko de mémoire de travail
 supplémentaire, il ne fonctionne donc pas sur une cartouche originale.
+
+Votre ROM est la bonne si l'une des deux sommes correspond :
+
+| somme | valeur | vérification |
+| --- | --- | --- |
+| SHA-1 du fichier | `2e2b95db2be615cf588f0d758e0f7b1ccd81590a` | `sha1sum votre.nes` |
+| SHA-1 du corps | `5b05c8859f356013d37f0545f5de5fa1693da5da` | `tail -c +17 votre.nes \| sha1sum` |
+
+La somme du fichier couvre tout le `.nes`; celle du corps couvre le même fichier
+sans son entête de 16 octets, et c'est elle qui identifie le jeu peu importe
+l'entête de votre copie.
 
 ## Lancer une partie
 
