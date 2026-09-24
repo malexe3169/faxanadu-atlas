@@ -59,10 +59,10 @@ dump carries.
 
 ## Credits
 
-The battery saves use a general hack from Kai E. Frøland's
-[FaxEdit](https://github.com/kaimitai/faxedit) ("Echoes of Eolis"), and smart key and
-smart mattock use are our own hacks, now part of FaxEdit's general hacks too. Most of
-what we know about how the game works comes from chipx86's
+The battery saves and the Ointment fix are general hacks from Kai E. Frøland's
+[FaxEdit](https://github.com/kaimitai/faxedit) ("Echoes of Eolis"). Smart key and smart
+mattock use, the enemy health bar and FastBlink are our own hacks, now part of FaxEdit's
+general hacks too. Most of what we know about how the game works comes from chipx86's
 [Faxanadu disassembly](https://github.com/chipx86/faxanadu).
 
 ## Versions
