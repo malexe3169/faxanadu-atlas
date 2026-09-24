@@ -59,10 +59,10 @@ l'entête de votre copie.
 
 ## Crédits
 
-Les sauvegardes sur batterie utilisent un hack général de
-[FaxEdit](https://github.com/kaimitai/faxedit) (« Echoes of Eolis ») de Kai E. Frøland, et
-les clés et la pioche automatiques sont nos propres hacks, qui font maintenant partie
-des hacks généraux de FaxEdit. L'essentiel de ce que nous savons du fonctionnement du
+Les sauvegardes sur batterie et la correction de l'onguent sont des hacks généraux de
+[FaxEdit](https://github.com/kaimitai/faxedit) (« Echoes of Eolis ») de Kai E. Frøland.
+Les clés et la pioche automatiques, la barre de vie ennemie et FastBlink sont nos
+propres hacks, qui font maintenant partie des hacks généraux de FaxEdit. L'essentiel de ce que nous savons du fonctionnement du
 jeu vient du [désassemblage de Faxanadu](https://github.com/chipx86/faxanadu) de chipx86.
 
 ## Versions
