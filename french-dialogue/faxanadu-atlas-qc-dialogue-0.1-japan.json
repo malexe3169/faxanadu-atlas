@@ -1,0 +1,90 @@
+{
+  "revision": "japan",
+  "locale": "qc",
+  "scope": "dialogue only",
+  "source_body_sha1": "6501f61fd717ae603c2265d0df074ac2a4dcb8c7",
+  "source_file_sha1": "2f3788f36bddd61c64c554ea64f3eda1ed373e65",
+  "source_script_commit": "0c8eee1e6c2446ac3da949c890214668fe32d085",
+  "font_reference_body_sha1": "5b05c8859f356013d37f0545f5de5fa1693da5da",
+  "script_sha256": "0f03baf4d8d8c5f2ceb68c478d90404ee9a41b8e661cf8bbfd90a81618f0d711",
+  "target_sha256": "14e584db3c89a397716c3c6eb0cd49606cc28fcd4a16e9bbcf69e2f4ce752dcd",
+  "ips_sha256": "54ecf2ceb53774c2cecc0f67636f9966dacd74cc7a7f639bc0d0ae1ac7ebd452",
+  "encoded_dialogue_bytes": 11727,
+  "native_message_count": 193,
+  "changed_body_bytes": 12567,
+  "allowed_ranges": [
+    [
+      "0x024800",
+      "0x024B00"
+    ],
+    [
+      "0x024B00",
+      "0x0278CF"
+    ],
+    [
+      "0x03FDB2",
+      "0x03FEB4"
+    ],
+    [
+      "0x03F50D",
+      "0x03F50E"
+    ],
+    [
+      "0x03F55F",
+      "0x03F560"
+    ],
+    [
+      "0x03F573",
+      "0x03F574"
+    ],
+    [
+      "0x03F512",
+      "0x03F513"
+    ],
+    [
+      "0x03F516",
+      "0x03F517"
+    ],
+    [
+      "0x03F553",
+      "0x03F554"
+    ],
+    [
+      "0x03F608",
+      "0x03F609"
+    ],
+    [
+      "0x03F638",
+      "0x03F639"
+    ],
+    [
+      "0x031D71",
+      "0x031D72"
+    ],
+    [
+      "0x031D9F",
+      "0x031DA0"
+    ],
+    [
+      "0x031DCE",
+      "0x031DCF"
+    ],
+    [
+      "0x03F5FE",
+      "0x03F601"
+    ],
+    [
+      "0x03F557",
+      "0x03F55A"
+    ],
+    [
+      "0x03F685",
+      "0x03F688"
+    ]
+  ],
+  "header_and_size_preserved": true,
+  "ips_roundtrip": true,
+  "status": "experimental 0.1",
+  "bps_sha256": "b93aa8f7baa6e96dfef50e6023733b1f4d3c68fcb6b78aa627a9b142edfc0737",
+  "bps_roundtrip": true
+}

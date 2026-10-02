@@ -1,0 +1,65 @@
+{
+  "revision": "usa",
+  "locale": "qc",
+  "scope": "dialogue only",
+  "source_body_sha1": "5b05c8859f356013d37f0545f5de5fa1693da5da",
+  "source_file_sha1": "2e2b95db2be615cf588f0d758e0f7b1ccd81590a",
+  "source_script_commit": "0c8eee1e6c2446ac3da949c890214668fe32d085",
+  "script_sha256": "0f03baf4d8d8c5f2ceb68c478d90404ee9a41b8e661cf8bbfd90a81618f0d711",
+  "target_sha256": "e45c14909d48841dfb3ab1f1654f5753ce08a5dff545bf95c601edaad3164eba",
+  "ips_sha256": "431cb4c01ca7fb62396e1c11185a9a442331cd64c7d049ebc59e85be70cd91fc",
+  "encoded_dialogue_bytes": 11713,
+  "native_message_count": 193,
+  "changed_body_bytes": 11946,
+  "allowed_ranges": [
+    [
+      "0x034300",
+      "0x0373BA"
+    ],
+    [
+      "0x034018",
+      "0x034020"
+    ],
+    [
+      "0x034020",
+      "0x034028"
+    ],
+    [
+      "0x034028",
+      "0x034030"
+    ],
+    [
+      "0x034030",
+      "0x034038"
+    ],
+    [
+      "0x034050",
+      "0x034058"
+    ],
+    [
+      "0x034058",
+      "0x034060"
+    ],
+    [
+      "0x034078",
+      "0x034080"
+    ],
+    [
+      "0x0340E0",
+      "0x0340E8"
+    ],
+    [
+      "0x0340E8",
+      "0x0340F0"
+    ],
+    [
+      "0x0340F0",
+      "0x0340F8"
+    ]
+  ],
+  "header_and_size_preserved": true,
+  "ips_roundtrip": true,
+  "status": "experimental 0.1",
+  "bps_sha256": "67e70cc296392a1e1263d24f6c7bca2eb9d8a5ab1ed2ee56dd92423551b451e5",
+  "bps_roundtrip": true
+}

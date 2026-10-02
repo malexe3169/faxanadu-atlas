@@ -8,6 +8,7 @@ One folder is a guide instead: which FaxEdit hacks work together.
 
 | Folder | Version | What it is | For |
 |---|---|---|---|
+| [french-dialogue](french-dialogue) | 0.1 | Atlas French Dialogue: France French and Canadian French / Québec dialogue, adapted from the existing translation work. Original interface and gameplay retained. Experimental. | USA, USA Rev 1, Europe, Japan |
 | [qol-edition](qol-edition) | 1.3 | The original game, nicer to play: faster transitions, enemy health bars, corrected Ointment protection, an options menu, battery saves, and automatic keys and mattock. | USA |
 | [speedrunner-training](speedrunner-training) | 5.1 | The original game with speedrun practice tools in the pause menu: timer, splits, warp, checkpoints and HUD readouts. With the default settings it plays exactly like the original. | USA, USA Rev 1, Europe |
 | [faxoptions-showcase-9.2](faxoptions-showcase-9.2) | 9.2-1 | FaxOptions Showcase 9.2 (Crown Jewels): the FaxEdit 9.2 general hacks in one ROM, with a pause-menu panel that switches them and changes their settings while you play. | USA, USA Rev 1, Europe |
@@ -40,8 +41,8 @@ is what identifies the game whatever header your dump carries.
 | Japan | `2f3788f36bddd61c64c554ea64f3eda1ed373e65` | `6501f61fd717ae603c2265d0df074ac2a4dcb8c7` |
 
 Check the file hash with `sha1sum your.nes`, and the body hash with
-`tail -c +17 your.nes | sha1sum`. No patch here is for the Japan version; it
-is listed so you can tell it apart.
+`tail -c +17 your.nes | sha1sum`. Atlas French Dialogue supports Japan;
+the other builds list their own supported bases.
 
 The QoL Edition, SpeedRunner Training and FaxOptions builds keep settings or
 saves in battery RAM, so use an emulator that keeps battery saves. Faxanadu
