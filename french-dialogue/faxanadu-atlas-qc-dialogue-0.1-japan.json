@@ -1,17 +1,17 @@
 {
   "revision": "japan",
   "locale": "qc",
-  "scope": "dialogue only",
+  "scope": "dialogue and compatible name entry",
   "source_body_sha1": "6501f61fd717ae603c2265d0df074ac2a4dcb8c7",
   "source_file_sha1": "2f3788f36bddd61c64c554ea64f3eda1ed373e65",
   "source_script_commit": "0c8eee1e6c2446ac3da949c890214668fe32d085",
   "font_reference_body_sha1": "5b05c8859f356013d37f0545f5de5fa1693da5da",
   "script_sha256": "0f03baf4d8d8c5f2ceb68c478d90404ee9a41b8e661cf8bbfd90a81618f0d711",
-  "target_sha256": "a5fa57e26a220acb23fafd17fa8804864d9f0ceba08f4b4bea4068d9b5fd9b57",
-  "ips_sha256": "e7384ad341b1d811caed553430d46c907262f4e22603b6d8de36bc02176d7b66",
-  "encoded_dialogue_bytes": 11727,
+  "target_sha256": "467ea70bb093fa12ef8e4dfe7b1c931be4fb3bcec2b3d61988e9cbc18520401f",
+  "ips_sha256": "44ae4ba8be1778cb35d3c1ef0c1bb3150d53876b15b120363ffc1d8143b2b701",
+  "encoded_dialogue_bytes": 11758,
   "native_message_count": 193,
-  "changed_body_bytes": 12567,
+  "changed_body_bytes": 13220,
   "allowed_ranges": [
     [
       "0x024800",
@@ -19,11 +19,15 @@
     ],
     [
       "0x024B00",
-      "0x0278CF"
+      "0x0278EE"
+    ],
+    [
+      "0x027C00",
+      "0x027D6F"
     ],
     [
       "0x03FDB2",
-      "0x03FEB4"
+      "0x03FFCC"
     ],
     [
       "0x03F50D",
@@ -80,11 +84,101 @@
     [
       "0x03F685",
       "0x03F688"
+    ],
+    [
+      "0x031201",
+      "0x031204"
+    ],
+    [
+      "0x031087",
+      "0x03108A"
+    ],
+    [
+      "0x031509",
+      "0x03150C"
+    ],
+    [
+      "0x03153B",
+      "0x03153E"
+    ],
+    [
+      "0x031860",
+      "0x031863"
+    ],
+    [
+      "0x03142A",
+      "0x03142D"
+    ],
+    [
+      "0x031600",
+      "0x031603"
+    ],
+    [
+      "0x031824",
+      "0x031827"
+    ],
+    [
+      "0x0312DA",
+      "0x0312DD"
     ]
   ],
   "header_and_size_preserved": true,
   "ips_roundtrip": true,
   "status": "experimental 0.1",
-  "bps_sha256": "4a36f85fc7ed1251787d541d85733a96d31edcf7243f251147aae73fce7e1d6c",
+  "name_entry": {
+    "characters": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.,_!\"'-?1234567890\u00e9\u00e8\u00ea\u00e0\u00e2\u00ee\u00f4\u00fb\u00f9\u00e7 ",
+    "pages": 3,
+    "max_name_length": 4,
+    "source_hashes": {
+      "fr.tbl": "54dbc436b67674f7103ceac94ce0dc2565c10baa7ee0caf4bf66f77b427f6b9c",
+      "accents.txt": "ae239cea5174b86272c6c8a093fd99b05376d9f3402c947207158f5079d14332"
+    },
+    "password_alphabet_unchanged": true,
+    "core_bytes": 367,
+    "fixed_adapter_bytes": 538,
+    "core_labels": {
+      "lookup": 48128,
+      "lookupready": 48152,
+      "glyph": 48158,
+      "blank": 48191,
+      "pixels": 48201,
+      "pages": 48234,
+      "ascii": 48414
+    },
+    "fixed_labels": {
+      "write": 64946,
+      "asciiwrite": 64970,
+      "glyph8": 65037,
+      "glyphloop": 65039,
+      "init": 65047,
+      "initdialogue": 65055,
+      "initline": 65079,
+      "fill": 65088,
+      "clearloop": 65140,
+      "nextline": 65180,
+      "line": 65185,
+      "lineloop": 65203,
+      "nameinit": 65219,
+      "passwordinit": 65233,
+      "namelookup": 65241,
+      "latinlookup": 65250,
+      "nameglyph": 65279,
+      "nativeglyph": 65322,
+      "nativeglyphready": 65323,
+      "gridcode": 65326,
+      "nextlower": 65349,
+      "nextaccent": 65352,
+      "gridnative": 65355,
+      "gridreturn": 65357,
+      "changepage": 65358,
+      "latinpage": 65371,
+      "pagedraw": 65386,
+      "cleargridrow": 65413,
+      "cleargridbyte": 65415,
+      "redrawname": 65463
+    },
+    "dialogue_name_substitution": true
+  },
+  "bps_sha256": "08901954189de42d9438adb27e6e47f1c00f1ec435a0fcdd28857b87b36455a5",
   "bps_roundtrip": true
 }

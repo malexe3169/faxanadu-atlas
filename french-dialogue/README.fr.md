@@ -3,9 +3,10 @@
 *[English version](README.md)*
 
 Les dialogues du jeu original en français de France (`fr`) ou en français
-canadien / Québec (`qc`). Cette première version traduit **uniquement les
-dialogues**. Les menus, noms d'objets, écran titre, mots de passe et saisie du
-nom japonaise restent dans leur langue d'origine.
+canadien / Québec (`qc`). Les versions occidentales traduisent **uniquement les
+dialogues**. Les versions japonaises adaptent aussi la saisie du nom au jeu de
+caractères latins de la PR. Menus, noms d'objets, écran titre et alphabet des
+mots de passe restent d'origine.
 
 Adaptation des scripts FR/QC de la
 [PR 2 de la Faxanadu Translation Table d'UnsavoryMaggot](https://github.com/UnsavoryMaggot/Faxanadu-Translation-Table/pull/2).
@@ -17,7 +18,9 @@ USA, USA Rev 1, Europe et Japon. Chaque base conserve sa jouabilité, sa musique
 ses graphismes hors glyphes de texte, ses mots de passe, son mapper et sa taille.
 Pas de sauvegarde SRAM, d'améliorations QoL, de corrections de jouabilité ni
 d'extension de ROM héritée de Retranslation. La version japonaise utilise un
-petit adaptateur d'affichage des dialogues latins, sans traduire son interface.
+petit adaptateur d'affichage des dialogues latins et de saisie du nom compatible.
+Les titres et libellés japonais Supprimer/Terminer restent d'origine : ce n'est
+pas une traduction complète des menus.
 
 ## Appliquer un patch
 
@@ -37,12 +40,22 @@ Aucune ROM n'est fournie.
 
 Scripts épinglés à `0c8eee1e6c2446ac3da949c890214668fe32d085`, réorganisés en
 193 messages natifs et lignes de seize caractères. Les références au nom
-non prises en charge sont retirées; les rangs japonais deviennent « un nouveau
+non prises en charge sont retirées des bases occidentales; le Japon conserve
+la substitution du nom. Les rangs japonais deviennent « un nouveau
 titre » dans le dialogue, sans modifier les rangs du menu. Prix et indications
 de quête respectent les mécanismes de chaque base originale.
 
 Version expérimentale 0.1. Les manifestes JSON donnent les sommes de contrôle
 des ROMs et des patchs. La compatibilité sur matériel réel n'est pas garantie.
+
+## Saisie du nom au Japon
+
+Sélectionnez avec la croix directionnelle et A. Le bouton de la dernière ligne
+marqué `a`, `é` ou `A` alterne entre majuscules, minuscules et accents. Chiffres,
+ponctuation et espace sont disponibles sur chaque page. Le nom reste limité à
+quatre caractères; B recule le curseur d'édition. Supprimer et Terminer gardent
+leurs libellés japonais. Les dix accents `éèêàâîôûùç` proviennent de la PR;
+son jeu de caractères ne contient pas de majuscules accentuées.
 
 Crédits : UnsavoryMaggot
 pour la Translation Table et Retranslation, chipx86 pour la référence de
