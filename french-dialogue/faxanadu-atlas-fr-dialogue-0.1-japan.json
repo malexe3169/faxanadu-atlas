@@ -7,8 +7,8 @@
   "source_script_commit": "0c8eee1e6c2446ac3da949c890214668fe32d085",
   "font_reference_body_sha1": "5b05c8859f356013d37f0545f5de5fa1693da5da",
   "script_sha256": "09f9e2a294dec93b3d9ef632eed0cbd7053b81ed92f1cc6096e9841358fa1863",
-  "target_sha256": "e5ea52121731764bf611859bc9dc7cd02761e457c24de72cd39967ff3cf75370",
-  "ips_sha256": "1169374a455f62dd0d097be4f52d1959d3881c7b680dbc6757ddb6a9e925b8fb",
+  "target_sha256": "bf4592a205cfbb457566814819fb514c5b34f5aa228884c60c27ac094bd60730",
+  "ips_sha256": "30b9a11757c551dde8fb154c552a8711b04b025c468e7f9cb93f5c203fe3a765",
   "encoded_dialogue_bytes": 11660,
   "native_message_count": 193,
   "changed_body_bytes": 12500,
@@ -85,6 +85,6 @@
   "header_and_size_preserved": true,
   "ips_roundtrip": true,
   "status": "experimental 0.1",
-  "bps_sha256": "fbf88a74eecd67bcc1d6f0935e93903c7c76260b447683ec793e498a28439951",
+  "bps_sha256": "0e83c47c6a3631e836f7e023d582334647e1a1352186fa6aa44f51ae9a434373",
   "bps_roundtrip": true
 }
