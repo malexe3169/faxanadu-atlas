@@ -5,12 +5,13 @@
   "source_body_sha1": "d0c6af83c44f2dc90bcb0792a69c93f8d167f988",
   "source_file_sha1": "bfb085472127eecbe5d89cd8f35bfdda2b4153be",
   "source_script_commit": "0c8eee1e6c2446ac3da949c890214668fe32d085",
+  "font_reference_body_sha1": "d0c6af83c44f2dc90bcb0792a69c93f8d167f988",
   "script_sha256": "0f03baf4d8d8c5f2ceb68c478d90404ee9a41b8e661cf8bbfd90a81618f0d711",
-  "target_sha256": "68c3b1437deb03bebc9ec867563739539b8e61872d5450cead1d5c64d364bf80",
-  "ips_sha256": "befa50a2cfb6cc3a6a6ab93faebf1ea78508370160cf2c90610f03604131af43",
-  "encoded_dialogue_bytes": 11713,
+  "target_sha256": "f2332c21f6ec3dea4ede0e91c77330bdfabf184922cececc8eb9b5fff03b439c",
+  "ips_sha256": "5545651d0a9a08c8099cc717bb839d895d3f334bdbfb3687d5d2e510fa5df311",
+  "encoded_dialogue_bytes": 11823,
   "native_message_count": 193,
-  "changed_body_bytes": 11944,
+  "changed_body_bytes": 11960,
   "allowed_ranges": [
     [
       "0x034300",
@@ -60,6 +61,6 @@
   "header_and_size_preserved": true,
   "ips_roundtrip": true,
   "status": "experimental 0.1",
-  "bps_sha256": "f5171ea1cc9f7481b840042313d79bc9e5b90298face457d086758add1d7f69c",
+  "bps_sha256": "edd251c4cebc07f8f2b09e9c754fc5fa1b13e756b5831756f37d0ae481b47791",
   "bps_roundtrip": true
 }
