@@ -7,11 +7,11 @@
   "source_script_commit": "0c8eee1e6c2446ac3da949c890214668fe32d085",
   "font_reference_body_sha1": "d0c6af83c44f2dc90bcb0792a69c93f8d167f988",
   "script_sha256": "0f03baf4d8d8c5f2ceb68c478d90404ee9a41b8e661cf8bbfd90a81618f0d711",
-  "target_sha256": "f2332c21f6ec3dea4ede0e91c77330bdfabf184922cececc8eb9b5fff03b439c",
-  "ips_sha256": "5545651d0a9a08c8099cc717bb839d895d3f334bdbfb3687d5d2e510fa5df311",
-  "encoded_dialogue_bytes": 11823,
+  "target_sha256": "2f5044092db86beab514cb2a49bf113e621047797bee980e362fa460e6d6a9c5",
+  "ips_sha256": "20da8a29fe0624478c57158d62289e0bb64a8acac3eab41a74f5605b629f054e",
+  "encoded_dialogue_bytes": 12386,
   "native_message_count": 193,
-  "changed_body_bytes": 11960,
+  "changed_body_bytes": 11912,
   "allowed_ranges": [
     [
       "0x034300",
@@ -61,6 +61,12 @@
   "header_and_size_preserved": true,
   "ips_roundtrip": true,
   "status": "experimental 0.1",
-  "bps_sha256": "edd251c4cebc07f8f2b09e9c754fc5fa1b13e756b5831756f37d0ae481b47791",
+  "localization": {
+    "register": "spoken Quebec French / joual",
+    "overrides": "translations/qc-joual.tsv",
+    "overrides_sha256": "d7306a5dbaa6ae9e0ab9be802f7805e5a40229f6869d2b5c631c38112811ac93",
+    "source_pages_overridden": 325
+  },
+  "bps_sha256": "7e174d358571abc60c43fbc067865d89feecff3fc99229627969200277e51e4a",
   "bps_roundtrip": true
 }

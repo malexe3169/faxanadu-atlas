@@ -1,0 +1,327 @@
+# Original QC localization overrides: source message, zero-based page, text.
+# Keep quest facts, proper names, amounts, and $/# substitutions intact.
+1	0	J'suis $.
+1	1	J'ai voyagé longtemps, pis c'était pas facile.
+1	2	Enfin de retour chez nous.
+1	3	Mais les portes sont barrées,
+1	4	y'a pas un chat dehors,
+1	5	pis les remparts sont tout maganés.
+1	6	Qu'est-ce qui s'est passé ici?
+1	7	J'ai longé le rempart pis j'ai fini par entrer...
+3	0	T'as pas assez d'argent.
+4	0	$, merci d'être venu. Un malheur s'abat sur nous.
+4	3	et nos puits s'assèchent.
+4	4	Beaucoup sont partis. Personne n'est revenu.
+4	8	mais tiens bon. Tu es notre dernier espoir!
+5	0	$, ton âme a besoin de paix.
+6	0	T'es déjà chargé au maximum.
+7	0	T'as fait tout ce chemin! Voici la Source de l'Arbre.
+7	1	J'ai besoin d'un Elixir pour la faire repartir.
+7	2	Tu me donnerais-tu le tien?
+8	0	Avec cette Huile-là, j'me sens invincible.
+9	0	Ces Gants-là me donnent toute une force.
+10	0	Le mur devait bloquer la route
+10	1	vers la ville d'à côté,
+10	2	les nains arrêtent pas d'arriver.
+11	0	Paraît que la météorite est gardée
+11	2	La tour est en haut de l'église. Fais attention.
+12	0	T'es blessé? Notre médecin connaît son affaire.
+13	0	Tant qu'il reste des nains qui ont perdu la tête,
+13	1	la météorite reste un danger pour les elfes.
+13	2	Ouvre la porte avec cette clé
+14	0	Crois en ta force. C'est toi, le guerrier élu,
+15	0	Reviens avec le remède, d'accord?
+16	0	J'veux acheter. J'veux vendre.
+18	0	T'as rien que j'peux t'acheter.
+19	0	Qu'est-ce que tu veux vendre?
+20	0	Qu'est-ce que j'te sers?
+21	0	T'as-tu trouvé la Baguette Magique?
+22	0	T'as une arme pour te défendre?
+23	0	Savais-tu qu'il y a une Baguette Magique
+23	1	qui rend ta magie plus forte?
+24	0	T'as écouté la prière du prêtre?
+24	1	Ces mots-là vont te ramener
+24	2	dans ce monde. Oublie-les pas.
+25	0	T'as-tu l'Armure de Combat?
+26	0	Il te manque un anneau pour la porte?
+27	0	Vas-y mollo.
+28	0	La viande séchée, ça redonne des forces.
+28	1	150 ducats, ça te va-tu?
+29	0	La viande séchée, ça redonne des forces.
+29	1	180 ducats, ça te va-tu?
+30	0	La viande séchée, ça redonne des forces.
+30	1	250 ducats, ça te va-tu?
+31	0	La viande séchée, ça redonne des forces.
+31	1	350 ducats, ça te va-tu?
+32	0	La viande séchée, ça redonne des forces.
+32	1	500 ducats, ça te va-tu?
+33	0	La viande séchée, ça redonne des forces.
+33	1	50 ducats, ça te va-tu?
+34	0	La viande séchée, ça redonne des forces.
+34	1	800 ducats, ça te va-tu?
+35	0	Les nains se sont installés dans les maisons vides
+35	1	du coin. Garde l'oeil ouvert.
+36	0	Envole-toi vers le ciel. C'est la Source du Ciel.
+37	0	Pour 200 ducats, j'te montre la magie.
+38	0	Pour 3000 ducats, j't'apprends le sort Feu.
+39	0	Le Château Fraternel est
+39	1	loin en dessous de Dartmoor.
+40	0	Prends la clé du prêtre de la Tour Forteresse
+40	1	pis cherche la Source de la Terre.
+41	0	Vas-y, fais de ton mieux!
+42	0	Continue tout droit
+42	1	pis tu vas arriver à Apolune.
+44	0	Salut $! Le roi t'attend.
+45	0	Ho ho ho! Bon, j'vais t'expliquer pour l'eau...
+45	2	...Hein? J'dormais... Les sources sont à sec
+45	3	parce qu'on a mis du poison dans l'eau.
+45	4	Le poison est presque tout parti.
+45	5	C'est le temps de faire repartir la source.
+45	6	Regarde donc..... ...............
+45	7	..C'est bizarre...
+45	8	Ah ben!
+46	0	Le prêtre a de quoi pour toi.
+47	0	J'peux pas te laisser passer.
+50	0	J'prendrais bien un verre... Ah non, trop tôt.
+51	0	J'ai mis les Bottes Ailées.
+64	0	Paraît qu'il y a une église cachée
+64	2	Tu peux y apprendre des affaires,
+64	3	pis y trouver des clés.
+65	0	Paraît que la porte de la capitale, en bas,
+65	1	est ouverte. Va donc voir.
+66	0	Je sais, tu viens juste d'arriver,
+66	1	mais traîne pas: va voir le roi.
+67	1	C'est quelqu'un d'important.
+68	0	J'me suis perdu.
+69	0	J'me suis perdu.
+69	1	Mes sorts Healmore pis Return marchent plus.
+70	0	J'ai frappé de toutes mes forces.
+71	0	J'ai pris la potion... Y'avait du poison dedans!
+72	0	J'allais souvent chez les nains
+72	1	quand on commerçait ensemble.
+74	0	Voici l'Anneau de Rubis. Tu l'as pas volé!
+75	0	Y'a un objet qui s'appelle le Sablier.
+75	1	Il arrête le temps,
+75	2	mais toi, tu peux encore bouger.
+75	3	Attention: ça use ton énergie.
+77	0	Si tu vas voir le roi, prends ça.
+77	1	Cet anneau-là prouve qui tu es.
+77	2	Perds-le pas.
+78	0	Si tu poussais le rocher de la fontaine,
+78	1	le chemin vers Mascon s'ouvrirait. Mais...
+78	2	Sans l'Anneau de Rubis, ça marchera pas.
+78	3	Le dieu de la Source de la Terre l'a. Demande-lui.
+79	0	Continue ton chemin,
+79	1	tu vas arriver à la Tour de Brume.
+79	2	Quand t'auras battu le nain qui vit là
+79	3	pis pris la météorite, reviens.
+80	0	Si t'as besoin d'une autre clé Joker, reviens.
+81	0	Le prêtre va te donner l'Anneau du Démon.
+82	0	C'est-tu ta première fois ici?
+82	1	Moi aussi, j'suis nouveau.
+83	0	Tout dépend de ce que le mage a dans le coeur:
+83	1	la magie peut aider ou tout détruire.
+84	0	C'est risqué de sortir
+85	0	Je donne des clés aux gens de passage.
+85	1	T'as déjà la clé As.
+86	0	La Tour de Peine est encore loin.
+86	1	Prépare-toi comme il faut avant de partir.
+87	0	Il me faut une clé.
+88	0	Paraît que le roi des nains
+88	1	a le Tueur de Dragon.
+89	0	La météorite fond dans l'eau
+89	1	pis ça fait un poison mortel.
+89	2	Tout a commencé quand les nains
+89	3	l'ont amenée dans l'Arbre-Monde.
+96	0	Ouf! Ton dernier bain, ça fait longtemps?
+97	0	Ecoute donc ce que le monde te dit.
+97	1	Tourner en rond, c'est frustrant.
+98	0	Ma job?
+98	1	Ginji! J'vide les poches!
+99	0	Là, ils sont cruels,
+99	1	mais avant, les nains fabriquaient
+99	2	de belles affaires.
+100	0	La magie d'attaque fait rien pantoute
+101	0	La magie d'attaque, c'est utile,
+101	1	mais ça prend beaucoup d'énergie.
+102	0	Hé! On s'est pas vus depuis un bout!
+102	1	Tout en haut de la tour des piliers,
+102	2	tu vas trouver la Baguette Magique.
+103	0	Quand la fontaine va couler,
+103	1	la ville va avoir de l'eau.
+104	0	Quand t'auras l'armure pis le casque,
+104	1	va voir le prêtre.
+105	0	Ouvre la cabane sous la ville avec cette clé.
+105	1	La Source de la Terre est là-dedans.
+106	0	Garde un oeil sur ta magie.
+107	0	Bats le Pape avec le Tueur de Dragon.
+108	0	Fouille le château. Y'a une église dedans.
+109	0	Va voir le prêtre du Château Fraternel.
+110	0	Ah, c'était juste une rumeur?
+110	1	Désolé pour ça.
+110	2	J'ai repris une armure là-bas
+110	3	à un client qui m'a pas payé.
+110	4	Prends-la si tu veux.
+111	0	C'est donc toi, le fameux $.
+111	1	Un beau gars, comme le monde dit.
+112	0	Chaque sort a son utilité.
+113	0	Merci bien!
+114	0	Avec les portes qu'on a posées
+114	1	tout le tour de la ville,
+114	2	on a pu la défendre.
+115	0	Grâce à toi, la source est revenue à la normale.
+115	1	Il en reste deux. Dépêche-toi.
+116	0	Ce pendentif-là, c'était notre trésor,
+116	1	mais t'en as plus besoin que nous.
+117	0	C'est dur, mais perds pas courage.
+117	1	Rappelle-toi ta prière.
+118	0	Les Gants ont plus de force.
+119	0	Le Sablier prend de ton énergie.
+119	1	Fais attention quand tu t'en sers.
+120	0	L'Huile est toute sèche.
+121	0	La Tour du Tronc est pleine de nains.
+121	1	Va à droite de la ville, tout droit.
+122	0	Les Bottes Ailées sont finies.
+123	0	Les nains sont entrés en ville.
+123	1	C'est-tu la fin?
+124	0	Les nains vénèrent
+124	1	un morceau de la météorite.
+124	2	Il doit avoir un drôle de pouvoir.
+125	0	Les nains dans la tour ont les Bottes Ailées.
+125	1	Prends-les, pis cherche la Source du Ciel.
+126	0	Les nains attaquent les elfes
+126	1	pis leur volent leur or et leurs bijoux.
+127	0	Les nains pensaient que la météorite
+127	1	était envoyée par Dieu. Sauf que
+127	2	ça devient un poison terrible
+127	3	dès que ça touche à l'eau.
+127	4	Juste à la toucher, paraît
+127	5	que ton corps se déforme.
+127	6	C'est comme ça que les nains ont changé
+127	7	pis perdu la tête.
+128	0	Y'a plus de sable dans le Sablier.
+129	0	Même le dernier puits est sec... On est foutus.
+130	0	L'armure pis le casque légendaires
+131	2	On entend parler de toi
+131	3	même chez les nains.
+132	0	Le monstre que t'as battu, c'était
+132	1	le roi Grieve, défiguré,
+132	2	le roi des nains. Leur Pape
+132	3	l'avait transformé. Mais
+132	4	il avait caché l'épée dans son corps,
+132	5	loin du Pape. $, prends cette épée
+132	6	pour tuer le Pape qui se cache
+132	7	dans la forteresse. La porte
+134	0	Le prêtre de Conflate a l'Anneau de Saphir.
+135	0	Y'a plein d'anneaux avec des pouvoirs.
+135	1	Cherche-les un à la fois.
+136	0	Y'a une école de magie hors de la ville.
+138	0	Y'a une source dans la Tour Forteresse.
+138	1	La fontaine à sec pis l'entrée
+138	2	sont en haut d'ici. Fais attention.
+139	0	Y'a une boutique hors de la ville.
+139	1	Mal placée, mais pratique.
+139	2	Tu la vois-tu? Regarde en haut.
+140	0	C'est marqué "As" sur la serrure!
+141	0	C'est marqué "Valet" sur la serrure!
+142	0	C'est marqué "Joker" sur la serrure!
+143	0	C'est marqué "Roi" sur la serrure!
+144	0	C'est marqué "Dame" sur la serrure!
+145	0	Y'a une pioche dans la tour.
+145	1	Bats les nains pour la récupérer.
+146	0	C'était le chaos dans l'Arbre-Monde
+146	1	après qu'une météorite soit tombée.
+146	2	Quand ça s'est calmé,
+146	3	les nains du Tertre Infernal ont envahi
+146	4	le monde des elfes. Personne sait pourquoi.
+147	0	Le château de Dartmoor, c'est un labyrinthe.
+148	0	T'es à Forepaw, icitte.
+149	0	T'es à Eolis, la capitale des elfes,
+149	1	au pied de l'Arbre-Monde.
+149	2	Va voir le roi
+149	3	après avoir écouté le prêtre.
+150	0	T'es à Conflate, la ville du commerce.
+151	0	La ville est dans la brume
+151	1	parce que la météorite est tombée ici.
+151	2	Y'a encore des places qui brûlent.
+152	0	La ville allait bien
+152	1	quand on commerçait avec les nains.
+153	0	Passe dans les églises en chemin.
+153	1	Ton titre va dépendre de tes exploits.
+154	0	Fais attention aux fioles de poison.
+154	1	Tu perds toute ton énergie.
+155	0	Trois sources remplissent la fontaine.
+155	1	Trouve-les pis fais-les repartir
+155	2	pour ramener l'eau dans la fontaine!
+156	0	L'eau coule encore dans la fontaine.
+156	1	C'est grâce à toi, $.
+157	0	Quel bonheur de te revoir sain et sauf!
+157	1	Il faudra du temps, mais les elfes et les nains
+157	2	vont s'entraider et ramener la paix
+157	3	dans ce monde, comme autrefois.
+157	4	Tu repars déjà pour un long voyage?
+157	5	Tu ne t'arrêtes donc jamais!
+158	0	T'as plus rien à faire ici.
+158	1	On espère avoir de bonnes nouvelles.
+159	0	Salut! Qu'est-ce que j'te sers?
+161	1	Moi, j'vois pas comment m'en sortir.
+162	0	J'vends des clés. T'as besoin de quoi?
+163	0	Salut $! Merci d'être venu, pour vrai.
+163	1	J'fais repartir la source tout de suite.
+164	0	T'as-tu trouvé le Pendentif?
+164	1	Il rend tes attaques plus fortes.
+165	0	Tout un bouclier! Pis il est beau avec ça.
+166	0	Qu'est-ce que tu fais dans un coin comme ça?
+166	1	T'es à Mascon, la ville dans la brume.
+167	0	Pour le dernier combat contre les nains,
+167	1	fie-toi pas juste à ta magie.
+167	2	Le Casque pis l'Armure de Combat vont
+167	3	juste avec le Tueur de Dragon.
+167	4	L'épée trouvera pas le repos
+167	5	avant que la paix revienne pour de bon.
+167	6	Cet anneau ouvre Dartmoor. Prends-le.
+168	0	Quand l'eau va revenir,
+168	1	va à Mascon
+168	2	pis trouve le poison caché des nains.
+168	3	Sinon, les elfes vont mourir.
+169	0	Pousse le rocher de la fontaine,
+169	1	pis le chemin vers Mascon va s'ouvrir. Mais
+169	2	ça te prend l'Anneau de Rubis.
+170	0	Quand tu vas la toucher,
+171	0	Une leçon d'épée pour 200 ducats, ça te tente?
+172	0	T'as besoin de te faire soigner?
+173	0	La Tour de Peine est pas loin.
+174	0	Il te faut les Bottes Ailées
+174	1	pour aller à Victim, la ville dans la brume.
+174	2	Cherche-les dans la Tour de Peine.
+175	0	T'as huit objets. Ils peuvent tous servir.
+175	1	Choisis comme il faut.
+176	0	Une pioche pourrait casser ce mur-là.
+176	1	Sans ça, tu peux rien faire.
+177	0	Hé! T'es le héros dont on parle!
+177	1	J'peux avoir ton autographe? T'es pressé?
+177	2	Reviens tantôt. Moi, c'est Moto.
+177	3	Oublie-moi pas, là!
+178	0	Trouve l'Armure de Combat.
+179	0	Il te faut l'Anneau du Démon
+179	1	pour entrer dans le fort de Zenith.
+180	0	On entend souvent parler de la Source du Ciel.
+180	1	Descends: y'a une place où le ciel s'ouvre.
+180	2	La source serait là-haut.
+180	3	Mais sans les Bottes Ailées...
+181	0	Prends un bouclier.
+181	1	Il bloque les projectiles des nains.
+182	0	Force-toi pas trop.
+183	0	Compte pas sur ta magie
+183	1	pour le dernier combat contre les nains.
+184	0	Fie-toi pas juste à ta magie.
+185	0	T'as des amis même à Dartmoor,
+185	1	qu'on appelle le Tertre Infernal.
+x	0	Qu'est-ce que j'te sers?
+x	1	Autre chose avec ça?
+x	2	Merci! Reviens quand tu veux.
+x	3	T'as pas de clé que j'peux te racheter.
+x	4	Tu veux-tu que j'te le redise?
+x	5	C'est pas la bonne clé.
+x	6	Cherche les Bottes Ailées.
+x	7	Fie-toi pas juste à ta magie pour le dernier combat.

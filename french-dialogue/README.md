@@ -3,7 +3,7 @@
 *[Version française](README.fr.md)*
 
 French dialogue for the original game, in two variants: France French (`fr`)
-and Canadian French / Québec (`qc`). The Western builds translate **dialogue
+and spoken Québec French / joual (`qc`). The Western builds translate **dialogue
 only**. The Japanese builds also adapt name entry to the existing PR's Latin
 character set. Menus, item names, title, and password alphabet stay original.
 
@@ -62,3 +62,15 @@ letters are not included in that source set.
 Credits: UnsavoryMaggot (Translation
 Table and Retranslation foundation), and chipx86 (Faxanadu reverse-engineering
 reference). Unofficial fan patches; not endorsed by the original rights holders.
+
+## Québec wording
+
+QC now applies 325 editable row overrides to the pinned contribution; it is no
+longer the earlier fourteen-line formal wording variant. Townspeople and merchants
+use spoken Québec expressions and contractions, while the king and priests keep
+a more solemn register. Examples: “Qu'est-ce que j'te sers?”, “Ma job? Ginji!
+J'vide les poches!”, and “La magie d'attaque fait rien pantoute”. Quest facts,
+prices, item names, mechanics and FR dialogue remain unchanged.
+
+The authored override source is included as [qc-joual.tsv](qc-joual.tsv); its hash
+and count are recorded in each QC manifest.

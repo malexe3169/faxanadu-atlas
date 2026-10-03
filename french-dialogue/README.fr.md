@@ -3,7 +3,7 @@
 *[English version](README.md)*
 
 Les dialogues du jeu original en français de France (`fr`) ou en français
-canadien / Québec (`qc`). Les versions occidentales traduisent **uniquement les
+québécois parlé / joual (`qc`). Les versions occidentales traduisent **uniquement les
 dialogues**. Les versions japonaises adaptent aussi la saisie du nom au jeu de
 caractères latins de la PR. Menus, noms d'objets, écran titre et alphabet des
 mots de passe restent d'origine.
@@ -60,3 +60,16 @@ son jeu de caractères ne contient pas de majuscules accentuées.
 Crédits : UnsavoryMaggot
 pour la Translation Table et Retranslation, chipx86 pour la référence de
 rétro-ingénierie. Patchs amateurs non officiels, sans affiliation aux ayants droit.
+
+## Le ton québécois
+
+QC applique maintenant 325 entrées de reformulation au texte de la contribution,
+plutôt que les quatorze différences formelles de la première version. Habitants
+et commerçants parlent plus naturellement, avec des contractions et expressions
+québécoises; le roi et les prêtres gardent un ton plus solennel. Exemples :
+« Qu'est-ce que j'te sers? », « Ma job? Ginji! J'vide les poches! » et
+« La magie d'attaque fait rien pantoute ». Les faits des quêtes, prix, noms
+d'objets, mécanismes du jeu et dialogues FR restent inchangés.
+
+Le texte de reformulation original est fourni dans [qc-joual.tsv](qc-joual.tsv).
+Sa somme de contrôle et son nombre d'entrées figurent dans chaque manifeste QC.

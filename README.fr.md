@@ -8,7 +8,7 @@ Un dossier est plutôt un guide : quels hacks de FaxEdit fonctionnent ensemble.
 
 | Dossier | Version | Ce que c'est | Pour |
 |---|---|---|---|
-| [french-dialogue](french-dialogue) | 0.1 | Atlas — Dialogues français : français de France et français canadien / Québec, adaptés du travail de traduction existant. Jouabilité originale conservée; saisie du nom en caractères latins compatibles au Japon. Expérimental. | USA, USA Rev 1, Europe, Japon |
+| [french-dialogue](french-dialogue) | 0.1 | Atlas — Dialogues français : français de France et québécois parlé / joual, adaptés du travail de traduction existant. Jouabilité originale conservée; saisie du nom en caractères latins compatibles au Japon. Expérimental. | USA, USA Rev 1, Europe, Japon |
 | [qol-edition](qol-edition) | 1.3 | Le jeu original, plus agréable : transitions plus rapides, barre de vie ennemie, protection de l’onguent corrigée, menu d’options, sauvegardes sur batterie, clés et pioche automatiques. | USA |
 | [speedrunner-training](speedrunner-training) | 5.1 | Le jeu original avec des outils d'entraînement au speedrun dans le menu de pause : chronomètre, splits, téléportation, points de départ et affichages à l'écran. Avec les réglages par défaut, il se joue exactement comme l'original. | USA, USA Rev 1, Europe |
 | [faxoptions-showcase-9.2](faxoptions-showcase-9.2) | 9.2-1 | FaxOptions Showcase 9.2 (Crown Jewels) : les hacks généraux de FaxEdit 9.2 dans une seule ROM, avec un panneau dans le menu de pause qui les active et change leurs réglages pendant la partie. | USA, USA Rev 1, Europe |

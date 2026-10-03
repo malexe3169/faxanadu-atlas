@@ -7,8 +7,8 @@
   "source_script_commit": "0c8eee1e6c2446ac3da949c890214668fe32d085",
   "font_reference_body_sha1": "5b05c8859f356013d37f0545f5de5fa1693da5da",
   "script_sha256": "09f9e2a294dec93b3d9ef632eed0cbd7053b81ed92f1cc6096e9841358fa1863",
-  "target_sha256": "d370d194b201d0c79cef54268d2ca2a69c60e796106543184dfb23d0dfb3e8c5",
-  "ips_sha256": "8655938de0f0b8655bf9168093a280925f5640a0282150c8c0a42c3b65280ff7",
+  "target_sha256": "e263528914bf0e401452865be007d88cd9364643dc9ff54453b6cfb49a40e220",
+  "ips_sha256": "cef51dfb601312a95860fac61ac2540d0925bd7e669c67c2d7f31c492e6c0cb5",
   "encoded_dialogue_bytes": 11691,
   "native_message_count": 193,
   "changed_body_bytes": 13153,
@@ -179,6 +179,6 @@
     },
     "dialogue_name_substitution": true
   },
-  "bps_sha256": "a3cf6c4b8e66f229b88d551c52cadcab3a6e6aae60dc77d8bb2741a2e62f13e1",
+  "bps_sha256": "2b2e32b77decb9cd7c9c9eec0cedec76ae8fb3ab21cd90de2bb1b7670e077a85",
   "bps_roundtrip": true
 }
