@@ -17,6 +17,7 @@ Un dossier est plutôt un guide : quels hacks de FaxEdit fonctionnent ensemble.
 | [movie-maker](movie-maker) | 2.1.1 | Atlas Movie Maker 2 : une seule image, glissez les acteurs et tracez leurs trajets, Jouer démarre le jeu dans la page avec le son, des modèles, des légendes dans la police du jeu, de l'art depuis vos images, annuler. Votre ROM reste dans votre navigateur ; vous recevez un IPS. La page 1.7 reste à movie-maker/classic. | USA, et les mods bâtis dessus |
 | [custom-build](custom-build) | 9.2-4 | Demandez un patch avec les hacks de FaxEdit de votre choix : une page qui les vérifie, un formulaire de demande, et des patches IPS et BPS bâtis pour vous, simple ou avec le menu FaxOptions. | USA, USA Rev 1, Europe |
 | [fax-battle](fax-battle) | 1.6 | Faxanadu Battle : un jeu de combat bâti sur Faxanadu — affrontez un ami ou le CPU — avec les modes Crown Scramble et Duel, sept combattants et neuf arènes. Expérimental. | USA |
+| [titan](titan) | 1.0 | Faxanadu Titan : une seule vie. La mort relance le jeu et il n'y a pas de retour, pas de mot de passe ; les ennemis frappent plus fort et tiennent plus longtemps, et la pause n'allonge plus les compteurs d'objets. Deux patchs aux mêmes règles : l'original intact (Vanilla) ou la QoL Edition 1.3 (QoL). | USA |
 
 ## Comment appliquer un patch
 
