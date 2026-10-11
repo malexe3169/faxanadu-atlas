@@ -1,4 +1,4 @@
-# Faxanadu : Hollow Tree v49 (Ghostlight)
+# Faxanadu : Hollow Tree v53 (Fogwalker)
 
 *[English version](README.md)*
 
@@ -8,7 +8,7 @@ sont des âmes, les gourous gardent les flammes, la mort vous coûte ce que vous
 portez, et chaque monstre montre son attaque avant de frapper. Un projet en
 cours, publié en préversions numérotées.
 
-Le patch est `faxanadu-hollow-tree-v49-ghostlight.bps`. Il donne une
+Le patch est `faxanadu-hollow-tree-v53-fogwalker.bps`. Il donne une
 cartouche de 512 Ko (MMC1, carte SUROM) avec une sauvegarde sur pile.
 
 ## Ce qui change
@@ -62,6 +62,8 @@ cartouche de 512 Ko (MMC1, carte SUROM) avec une sauvegarde sur pile.
   monstres frappent plus fort plus on monte dans l'arbre.
 - Les seigneurs préparent leurs attaques et deviennent plus féroces sous la
   moitié de leur vie. Un mur de brume se dresse devant eux.
+- Les dégâts s'affichent en chiffres au-dessus du monstre frappé. DAMAGE
+  NUMBERS, dans FaxOptions (Start, puis Select), les enlève.
 
 **Magie**
 - Les sorts ont des utilisations au lieu de MP, et seuls les sorts
@@ -86,19 +88,22 @@ cartouche de 512 Ko (MMC1, carte SUROM) avec une sauvegarde sur pile.
 - Les murs brisés restent brisés.
 
 **Menus, musique, apparence**
-- STATUS montre votre niveau d'âme, les huit statistiques, l'humanité et
-  votre vœu.
+- STATUS a trois pages, qu'on tourne avec Gauche et Droite : votre niveau
+  d'âme, les huit statistiques, l'humanité et votre vœu; ATTACK, ce que font
+  votre arme et votre sort tels qu'équipés; DEFENCE, ce que votre armure et
+  votre bouclier encaissent, et la charge de votre équipement.
 - Une nouvelle trame sonore. MUSIC, dans le menu Select, passe à la musique
   originale en tout temps.
 - Un nouveau titre, des jambes plus fluides à la marche, et un court
   accroupissement à l'atterrissage.
+- Votre apparence ne colore que le héros : le roi et les gens des villes
+  gardent leurs couleurs.
 - Deux fins et une Nouvelle Partie+.
 
 ## Pas inclus
 
 - Les quêtes des trois derniers objets (Catarina Armor, Fireball, Patches)
 - Un coffre de rangement chez les gourous
-- Les chiffres de dégâts
 - L'ensemble complet d'animations Fluid Motion
 - La parade parfaite, la vitesse et la portée des armes, les faiblesses
   élémentaires
@@ -123,7 +128,7 @@ Le jeu patché est le bon si l'une ou l'autre empreinte correspond :
 
 | patch | SHA-1 du fichier | SHA-1 du contenu |
 | --- | --- | --- |
-| `faxanadu-hollow-tree-v49-ghostlight` | `94390f49feaf076af8190c5eaa36fa1529b972a1` | `9be1dc1801496e4c7b87cdd7c2a8863804320736` |
+| `faxanadu-hollow-tree-v53-fogwalker` | `b5b71a256509f3ce461e366e556200f0056af832` | `12785747e6483d7c91c5b833dbcfdfb92a328b01` |
 
 Le patch ne contient aucune donnée du jeu original; il copie ce qu'il lui faut
 à partir de votre propre ROM.
@@ -138,6 +143,11 @@ fonctionnement du jeu vient du
 
 ## Versions
 
+- **v53 (Fogwalker)** : des pages STATUS pour l'attaque et la défense, les
+  chiffres de dégâts, l'apparence ne colore plus le roi ni les gens des
+  villes. Corrigé : le seigneur du Tronc, sur sa corniche, était impossible
+  à atteindre. Sa brume tient maintenant sa salle et celle de l'échelle qui
+  mène à lui, une fois que vous êtes entré chez lui.
 - **v49 (Ghostlight)** : la première préversion publique. Les classes et les
   apparences, le nouvel équipement dans le monde, le choix de la musique, les
   sorts qui traversent les immunisés, l'accroupissement à l'atterrissage.

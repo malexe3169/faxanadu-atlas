@@ -18,7 +18,7 @@ Un dossier est plutôt un guide : quels hacks de FaxEdit fonctionnent ensemble.
 | [custom-build](custom-build) | 9.2-4 | Demandez un patch avec les hacks de FaxEdit de votre choix : une page qui les vérifie, un formulaire de demande, et des patches IPS et BPS bâtis pour vous, simple ou avec le menu FaxOptions. | USA, USA Rev 1, Europe |
 | [fax-battle](fax-battle) | 1.6 | Faxanadu Battle : un jeu de combat bâti sur Faxanadu — affrontez un ami ou le CPU — avec les modes Crown Scramble et Duel, sept combattants et neuf arènes. Expérimental. | USA |
 | [titan](titan) | 1.0 | Faxanadu Titan : une seule vie. La mort relance le jeu et il n'y a pas de retour, pas de mot de passe ; les ennemis frappent plus fort et tiennent plus longtemps, et la pause n'allonge plus les compteurs d'objets. Deux patchs aux mêmes règles : l'original intact (Vanilla) ou la QoL Edition 1.3 (QoL). | USA |
-| [hollow-tree](hollow-tree) | v49 | Faxanadu : Hollow Tree, une refonte à la Dark Souls : âmes et taches de sang, gourous en feux de camp, Estus, huit statistiques, endurance, parade et pas de recul, des monstres qui montrent leurs attaques, des classes, 21 nouveaux objets et une nouvelle trame sonore. Préversion, en cours. | USA |
+| [hollow-tree](hollow-tree) | v53 | Faxanadu : Hollow Tree, une refonte à la Dark Souls : âmes et taches de sang, gourous en feux de camp, Estus, huit statistiques, endurance, parade et pas de recul, des monstres qui montrent leurs attaques, des classes, 21 nouveaux objets et une nouvelle trame sonore. Préversion, en cours. | USA |
 
 ## Comment appliquer un patch
 

@@ -1,4 +1,4 @@
-# Faxanadu: Hollow Tree v49 (Ghostlight)
+# Faxanadu: Hollow Tree v53 (Fogwalker)
 
 *[Version française](README.fr.md)*
 
@@ -7,7 +7,7 @@ original game. The World Tree is hollow: gold is souls, the gurus keep the
 flames, death costs you what you carry, and every monster shows its attack
 before it lands. A work in progress, released as numbered previews.
 
-The patch is `faxanadu-hollow-tree-v49-ghostlight.bps`. It makes a 512 KB
+The patch is `faxanadu-hollow-tree-v53-fogwalker.bps`. It makes a 512 KB
 cartridge (MMC1, SUROM board) with a battery save.
 
 ## What changes
@@ -56,6 +56,8 @@ cartridge (MMC1, SUROM board) with a battery save.
   in the tree.
 - Lords wind up their attacks and turn fiercer below half health. A fog
   wall stands before them.
+- Damage numbers rise over the monster you hit. DAMAGE NUMBERS in
+  FaxOptions (Start, then Select) turns them off.
 
 **Magic**
 - Spells have uses instead of MP, and only attuned spells can be cast. Rest
@@ -79,17 +81,20 @@ cartridge (MMC1, SUROM board) with a battery save.
 - Broken walls stay broken.
 
 **Menus, music, look**
-- STATUS shows your soul level, the eight stats, Humanity and your vow.
+- STATUS has three pages, Left and Right to flip: your soul level, the
+  eight stats, Humanity and your vow; ATTACK, what your weapon and spell do
+  as equipped; DEFENCE, what your armour and shield take, and your equip
+  load.
 - A new soundtrack. MUSIC in the Select menu switches to the original music
   at any time.
 - A new title, smoother walking legs, and a short tuck when you land.
+- Your look colours only the hero: the King and the townsfolk keep theirs.
 - Two endings and New Game+.
 
 ## Not included
 
 - NPC quests for the last three items (Catarina Armor, Fireball, Patches)
 - A storage box at the gurus
-- Damage numbers
 - The full Fluid Motion animation set
 - Parry, weapon speed and reach, elemental weaknesses
 
@@ -113,7 +118,7 @@ The patched game is right if either hash matches:
 
 | patch | file SHA-1 | body SHA-1 |
 | --- | --- | --- |
-| `faxanadu-hollow-tree-v49-ghostlight` | `94390f49feaf076af8190c5eaa36fa1529b972a1` | `9be1dc1801496e4c7b87cdd7c2a8863804320736` |
+| `faxanadu-hollow-tree-v53-fogwalker` | `b5b71a256509f3ce461e366e556200f0056af832` | `12785747e6483d7c91c5b833dbcfdfb92a328b01` |
 
 The patch carries no data from the original game; it copies what it needs
 from your own dump.
@@ -128,6 +133,11 @@ works comes from chipx86's
 
 ## Versions
 
+- **v53 (Fogwalker)**: STATUS pages for attack and defence, damage
+  numbers, the look no longer recolours the King and the townsfolk. Fixed:
+  the Trunk lord on the high ledge could not be reached. His fog now holds
+  his room and the room with the ladder up to him, once you have stepped
+  into his.
 - **v49 (Ghostlight)**: the first public preview. Classes and looks, the
   new gear in the world, the music switch, spells that pass through the
   immune, Landing Tuck.
