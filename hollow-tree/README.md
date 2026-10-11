@@ -72,7 +72,10 @@ cartridge (MMC1, SUROM board) with a battery save.
   chance of random items.
 
 **The world**
-- The routes are remixed, and the map is new.
+- The original areas, linked in new ways: five doors home to Eolis that open
+  from the far side, shortcuts, a cellar to Dartmoor and a hidden Painted
+  World.
+- The camera follows you from room to room instead of flipping screens.
 - Broken walls stay broken.
 
 **Menus, music, look**

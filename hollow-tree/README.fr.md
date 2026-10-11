@@ -79,7 +79,10 @@ cartouche de 512 Ko (MMC1, carte SUROM) avec une sauvegarde sur pile.
   la chance d'objets au hasard.
 
 **Le monde**
-- Les routes sont remaniées, et la carte est nouvelle.
+- Les régions originales, reliées autrement : cinq portes vers Eolis qui
+  s'ouvrent de l'autre côté, des raccourcis, une cave vers Dartmoor et un
+  Monde peint caché.
+- La caméra vous suit d'une salle à l'autre au lieu de changer d'écran.
 - Les murs brisés restent brisés.
 
 **Menus, musique, apparence**
